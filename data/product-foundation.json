@@ -1,0 +1,30 @@
+{
+  "version": "0.1.0",
+  "updated_at": "2026-07-20",
+  "product": {
+    "name": "EXIM Product OS",
+    "type": "internal logistics operations system with client portal",
+    "first_market": "Kazakhstan",
+    "primary_users": ["client", "manager", "logistician", "broker", "lawyer", "administrator"],
+    "excluded_product": "terminals, bonded warehouses and infrastructure marketplace"
+  },
+  "confirmed_decisions": [
+    "Client is linked to a personal EXIM manager",
+    "Client only sees the manager",
+    "Logistician calculates cost",
+    "Manager adds margin and communicates final price",
+    "Active shipment is created after contract",
+    "One shipment may contain multiple trips",
+    "Manager publishes client-visible shipment stages",
+    "Tracking is detailed and can be manual in MVP",
+    "Client chat is with manager only"
+  ],
+  "open_questions": [
+    "Bitrix replacement or parallel operation",
+    "Contract model",
+    "Payment before shipment",
+    "Accounting role",
+    "Multiple users per client company",
+    "Planned delivery date ownership"
+  ]
+}
