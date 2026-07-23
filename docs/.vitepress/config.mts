@@ -53,6 +53,7 @@ export default defineConfig({
         items: [
           { text: 'Карта приложения', link: '/03-product-map/app-map' },
           { text: 'Два слоя данных', link: '/03-product-map/data-layers' },
+          { text: 'Права и видимость', link: '/03-product-map/permissions' },
           { text: 'Доменная модель', link: '/03-product-map/domain-model' }
         ]
       },
