@@ -28,4 +28,4 @@ npm run docs:preview
 
 В репозитории есть workflow GitHub Pages. После загрузки в GitHub выберите `Settings → Pages → Source: GitHub Actions`.
 
-Версия Product Foundation: **0.2.0 — draft**.
+Версия Product Foundation: **0.3.0 — draft**.

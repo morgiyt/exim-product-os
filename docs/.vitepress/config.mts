@@ -63,7 +63,8 @@ export default defineConfig({
           { text: 'Реестр страниц', link: '/04-pages/page-registry' },
           { text: 'Кабинет клиента', link: '/04-pages/client-cabinet' },
           { text: 'Кабинет менеджера', link: '/04-pages/manager-cabinet' },
-          { text: 'Кабинет логиста', link: '/04-pages/logistics-cabinet' }
+          { text: 'Кабинет логиста', link: '/04-pages/logistics-cabinet' },
+          { text: 'Dashboard руководителя логистики', link: '/04-pages/logistics-head-cabinet' }
         ]
       },
       {
