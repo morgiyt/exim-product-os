@@ -160,6 +160,8 @@ Reason: no safe sandbox shipment existed, and creating one could affect existing
 6. Mobile protected app shows horizontal overflow.
 7. Role/view state is unstable: role button and `Канбан`/`Список` behavior varied between repeated checks.
 
+Detailed follow-up records are maintained in [Bug Registry](../bug-registry).
+
 ## Product OS gaps
 
 - REQ-003 is only partially represented: request cards and stages are visible, but configurable transitions, history, handoff, MVP completion and role-specific workflow pages are not verified.

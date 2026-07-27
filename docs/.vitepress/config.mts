@@ -116,6 +116,7 @@ export default defineConfig({
           { text: 'Текущее состояние', link: '/10-implementation/current-state' },
           { text: 'Матрица функций', link: '/10-implementation/feature-matrix' },
           { text: 'Known bugs', link: '/10-implementation/known-bugs' },
+          { text: 'Bug registry', link: '/10-implementation/bug-registry' },
           { text: 'Gap analysis', link: '/10-implementation/gap-analysis' },
           { text: 'Vercel audit 2026-07-27', link: '/10-implementation/audits/2026-07-27-vercel-audit' }
         ]

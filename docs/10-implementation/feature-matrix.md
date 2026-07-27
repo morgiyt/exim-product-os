@@ -5,6 +5,8 @@
 
 Статусы защищённых функций не означают отсутствие реализации. Если функция была недоступна для безопасной проверки в текущей роли или без исходного кода, она помечена как **Невозможно проверить**, а не как **Не реализовано**.
 
+Подробные BUG-записи: [Bug Registry](bug-registry).
+
 | # | Функция | Связанная страница | Роль | Статус | Доказательство проверки | Обнаруженная проблема | Требование Product OS | Следующее действие |
 |---:|---|---|---|---|---|---|---|---|
 | 1 | Публичный вход | `/login` | Все | Работает | Страница входа отображается | Desktop layout узкий | [Product Foundation](../01-foundation/product-foundation) | Выровнять auth UX |
@@ -17,7 +19,7 @@
 | 8 | Переключение ролей | `/app` | Клиент/Менеджер/Логист | Невозможно проверить | Кнопки видны; один раз после прямого возврата на `/app` активной была `Клиент`, затем без ручного переключения снова `Менеджер` | Ролевое состояние UI нестабильно и не подтверждает RBAC | [Права и видимость](../03-product-map/permissions) | Проверить на sandbox users |
 | 9 | Доступ администратора | `/app/admin` | Администратор | Невозможно проверить | Прямой URL дал пустой экран в текущей сессии | Нет admin account | [AD-001](../04-pages/admin-cabinet) | Выдать admin test account |
 | 10 | Боковое меню | `/app` | Менеджер | Работает | Все пункты меню открывались через UI | URL остаётся `/app` | [Карта приложения](../03-product-map/app-map) | Добавить deep links или документировать SPA-only |
-| 11 | Прямые защищённые маршруты | `/app/*` | Менеджер | Не работает | `/app/clients`, `/app/requests`, `/app/shipments`, `/app/documents`, `/app/chat`, `/app/notifications`, `/app/settings`, `/app/admin`, `/app/logistics`, `/app/rates`, `/app/tracking` открыли пустые экраны | Нет заголовков и действий | [Реестр страниц](../04-pages/page-registry) | Исправить routing/deep-link behavior |
+| 11 | Прямые защищённые маршруты | `/app/*` | Менеджер | Не работает | BUG-001: direct `/app/requests`, `/app/shipments`, `/app/tracking`, `/app/clients`, `/app/chat`, `/app/settings`, `/app/admin` показывают real 404; `/app` может зависнуть на loading-only state | Deep links/reload не восстанавливают защищённые страницы | [Реестр страниц](../04-pages/page-registry) | Исправить routing/deep-link behavior |
 | 12 | Dashboard менеджера | `/app`, Главная | Менеджер | Работает частично | Загружается обзор, KPI, быстрые действия | Состав не совпадает полностью с MG-001 | [MG-001](../04-pages/manager-cabinet) | Сверить блоки dashboard с Product OS |
 | 13 | Dashboard клиента | `/app` | Клиент | Невозможно проверить | Не было client account | Нет ролевого доступа | [CL-001](../04-pages/client-cabinet) | Выдать client test account |
 | 14 | Dashboard логиста | `/app` | Логист | Невозможно проверить | Роль не переключалась | Нет logistician account | [LG-001](../04-pages/logistics-cabinet) | Выдать logistician test account |

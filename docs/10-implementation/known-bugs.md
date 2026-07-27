@@ -1,5 +1,7 @@
 # Known Bugs и ограничения аудита
 
+Полный реестр BUG-записей: [Bug Registry](bug-registry).
+
 ## Критические ограничения
 
 ### Нет полного набора тестовых аккаунтов ролей
@@ -23,6 +25,8 @@
 В авторизованной сессии прямые URL `/app/clients`, `/app/requests`, `/app/shipments`, `/app/documents`, `/app/chat`, `/app/notifications`, `/app/settings`, `/app/admin`, `/app/logistics`, `/app/rates`, `/app/tracking` открыли пустые экраны без заголовков и действий. Навигация фактически работает внутри одного `/app`.
 
 Риск: нельзя безопасно ссылаться на конкретные страницы Product OS, ломаются deep links и обновление прямого URL.
+
+BUG-001 уточняет: direct `/app/*` routes воспроизводимо показывают real `404: This page could not be found`, а direct `/app` после route pass может остаться в loading-only state `Загружаем рабочее пространство`.
 
 ### Нет безопасного перехода этапа заявки
 

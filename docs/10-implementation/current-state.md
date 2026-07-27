@@ -79,6 +79,15 @@
 - Network-ответы API и backend-эндпоинты приложения не удалось полноценно классифицировать без исходного кода и без раскрытия токенов/session storage.
 - Прямые `/app/*` маршруты в авторизованной сессии показали пустые экраны, что похоже на отсутствие роутинга для этих URL или SPA-only реализацию через внутреннее состояние.
 
+## Bug registry
+
+Подробный разбор четырёх проблем вынесен в [Bug Registry](bug-registry):
+
+- BUG-001: direct `/app/*` routes produce 404 or loading-only app state.
+- BUG-002: visible role/interface mode state is not reliably explainable from the UI alone.
+- BUG-003: `Список` / `Канбан` switch is unstable.
+- BUG-004: mobile `/app` dashboard overflow is partially confirmed, but final pass was blocked by loading-only state.
+
 ## Скриншоты
 
 ![Login desktop](../public/app-audit/2026-07-27/login-desktop.png)
