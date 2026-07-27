@@ -37,6 +37,7 @@ export default defineConfig({
         text: '01. Основа',
         items: [
           { text: 'Product Foundation', link: '/01-foundation/product-foundation' },
+          { text: 'Configurable Workflow', link: '/01-foundation/configurable-workflow-foundation' },
           { text: 'Терминология', link: '/01-foundation/terminology' },
           { text: 'Решения', link: '/01-foundation/decisions' }
         ]
@@ -64,7 +65,8 @@ export default defineConfig({
           { text: 'Кабинет клиента', link: '/04-pages/client-cabinet' },
           { text: 'Кабинет менеджера', link: '/04-pages/manager-cabinet' },
           { text: 'Кабинет логиста', link: '/04-pages/logistics-cabinet' },
-          { text: 'Dashboard руководителя логистики', link: '/04-pages/logistics-head-cabinet' }
+          { text: 'Dashboard руководителя логистики', link: '/04-pages/logistics-head-cabinet' },
+          { text: 'Кабинет администратора', link: '/04-pages/admin-cabinet' }
         ]
       },
       {
