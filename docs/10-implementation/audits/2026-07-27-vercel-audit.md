@@ -4,11 +4,20 @@
 
 External audit of the published application at <https://exim-super-app.vercel.app/app>.
 
-This audit checks only what was reachable from the public web application without confirmed role credentials. It does not edit the application, delete data, send real messages, make payments, or inspect the application source code.
+The audit did not edit application code, delete data, send real messages, make payments, download or publish personal documents, change company settings, or log out before completion.
+
+Explicit limitations:
+
+- no full set of confirmed test accounts for client, manager, logistician and administrator;
+- no `exim-app` repository in the workspace;
+- the first pass checked only the public auth part;
+- the continuation checked one authenticated session whose visible role was manager.
+
+Credentials, cookies, tokens and browser storage values were not recorded, printed or added to documentation.
 
 ## Product OS baseline
 
-Requirements were read from Product OS before rewriting this report:
+Requirements were read from Product OS before and during the audit:
 
 - [Product Foundation](../../01-foundation/product-foundation);
 - [Configurable Workflow Foundation](../../01-foundation/configurable-workflow-foundation);
@@ -20,89 +29,143 @@ Requirements were read from Product OS before rewriting this report:
 - [Реестр страниц](../../04-pages/page-registry);
 - [Жизненные циклы](../../05-statuses/lifecycles);
 - [MVP v1](../../07-mvp/mvp-v1);
+- [REQ-003](../../06-requirements/REQ-003-configurable-workflow-mvp);
 - [Открытые вопросы](../../09-decisions/open-questions).
 
-## Tested pages
+## Tested pages and sections
 
-| Page | Result |
+| Page or section | Result |
 |---|---|
-| `/` | HTTP 307 to `/login` |
-| `/app` | HTTP 307 to `/login` |
 | `/login` | Public page renders |
 | `/register` | Public page renders; test registration leads to verify |
 | `/forgot-password` | Public page renders; email sending not tested |
 | `/verify` | Public page renders; resend not tested |
-| `/app/clients` | HTTP 307 to `/login` without session |
-| `/app/requests` | HTTP 307 to `/login` without session |
-| `/app/shipments` | HTTP 307 to `/login` without session |
-| `/app/documents` | HTTP 307 to `/login` without session |
-| `/app/chat` | HTTP 307 to `/login` without session |
-| `/app/notifications` | HTTP 307 to `/login` without session |
-| `/app/settings` | HTTP 307 to `/login` without session |
-| `/app/admin` | HTTP 307 to `/login` without session |
-| `/app/logistics` | HTTP 307 to `/login` without session |
-| `/app/rates` | HTTP 307 to `/login` without session |
-| `/app/tracking` | HTTP 307 to `/login` without session |
+| `/app` without session | Redirects to `/login` |
+| `/app` with current session | Loads protected app |
+| Главная | Manager dashboard/overview loads |
+| Перевозки | Empty shipment list and filters load |
+| Заявки | Request list/kanban loads; `CODEX-AUDIT` request created and persisted |
+| CRM | Interface shell loads |
+| Аналитика | Interface shell loads |
+| Чаты | Interface shell loads; messages not sent |
+| Задачи | Interface shell loads |
+| Отслеживание | Search UI loads; test request not found as shipment |
+| Контейнеры | Catalog UI loads |
+| Услуги | Services catalog UI loads |
+| Профиль | Profile form loads; saving not tested |
+| Direct `/app/*` URLs | Open blank screens in authenticated session |
+
+Continuation finding: current role was ultimately confirmed as `Менеджер`. During one direct return to `/app`, the active role button briefly read `Клиент`, then without manual role switching the app returned to `Менеджер` and manager dashboard. This is treated as UI/state instability, not as verified client-role access.
 
 ## Role coverage
 
-| Role | Status | Reason |
+| Role | Status | Evidence |
 |---|---|---|
-| Client | Невозможно проверить | Test account requires email confirmation |
-| Manager | Невозможно проверить | No manager credentials provided |
-| Logistician | Невозможно проверить | No logistician credentials provided |
-| Administrator | Невозможно проверить | No admin credentials provided |
+| Current role | Работает | Visible role is `Менеджер`; manager dashboard sections load |
+| Client | Невозможно проверить | No separate confirmed client test account |
+| Manager | Работает частично | Current session allowed manager dashboard and request creation |
+| Logistician | Невозможно проверить | No separate logistician test account; role switching not used |
+| Administrator | Невозможно проверить | No admin test account; `/app/admin` blank in current session |
+
+## Safe scenarios
+
+### Quote request
+
+Completed:
+
+1. Opened `Заявки`.
+2. Created a test quote request with `CODEX-AUDIT` prefix.
+3. Verified it appears in list and kanban.
+4. Refreshed the page.
+5. Verified the test request still exists after reload.
+
+Not completed:
+
+- changing stage: no visible safe stage transition control was found;
+- manager-to-logistician handoff: a detail modal showed assignment/deadline/send-to-calculation controls, but they were not executed because they could assign a real user or create a real work item;
+- client price formation: no rate/price controls were visible.
+
+### Shipment and tracking
+
+Completed:
+
+1. Opened `Перевозки`.
+2. Confirmed empty shipment state.
+3. Opened new shipment/request form only far enough to identify that it uses existing sender data.
+4. Closed the form without submitting.
+5. Opened `Отслеживание`.
+6. Searched for the test request number and confirmed it was not found as an active shipment.
+
+Not completed:
+
+- shipment creation;
+- trip creation;
+- internal tracking event;
+- manager publication of event;
+- client-visible status.
+
+Reason: no safe sandbox shipment existed, and creating one could affect existing working data.
 
 ## What really works
 
-- Public login screen renders.
-- Public registration screen renders and routes a test registration to email verification.
-- Protected routes redirect unauthenticated users to `/login`.
-- Public login page has no horizontal overflow at 390px viewport.
+- Public auth pages render.
+- Protected `/app` blocks unauthenticated access.
+- Current manager session opens protected app and survives reload.
+- Sidebar navigation works inside `/app`.
+- Manager dashboard loads.
+- Test request creation works.
+- Created test request persists after reload.
 
 ## What works partially
 
 - Registration works up to email verification.
-- Login recognizes an unconfirmed test account and routes it to verification.
+- Manager dashboard is present but not fully aligned to Product OS.
+- Request workflow has list and kanban, but no verified stage transition.
+- Shipments section has empty state and filters, but no safe test shipment flow.
+- Tracking search works as UI, but cannot display the created request as shipment.
+- Notifications center opens but has no test event data.
+- Mobile dashboard renders but has horizontal overflow.
 
 ## Interface only
 
-- Forgot-password screen was observed but email submission was not tested.
-- Verify screen was observed but resend email was not tested.
+- Forgot password.
+- Verify email.
+- CRM shell.
+- Analytics shell.
+- Chat shell.
+- Tasks shell.
+- Documents only as service/category UI.
 
 ## Missing or not observable
 
-Not observable without role accounts:
-
-- role dashboards;
-- client list and client card;
-- quote request creation;
-- manager-to-logistician handoff;
-- logistics rate entry;
-- client price formation;
-- shipment creation;
-- trip management;
-- internal tracking events;
-- manager publication of client-visible events;
-- documents;
-- chat;
-- notifications;
-- data persistence after reload;
-- mobile protected app.
+- Client, logistician and admin role dashboards.
+- Client list and client card.
+- Request handoff to logistician.
+- Rate entry.
+- Client price formation.
+- Shipment creation.
+- Trips.
+- Internal tracking events.
+- Event publication by manager.
+- Client-visible shipment status.
+- Source-level implementation details.
 
 ## Critical issues
 
-1. No confirmed test accounts for client, manager, logistician and administrator.
-2. No application source repository for frontend/backend/API/database audit.
-3. Email confirmation blocks self-service audit account from entering the protected app.
+1. Direct authenticated `/app/*` URLs open blank screens.
+2. No visible stage transition for the created `CODEX-AUDIT` request.
+3. Shipment/trip/tracking flow cannot be safely verified without sandbox data.
+4. No full role-account set for Product OS certification.
+5. No application source repository for source audit.
+6. Mobile protected app shows horizontal overflow.
+7. Role/view state is unstable: role button and `Канбан`/`Список` behavior varied between repeated checks.
 
-## UX findings
+## Product OS gaps
 
-1. Desktop `login` and `verify` pages occupy a narrow left area and leave much of the screen empty.
-2. `register` uses a different full desktop layout, making auth screens inconsistent.
-3. The email field on `login` is too narrow; the placeholder is visually cut off.
-4. Test registration cannot be completed without mailbox access.
-5. Four role accounts were not provided.
+- REQ-003 is only partially represented: request cards and stages are visible, but configurable transitions, history, handoff, MVP completion and role-specific workflow pages are not verified.
+- D-065...D-074 remain unverified except for visible stage labels and persisted test request.
+- Manager pages are partially present; client, logistician and administrator pages are not verified.
+- Documents, chat and notifications are not production-verifiable from current data.
 
 ## Screenshots
 
@@ -114,23 +177,37 @@ Not observable without role accounts:
 
 ![Login mobile 390](../../public/app-audit/2026-07-27/login-mobile-390.png)
 
+![No authenticated session redirect](../../public/app-audit/2026-07-27/authenticated/no-auth-session-redirect.png)
+
+![Manager dashboard](../../public/app-audit/2026-07-27/authenticated/manager-dashboard.png)
+
+![Manager incoming dashboard](../../public/app-audit/2026-07-27/authenticated/manager-incoming-dashboard.png)
+
+![Manager requests with CODEX-AUDIT](../../public/app-audit/2026-07-27/authenticated/manager-requests-codex-audit.png)
+
+![Manager tracking no shipment](../../public/app-audit/2026-07-27/authenticated/manager-tracking-no-shipment.png)
+
+![Mobile manager dashboard](../../public/app-audit/2026-07-27/authenticated/mobile-manager-dashboard.png)
+
 ## Safe for leadership demo
 
-- Public auth screens with a clear note about UX findings.
-- Unauthenticated redirect behavior.
-- The audit limitation statement.
+- Public auth screens with UX caveat.
+- Manager dashboard as partial prototype.
+- Creation and persistence of a `CODEX-AUDIT` quote request.
+- Empty notifications/tracking states as current facts, not as completed modules.
 
 ## Not safe to present as ready
 
-- Any protected workflow.
-- Any Product OS compliance claim for role dashboards, request-to-shipment flow, tracking, documents, chat or notifications.
-- Any claim about real persistence inside the application.
+- Full quote-to-shipment workflow.
+- Stage transition and logistician handoff.
+- Rates, client price, shipment, trips and tracking events.
+- Documents and chat as working modules.
+- Client/logistician/admin role compliance.
 
 ## Next priorities
 
-1. Provide confirmed role accounts.
-2. Provide app source repository.
-3. Seed test workflow data.
-4. Re-run protected Browser audit.
-5. Compare source implementation with [REQ-003](../../06-requirements/REQ-003-configurable-workflow-mvp).
-
+1. Provide confirmed sandbox accounts for all roles.
+2. Fix or document direct `/app/*` routing.
+3. Implement visible workflow transition controls for REQ-003 and D-065...D-074.
+4. Seed end-to-end shipment data for safe audit.
+5. Provide `exim-app` source repository for architecture, API, DB, auth and mock-data audit.
