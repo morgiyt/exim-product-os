@@ -1,5 +1,15 @@
 # Known Bugs и ограничения аудита
 
+Technical evidence and public-bundle observations: [Production Technical Recon 2026-07-27](audits/2026-07-27-production-technical-recon). Deep-link limitations are tracked separately as [GAP-001](gap-registry#gap-001).
+
+## Technical recon summary
+
+- Bootstrap: BUG-001 is `/app` intermittently remaining at `Загружаем рабочее пространство` after auth/bootstrap.
+- Navigation: sidebar hrefs are hash/internal-state links inside one `/app` shell. `/app/requests` is not an implemented route; this is GAP-001, not a standalone High routing bug.
+- Role state: public code confirms `window.__EXIM.role` as the server role signal and `APP_STATE.currentRole` as interface/view mode. The finding remains UI/view-state ambiguity, not proven RBAC failure.
+- Kanban: public workflow code confirms `WF.view(v)` changes local `CACHE.view` and re-renders; the kanban board is rendered only when workflow orders are loaded and non-empty.
+- Mobile: the largest measured overflow came from the protected dashboard quick-action `.dash-link` row in client view mode, where document scroll width reached about `1054px` on 375/360px viewports.
+
 Полный реестр BUG-записей: [Bug Registry](bug-registry).
 
 ## Критические ограничения
@@ -20,13 +30,13 @@
 
 ## Подтверждённые проблемы приложения
 
-### Прямые `/app/*` маршруты открываются пустыми
+### `/app` периодически остаётся в loading-only state
 
-В авторизованной сессии прямые URL `/app/clients`, `/app/requests`, `/app/shipments`, `/app/documents`, `/app/chat`, `/app/notifications`, `/app/settings`, `/app/admin`, `/app/logistics`, `/app/rates`, `/app/tracking` открыли пустые экраны без заголовков и действий. Навигация фактически работает внутри одного `/app`.
+В авторизованной сессии `/app` периодически остаётся на `Загружаем рабочее пространство`: HTML и JavaScript загружаются, но защищённый интерфейс не появляется. Навигация по разделам фактически работает внутри одного `/app`.
 
-Риск: нельзя безопасно ссылаться на конкретные страницы Product OS, ломаются deep links и обновление прямого URL.
+Риск: пользователь после успешной авторизации может не попасть в рабочее пространство после reload или Back/Forward.
 
-BUG-001 уточняет: direct `/app/*` routes воспроизводимо показывают real `404: This page could not be found`, а direct `/app` после route pass может остаться в loading-only state `Загружаем рабочее пространство`.
+Прямые `/app/*` URL перенесены в [GAP-001](gap-registry#gap-001) как архитектурное ограничение hash/internal-state navigation.
 
 ### Нет безопасного перехода этапа заявки
 

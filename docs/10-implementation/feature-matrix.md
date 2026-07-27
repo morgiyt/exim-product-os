@@ -1,5 +1,7 @@
 # Матрица проверки функций
 
+Technical route/framework reconnaissance: [Production Technical Recon 2026-07-27](audits/2026-07-27-production-technical-recon). Deep-link architecture is tracked as [GAP-001](gap-registry#gap-001), not as BUG-001.
+
 Дата проверки: 2026-07-27  
 Область проверки: опубликованное приложение, публичная auth-часть и одна авторизованная сессия с фактической ролью **менеджер**.
 
@@ -19,7 +21,7 @@
 | 8 | Переключение ролей | `/app` | Клиент/Менеджер/Логист | Невозможно проверить | Кнопки видны; один раз после прямого возврата на `/app` активной была `Клиент`, затем без ручного переключения снова `Менеджер` | Ролевое состояние UI нестабильно и не подтверждает RBAC | [Права и видимость](../03-product-map/permissions) | Проверить на sandbox users |
 | 9 | Доступ администратора | `/app/admin` | Администратор | Невозможно проверить | Прямой URL дал пустой экран в текущей сессии | Нет admin account | [AD-001](../04-pages/admin-cabinet) | Выдать admin test account |
 | 10 | Боковое меню | `/app` | Менеджер | Работает | Все пункты меню открывались через UI | URL остаётся `/app` | [Карта приложения](../03-product-map/app-map) | Добавить deep links или документировать SPA-only |
-| 11 | Прямые защищённые маршруты | `/app/*` | Менеджер | Не работает | BUG-001: direct `/app/requests`, `/app/shipments`, `/app/tracking`, `/app/clients`, `/app/chat`, `/app/settings`, `/app/admin` показывают real 404; `/app` может зависнуть на loading-only state | Deep links/reload не восстанавливают защищённые страницы | [Реестр страниц](../04-pages/page-registry) | Исправить routing/deep-link behavior |
+| 11 | Deep-link navigation contract | `/app` plus hash/internal state | Менеджер | Работает частично | GAP-001: sidebar uses `#workflow`, `#shipments`, `#tracking`; `/app/requests` is not an implemented route | Documentation/tests may assume path routes that the app does not implement | [Реестр страниц](../04-pages/page-registry), [GAP-001](gap-registry#gap-001) | Decide SPA-only vs path-based contract |
 | 12 | Dashboard менеджера | `/app`, Главная | Менеджер | Работает частично | Загружается обзор, KPI, быстрые действия | Состав не совпадает полностью с MG-001 | [MG-001](../04-pages/manager-cabinet) | Сверить блоки dashboard с Product OS |
 | 13 | Dashboard клиента | `/app` | Клиент | Невозможно проверить | Не было client account | Нет ролевого доступа | [CL-001](../04-pages/client-cabinet) | Выдать client test account |
 | 14 | Dashboard логиста | `/app` | Логист | Невозможно проверить | Роль не переключалась | Нет logistician account | [LG-001](../04-pages/logistics-cabinet) | Выдать logistician test account |
@@ -45,12 +47,14 @@
 | 34 | Аналитика | `/app`, Аналитика | Менеджер | Только интерфейс | Видим только заголовок | Нет данных/графиков в видимой области | [MG-001](../04-pages/manager-cabinet) | Seed metrics |
 | 35 | Мобильный защищённый UI | `/app`, 390x844 | Менеджер | Работает частично | Dashboard отображается, нижняя навигация видна | Есть горизонтальный скролл внизу viewport | [Product Foundation](../01-foundation/product-foundation) | Исправить mobile overflow |
 | 36 | Переключение список/канбан | `/app`, Заявки | Менеджер | Работает частично | В одном проходе kanban отображал `CODEX-AUDIT`; при повторной проверке кнопка `Канбан` оставила таблицу | Нестабильное состояние view switch | [REQ-003](../06-requirements/REQ-003-configurable-workflow-mvp) | Добавить стабильный state test |
+| 37 | `/app` bootstrap stability | `/app` | Менеджер | Не работает | BUG-001: `/app` intermittently remains at `Загружаем рабочее пространство` after reload/Back/Forward | Protected workspace does not always appear after successful auth | [MVP v1](../07-mvp/mvp-v1), [BUG-001](bug-registry#bug-001) | Add 10/10 reload and Back/Forward regression |
+| 38 | Mobile quick actions width | `/app`, protected dashboard | Клиент view mode | Работает частично | `.dash-link` quick-action row extended document width to about `1054px` at 375/360px | Page-level horizontal overflow | [Product Foundation](../01-foundation/product-foundation) | Constrain quick-action row and add mobile scrollWidth regression |
 
 ## Количество функций по статусам
 
-- Работает: 7
-- Работает частично: 9
-- Только интерфейс: 7
-- Не работает: 2
+- Работает: 6
+- Работает частично: 10
+- Только интерфейс: 6
+- Не работает: 1
 - Не реализовано: 0
-- Невозможно проверить: 11
+- Невозможно проверить: 15

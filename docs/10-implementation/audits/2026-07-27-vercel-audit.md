@@ -162,6 +162,8 @@ Reason: no safe sandbox shipment existed, and creating one could affect existing
 
 Detailed follow-up records are maintained in [Bug Registry](../bug-registry).
 
+Technical route/framework reconnaissance is maintained in [Production Technical Recon 2026-07-27](2026-07-27-production-technical-recon). It confirms that the app is a Next.js `/app` shell with hash/internal-state sidebar navigation and public `/exim/*.js` app scripts. `/app/requests` is not an implemented route; this is tracked as [GAP-001](../gap-registry#gap-001), not as a standalone High routing bug. BUG-001 is the intermittent `/app` loading-only bootstrap failure.
+
 ## Product OS gaps
 
 - REQ-003 is only partially represented: request cards and stages are visible, but configurable transitions, history, handoff, MVP completion and role-specific workflow pages are not verified.

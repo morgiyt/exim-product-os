@@ -2,6 +2,7 @@
 
 ## 0.4.0 — 2026-07-27
 
+- added production technical recon, reclassified `/app` loading-only as BUG-001, and moved protected section deep-link limitations to GAP-001;
 - заложена Configurable Workflow Foundation;
 - добавлено конкретное MVP-требование REQ-003 для configurable workflow запроса на расчёт и перевозки;
 - добавлен внешний аудит публичной части опубликованного приложения с матрицей функций, gap analysis и UX findings;

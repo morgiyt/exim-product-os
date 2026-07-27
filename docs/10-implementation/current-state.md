@@ -54,7 +54,7 @@
 | Услуги | `/app`, меню `#services` | Каталог услуг и фильтры, включая `Документы` | Только интерфейс; документов как сущностей нет |
 | Профиль | `/app`, меню `#profile` | Форма компании и контактного лица | Работает частично; сохранение профиля не проверялось, чтобы не менять рабочие данные |
 
-Прямые защищённые URL `/app/clients`, `/app/requests`, `/app/shipments`, `/app/documents`, `/app/chat`, `/app/notifications`, `/app/settings`, `/app/admin`, `/app/logistics`, `/app/rates`, `/app/tracking` в авторизованной сессии открылись как пустые страницы без заголовков и действий. Основная навигация фактически реализована внутри одного `/app`.
+Прямые защищённые URL вида `/app/requests` и `/app/shipments` не являются реализованными маршрутами текущего приложения. Основная навигация фактически реализована внутри одного `/app` через hash/internal state; это зафиксировано как [GAP-001](gap-registry#gap-001), а не как самостоятельный High-баг routing.
 
 ## Проверенные сценарии
 
@@ -83,7 +83,7 @@
 
 Подробный разбор четырёх проблем вынесен в [Bug Registry](bug-registry):
 
-- BUG-001: direct `/app/*` routes produce 404 or loading-only app state.
+- BUG-001: `/app` intermittently remains at loading-only state after auth/bootstrap.
 - BUG-002: visible role/interface mode state is not reliably explainable from the UI alone.
 - BUG-003: `Список` / `Канбан` switch is unstable.
 - BUG-004: mobile `/app` dashboard overflow is partially confirmed, but final pass was blocked by loading-only state.
@@ -109,3 +109,16 @@
 ![Manager tracking no shipment](../public/app-audit/2026-07-27/authenticated/manager-tracking-no-shipment.png)
 
 ![Mobile manager dashboard](../public/app-audit/2026-07-27/authenticated/mobile-manager-dashboard.png)
+
+## Technical recon addendum
+
+Additional production reconnaissance is documented in [Production Technical Recon 2026-07-27](audits/2026-07-27-production-technical-recon).
+
+Key clarifications:
+
+- The real protected document route is `/app`; sidebar navigation uses hash/internal state such as `#workflow`, `#shipments`, `#tracking`, not separate `/app/requests` or `/app/shipments` documents.
+- Direct `/app/requests` rendered a real Next.js 404 page in the authenticated Browser because it is not an implemented route; this is tracked as [GAP-001](gap-registry#gap-001), not as a standalone High bug.
+- The production app is served by Next.js and loads public app scripts from `/exim/app.js`, `/exim/workflow.js`, `/exim/modules.js` and `/exim/crm.js`.
+- Public scripts reference Supabase-backed globals (`window.__SUPA`, `window.__EXIM`, `window.__EXIM_DOCS`) but no token or storage values were read or documented.
+- Role behavior should be treated as server role plus UI view mode: `window.__EXIM.role` is the server-provided signal, while `APP_STATE.currentRole` controls the visible app mode.
+- Mobile overflow was localized to protected dashboard quick-action `.dash-link` buttons in client view mode at 375/360px widths.

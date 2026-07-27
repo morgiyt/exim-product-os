@@ -1,6 +1,17 @@
 # Gap Analysis
 
-Детализированный реестр подтверждений и ограничений по BUG-001...BUG-004: [Bug Registry](bug-registry).
+Technical route/framework reconnaissance: [Production Technical Recon 2026-07-27](audits/2026-07-27-production-technical-recon). Confirmed architecture gaps are tracked in [Gap Registry](gap-registry).
+
+## Technical recon addendum
+
+| Область | Наблюдение | Риск | Связь с Product OS |
+|---|---|---|---|
+| Navigation architecture | Sidebar hrefs are hash/internal-state links inside one `/app` shell; direct `/app/requests` is a real Next.js 404 | Decide whether Product OS requires deep links or accepts SPA-only navigation | [Карта приложения](../03-product-map/app-map), [Реестр страниц](../04-pages/page-registry) |
+| Framework | Production app is served by Next.js and loads public `/exim/app.js`, `/exim/workflow.js`, `/exim/modules.js`, `/exim/crm.js` scripts | Source-level architecture cannot be certified without `exim-app` | [MVP v1](../07-mvp/mvp-v1) |
+| Role/view state | Public code separates `window.__EXIM.role` from `APP_STATE.currentRole` | Visible role button is not enough to prove server RBAC | [Роли](../02-process/roles), [Права и видимость](../03-product-map/permissions) |
+| Mobile overflow | `.dash-link` quick-action row extended document width to about `1054px` at 375/360px in client view mode | Protected mobile dashboard remains risky for demo | [Product Foundation](../01-foundation/product-foundation) |
+
+Детализированный реестр подтверждений и ограничений по BUG-001...BUG-004: [Bug Registry](bug-registry). GAP-001 фиксирует deep-link architecture gap, а не самостоятельный routing bug.
 
 ## Проверенная область
 

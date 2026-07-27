@@ -1,115 +1,126 @@
 # Bug Registry
 
 Дата расследования: 2026-07-27  
-Окружение: published Vercel app, built-in Browser, authenticated session previously available for manager audit.
+Окружение: published Vercel app, built-in Browser, authenticated manager-visible session.
 
-## Scope and safety
+## Scope And Safety
 
 - Код опубликованного приложения не изменялся.
 - Рабочие данные не изменялись.
-- Новые заявки и перевозки не создавались.
+- Новые заявки и перевозки в technical recon не создавались.
 - Существующая тестовая заявка `CODEX-AUDIT` использовалась только как ранее созданное доказательство.
 - Cookies, tokens, credentials and browser storage values were not read, stored or printed.
+- Technical evidence and public-bundle observations are recorded in [Production Technical Recon 2026-07-27](audits/2026-07-27-production-technical-recon).
+- Architecture gaps are tracked separately in [Gap Registry](gap-registry).
 
 ## BUG-001
 
 - ID: BUG-001
-- Название: Direct `/app/*` routes do not restore authenticated app pages.
+- Название: `/app` периодически зависает на «Загружаем рабочее пространство»
 - Статус: Confirmed
 - Серьёзность: High
-- Затронутая роль: manager-visible authenticated app; unauthenticated request layer.
-- Окружение: `https://exim-super-app.vercel.app`, Vercel production.
-- Предусловия: published app is available; Browser had previously entered protected `/app` during manager audit.
+- Затронутая роль: authenticated manager-visible app shell
+- Окружение: `https://exim-super-app.vercel.app/app`, Vercel production, built-in Browser.
+- Предусловия: пользователь авторизован; защищённый shell `/app` доступен.
 
 ### Шаги воспроизведения
 
-1. Open `/app` via the app root.
-2. Open sections through the sidebar menu: `Заявки`, `Перевозки`, `Отслеживание`, `CRM`, `Чаты`, `Профиль`.
-3. Open direct URLs manually: `/app/requests`, `/app/shipments`, `/app/tracking`, `/app/clients`, `/app/chat`, `/app/settings`, `/app/admin`.
-4. Reload direct URLs.
-5. Use Back/Forward after direct URLs.
-6. Check HTTP status with unauthenticated GET.
-7. Check Browser console logs without exposing tokens or personal data.
+1. Открыть `/app` в авторизованной Browser-сессии.
+2. Выполнить reload `/app`.
+3. Повторить reload несколько раз.
+4. Использовать Back/Forward после переходов внутри Browser history.
+5. Проверить, появляется ли защищённое рабочее пространство или остаётся boot screen.
 
 ### Фактический результат
 
-- Menu navigation works inside `/app` as an SPA state.
-- Direct `/app/requests`, `/app/shipments`, `/app/tracking`, `/app/clients`, `/app/chat`, `/app/settings`, `/app/admin` show a real `404: This page could not be found.` page in the Browser.
-- Direct `/app` degraded to `Загружаем рабочее пространство` without visible sidebar or role controls after direct route testing.
-- Unauthenticated HTTP GET returned `307 Temporary Redirect` for `/app` and all tested `/app/*` paths.
-- Browser console did not show EXIM application errors in the captured checks; observed warnings were from the Browser/Codex telemetry environment.
-- Failed Network requests for the app could not be enumerated with the available Browser API without source access or token disclosure.
+HTML и JavaScript загружаются, но bootstrap приложения периодически не завершается. Защищённый интерфейс не появляется: остаётся экран `Загружаем рабочее пространство`, без sidebar и без role controls.
+
+В technical recon зафиксировано:
+
+- direct `/app` и первые reload могли открыть manager dashboard;
+- один reload показал client dashboard/view mode с boot text;
+- после Back/Forward `/app` дошёл до loading-only state;
+- Browser console не показал EXIM application errors в доступных логах.
 
 ### Ожидаемый результат
 
-Each documented page route should either render the correct protected page after auth or redirect consistently to login. Reload and Back/Forward should not produce a real 404 for valid Product OS pages.
+После успешной авторизации `/app` стабильно открывает рабочее пространство. Reload, direct open и Back/Forward не должны оставлять пользователя на boot screen.
 
 ### Частота воспроизведения
 
-Reproduced for every direct `/app/*` route listed above during the investigation.
+Confirmed during repeated Browser checks, but not every reload failed.
 
 ### Доказательства
 
 - Screenshot: ![Direct app loading](../public/app-audit/2026-07-27/bug-evidence/bug-001-direct-app-loading.png)
-- Screenshot: ![Direct requests 404](../public/app-audit/2026-07-27/bug-evidence/bug-001-direct-requests-404.png)
-- HTTP status check without auth: `/app`, `/app/requests`, `/app/shipments`, `/app/tracking`, `/app/clients`, `/app/chat`, `/app/settings`, `/app/admin` returned `307 Temporary Redirect`.
+- Screenshot: ![Technical direct app](../public/app-audit/2026-07-27/technical-evidence/technical-direct-app.png)
+- Technical recon section: [Loading-Only Investigation](audits/2026-07-27-production-technical-recon#loading-only-investigation)
 
 ### Связанные требования
 
-- [Карта приложения](../03-product-map/app-map)
-- [Реестр страниц](../04-pages/page-registry)
-- [Права и видимость](../03-product-map/permissions)
 - [MVP v1](../07-mvp/mvp-v1)
+- [Роли](../02-process/roles)
+- [Права и видимость](../03-product-map/permissions)
+- [Карта приложения](../03-product-map/app-map)
 
 ### Ограничения расследования
 
-- Authenticated document HTTP status could not be read directly from Browser navigation.
-- No `exim-app` repository was available to inspect routing config.
+Точная первопричина невозможна без `exim-app`, server logs и исходного bootstrap-кода. Network request bodies, auth headers, cookies, tokens and storage values were not inspected or documented.
 
 ### Рекомендуемая проверка после исправления
 
-Run direct navigation, reload, Back and Forward for every route in the page registry under an authenticated test user and assert that valid pages render the app shell instead of 404.
+- 10 последовательных reload `/app`;
+- прямое открытие `/app`;
+- Back/Forward;
+- desktop и mobile;
+- рабочее пространство должно загрузиться 10 из 10 раз.
 
 ## BUG-002
 
 - ID: BUG-002
-- Название: Role and interface mode state are not reliably explainable from visible UI.
+- Название: UI role/view state instability
 - Статус: Partially confirmed
 - Серьёзность: Medium
-- Затронутая роль: manager; possible client-mode visual state.
+- Затронутая роль: manager-visible session; client/logist view modes in UI.
 - Окружение: published Vercel app, built-in Browser.
-- Предусловия: authenticated session exists; role buttons `Клиент`, `Менеджер`, `Логист` are visible.
+- Предусловия: authenticated `/app` shell renders role switcher.
 
 ### Шаги воспроизведения
 
-1. Open `/app`.
-2. Record visually active role button.
+1. Открыть `/app`.
+2. Зафиксировать confirmed server role where safely exposed, UI mode and active visual button separately.
 3. Reload `/app`.
-4. Open direct `/app` after visiting `/app/tracking`.
-5. Navigate between sidebar sections.
-6. Use Back/Forward.
-7. Compare visible active role button, available sidebar sections and dashboard content.
+4. Перейти между доступными разделами.
+5. Использовать Back/Forward.
+6. Сравнить server role signal, UI mode, active visual button and proven accessible functions.
 
 ### Фактический результат
 
-- During the authenticated audit the visible active role was usually `Менеджер`, with manager dashboards such as `Рабочее место менеджера` and `Входящие заявки`.
-- One pass after direct `/app` navigation showed `Клиент` as the active visual button while the same broad sidebar remained available.
-- Later checks without intentional role switching again showed `Менеджер` active.
-- After direct route testing `/app` could get stuck at `Загружаем рабочее пространство`, hiding role buttons entirely.
+Visible state varied without intentional role switching:
+
+- Most runs: active `Менеджер`, body role `manager`, manager dashboard.
+- One reload: active `Клиент` plus `RU`, body role unset, client dashboard/view mode.
+- Later state: active `Менеджер` again.
+- Loading-only state: no role button visible.
+
+Technical recon confirmed that public code separates:
+
+- server role signal: `window.__EXIM.role`;
+- UI mode: `APP_STATE.currentRole`;
+- active visual button: `.role-switcher button.active`.
 
 ### Ожидаемый результат
 
-The app should expose a consistent, auditable separation between confirmed server role, selected interface mode and visual active button. Reload and direct navigation should not make the active role ambiguous.
+The app should expose a consistent, auditable separation between server role, selected UI mode and active visual button. Reload and Back/Forward should not make the visible role/mode ambiguous.
 
 ### Частота воспроизведения
 
-Partially reproduced. The transient `Клиент` visual state was observed once; manager state was observed repeatedly.
+Partially reproduced. Manager-visible state was repeated; transient client visual mode was observed but not proven as server role change.
 
 ### Доказательства
 
 - Screenshot: ![Manager incoming dashboard](../public/app-audit/2026-07-27/authenticated/manager-incoming-dashboard.png)
-- Screenshot: ![Direct app loading](../public/app-audit/2026-07-27/bug-evidence/bug-001-direct-app-loading.png)
-- Prior audit notes recorded both visual states without manual role switching.
+- Technical recon section: [Role And View-State Investigation](audits/2026-07-27-production-technical-recon#role-and-view-state-investigation)
 
 ### Связанные требования
 
@@ -119,54 +130,51 @@ Partially reproduced. The transient `Клиент` visual state was observed onc
 
 ### Ограничения расследования
 
-- Server role was not independently confirmed from a safe API response.
-- Browser storage and tokens were not inspected.
-- This is not classified as an RBAC violation without source/API evidence.
+This is not classified as an RBAC problem. Server role was not independently confirmed through a safe API response, and role rights were not changed or tested.
 
 ### Рекомендуемая проверка после исправления
 
-Add a safe `/me` or profile endpoint for test audits that returns role/mode metadata without secrets, then compare it against visible role buttons after login, reload, direct navigation and Back/Forward.
+Provide a safe test-only role/mode diagnostic, then verify after login, reload, direct `/app`, sidebar navigation and Back/Forward that server role, UI mode and active visual button remain explainable and consistent.
 
 ## BUG-003
 
 - ID: BUG-003
-- Название: `Список` / `Канбан` view switch is unstable in requests workflow.
+- Название: List/Kanban view instability
 - Статус: Partially confirmed
 - Серьёзность: Medium
 - Затронутая роль: manager.
-- Окружение: `/app`, `Заявки`, published Vercel app.
-- Предусловия: authenticated manager app shell is available; request list contains the test request `CODEX-AUDIT`.
+- Окружение: `/app`, workflow/request section, published Vercel app.
+- Предусловия: authenticated app shell renders request workflow.
 
 ### Шаги воспроизведения
 
 1. Open `/app`.
-2. Navigate through menu to `Заявки`.
+2. Navigate to request workflow through sidebar/internal navigation.
 3. Click `Список`.
 4. Click `Канбан`.
 5. Click `Канбан` again.
 6. Click `Список`.
 7. Reload after selecting a view.
-8. Check whether URL, query string, DOM structure or CSS-hidden content changes.
-9. Repeat at desktop and mobile viewport widths.
+8. Check DOM, visible table/columns and URL/query/hash.
 
 ### Фактический результат
 
-- Earlier authenticated audit saw the `CODEX-AUDIT` request in kanban columns.
+- Earlier authenticated audit saw `CODEX-AUDIT` in kanban columns.
 - A later repeat showed that clicking `Канбан` left the table visible: `hasTable=true`, `hasKanban=false`, URL stayed `/app`.
-- During this investigation, direct route testing left `/app` stuck at `Загружаем рабочее пространство`, so the full matrix of list/kanban checks could not be completed again without re-authenticating or source access.
+- Technical recon confirmed the view switch depends on local state and loaded data: `WF.view(v)` changes `CACHE.view`, and the kanban board renders only when `CACHE.view === 'kanban' && os.length`.
 
 ### Ожидаемый результат
 
-`Канбан` should consistently switch to visible kanban columns, `Список` should consistently switch to the table, and the selected view should have deterministic persistence rules after reload.
+`Канбан` consistently switches to visible kanban columns, `Список` consistently switches to the table, and the selected view has deterministic reload behavior.
 
 ### Частота воспроизведения
 
-Partially reproduced across audit passes. The inconsistent behavior was observed, but the post-direct-route loading state blocked a full repeat in the final investigation pass.
+Partially reproduced across audit passes. The exact cause is not proven.
 
 ### Доказательства
 
 - Screenshot: ![Manager requests with CODEX-AUDIT](../public/app-audit/2026-07-27/authenticated/manager-requests-codex-audit.png)
-- Recorded audit result: `Список` and `Канбан` buttons both left table visible in one repeat.
+- Technical recon section: [Kanban Investigation](audits/2026-07-27-production-technical-recon#kanban-investigation)
 
 ### Связанные требования
 
@@ -176,53 +184,47 @@ Partially reproduced across audit passes. The inconsistent behavior was observed
 
 ### Ограничения расследования
 
-- Source code was unavailable.
-- No safe network inspector for app requests was available in Browser.
-- The app shell became unavailable after direct route testing.
+Cause is not proven. The final Browser pass was affected by loading-only and view-state instability, and `exim-app` source was unavailable.
 
 ### Рекомендуемая проверка после исправления
 
-Create an automated UI test that seeds one `CODEX-AUDIT` request, toggles `Список` and `Канбан`, checks visible DOM columns/table and verifies behavior after reload at desktop and mobile widths.
+Seed one `CODEX-AUDIT` request, toggle `Список`/`Канбан`, assert visible DOM for table and kanban columns, then repeat after reload on desktop and mobile.
 
 ## BUG-004
 
 - ID: BUG-004
-- Название: Mobile `/app` dashboard shows horizontal overflow.
-- Статус: Partially confirmed
+- Название: Mobile horizontal overflow caused by `.dash-link`
+- Статус: Confirmed
 - Серьёзность: Medium
-- Затронутая роль: manager.
-- Окружение: built-in Browser viewport checks at 390x844, 375x812 and 360x800.
-- Предусловия: authenticated app shell can render manager dashboard.
+- Затронутая роль: client view mode inside protected `/app`; protected dashboard shell.
+- Окружение: built-in Browser viewport checks at 375x812 and 360x800.
+- Предусловия: protected `/app` renders dashboard quick actions.
 
 ### Шаги воспроизведения
 
 1. Open authenticated `/app`.
-2. Set viewport to 390x844.
-3. Observe dashboard and horizontal page scroll.
-4. Repeat at 375x812.
+2. Set viewport to 375x812.
+3. Observe page-level horizontal scroll.
+4. Inspect overflowing elements safely through read-only DOM measurements.
 5. Repeat at 360x800.
-6. Compare login/register with `/app`.
 
 ### Фактический результат
 
-- Prior authenticated mobile screenshot at 390x844 showed the manager dashboard with a bottom horizontal scrollbar.
-- In the final investigation pass, direct `/app` was stuck at `Загружаем рабочее пространство` at 390x844, 375x812 and 360x800, so the dashboard overflow could not be re-measured live on all three sizes.
-- Public login mobile had previously rendered without horizontal overflow; the problem appears scoped to protected `/app` shell/dashboard when it renders.
+At 375/360px widths, the protected dashboard client view mode produced document-level horizontal overflow. The quick-action `.dash-link` row extended the document width to approximately `1054px`. Buttons such as `Рассчитать перевозку`, `Купить контейнер`, `Связаться с менеджером` were positioned horizontally beyond the viewport.
 
 ### Ожидаемый результат
 
-Protected `/app` should fit within viewport width at 390x844, 375x812 and 360x800 without page-level horizontal scroll, and all navigation/actions should remain reachable.
+Protected `/app` should fit within viewport width at 375x812 and 360x800 without document-level horizontal scroll. Dashboard quick actions should wrap, stack or scroll inside a constrained internal container.
 
 ### Частота воспроизведения
 
-Partially confirmed: confirmed at 390x844 in prior authenticated audit; final pass confirmed mobile direct `/app` loading failure at all three requested sizes rather than the dashboard overflow itself.
+Confirmed at 375x812 and 360x800 in technical recon.
 
 ### Доказательства
 
-- Screenshot: ![Mobile manager dashboard](../public/app-audit/2026-07-27/authenticated/mobile-manager-dashboard.png)
-- Screenshot: ![Mobile 390 loading](../public/app-audit/2026-07-27/bug-evidence/bug-004-mobile-390-app-loading.png)
-- Screenshot: ![Mobile 375 loading](../public/app-audit/2026-07-27/bug-evidence/bug-004-mobile-375-app-loading.png)
-- Screenshot: ![Mobile 360 loading](../public/app-audit/2026-07-27/bug-evidence/bug-004-mobile-360-app-loading.png)
+- Screenshot: ![Technical mobile 375](../public/app-audit/2026-07-27/technical-evidence/technical-mobile-375.png)
+- Screenshot: ![Technical mobile 360](../public/app-audit/2026-07-27/technical-evidence/technical-mobile-360.png)
+- Technical recon section: [Mobile Overflow Investigation](audits/2026-07-27-production-technical-recon#mobile-overflow-investigation)
 
 ### Связанные требования
 
@@ -232,9 +234,8 @@ Partially confirmed: confirmed at 390x844 in prior authenticated audit; final pa
 
 ### Ограничения расследования
 
-- The authenticated app shell did not re-render during final mobile checks.
-- Exact overflowing DOM element could not be identified without source access or a stable rendered dashboard in the final pass.
+The exact CSS rule cannot be established without source access. The finding is based on Browser DOM measurements and screenshots.
 
 ### Рекомендуемая проверка после исправления
 
-Run responsive tests at 390x844, 375x812 and 360x800 against a stable authenticated dashboard and assert `document.documentElement.scrollWidth <= window.innerWidth`.
+Run responsive tests at 390x844, 375x812 and 360x800 and assert `document.documentElement.scrollWidth <= document.documentElement.clientWidth` for protected dashboards.
