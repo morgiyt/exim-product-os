@@ -22,6 +22,7 @@ export default defineConfig({
       { text: 'Карта', link: '/03-product-map/app-map' },
       { text: 'Страницы', link: '/04-pages/page-registry' },
       { text: 'MVP', link: '/07-mvp/mvp-v1' },
+      { text: 'Требования', link: '/06-requirements/REQ-003-configurable-workflow-mvp' },
       { text: 'Вопросы', link: '/09-decisions/open-questions' }
     ],
     sidebar: [
@@ -77,7 +78,13 @@ export default defineConfig({
         ]
       },
       {
-        text: '06. Wireframe',
+        text: '06. Требования',
+        items: [
+          { text: 'REQ-003: workflow MVP', link: '/06-requirements/REQ-003-configurable-workflow-mvp' }
+        ]
+      },
+      {
+        text: '06a. Wireframe',
         items: [
           { text: 'Перевозка клиента', link: '/06-wireframes/client-shipment' },
           { text: 'Запрос менеджера', link: '/06-wireframes/manager-request' }
@@ -104,7 +111,17 @@ export default defineConfig({
         ]
       },
       {
-        text: '10. Исходники',
+        text: '10. Реализация',
+        items: [
+          { text: 'Текущее состояние', link: '/10-implementation/current-state' },
+          { text: 'Матрица функций', link: '/10-implementation/feature-matrix' },
+          { text: 'Known bugs', link: '/10-implementation/known-bugs' },
+          { text: 'Gap analysis', link: '/10-implementation/gap-analysis' },
+          { text: 'Vercel audit 2026-07-27', link: '/10-implementation/audits/2026-07-27-vercel-audit' }
+        ]
+      },
+      {
+        text: '11. Исходники',
         items: [
           { text: 'Текущий MVP', link: '/10-sources/current-mvp' },
           { text: 'Исходная концепция', link: '/10-sources/original-brief' }
