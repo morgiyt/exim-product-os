@@ -2,6 +2,11 @@
 
 ## 0.5.0 — draft — 2026-09-07
 
+- Foundation Gate выбран task curator первым ready implementation-заданием `TASK-2026-001` по подтверждённому поручению владельца;
+- добавлен version-controlled Delivery Loop: current task, task registry, submission/evidence, independent review, human acceptance и шаблоны следующих итераций;
+- добавлен source record прямой delivery-директивы владельца с отделением её от решений task curator;
+- Claude Code handoff усилен обязательными repository/ref/environment identifiers, read-only границей Product OS и fail-safe preflight;
+- отчёт интегратора возвращается отдельным Product OS report PR и не считается само-приёмкой;
 - Product OS расширен от внутренней системы EXIM до независимой multi-tenant SaaS-платформы **EXIM Super App**;
 - `exim.kz` зафиксирован как первый полноценный tenant и пилотный workspace, но не как жёстко заданная единственная компания;
 - зафиксированы два обязательных продуктовых контура: Private Operating OS и собственная биржа грузов/свободного транспорта (`EXIM Exchange` — рабочее название);

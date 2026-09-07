@@ -8,9 +8,13 @@
 → создать или обновить REQ
 → связать с Foundation Gate / Launch MVP / later roadmap
 → реализация в отдельном repository
-→ Preview и acceptance
+→ submission report в Product OS
+→ независимый review, Preview и human acceptance
+→ следующая delivery-задача
 → обновить current state без переписывания истории
 ```
+
+Текущий execution scope и отчёты ведутся в [Delivery Loop](../12-delivery/README). Наличие нового Product OS документа само по себе не разрешает application work: нужна task в статусе `ready` и authoritative handoff.
 
 ## Перед ТЗ
 

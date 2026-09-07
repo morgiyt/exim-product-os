@@ -36,4 +36,6 @@
 
 ## Реализация интегратором
 
-Product OS и рабочий repository приложения не смешиваются. При реализации использовать [Foundation Gate](../07-mvp/foundation-gate), [реестр требований](../06-requirements/index) и корневой файл `CLAUDE_CODE_START_PROMPT.md`; сдача только по acceptance criteria и Preview на проверенном commit.
+Product OS и рабочий repository приложения не смешиваются. При реализации использовать [текущую delivery-задачу](../12-delivery/current-task), [Foundation Gate](../07-mvp/foundation-gate), [реестр требований](../06-requirements/index) и корневой файл `CLAUDE_CODE_START_PROMPT.md`.
+
+Канонические Product OS документы остаются read-only на время implementation-run. Исполнитель сдаёт отдельный report PR по [Delivery Loop](../12-delivery/README), но не принимает собственную работу.
