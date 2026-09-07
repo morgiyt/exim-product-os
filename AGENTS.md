@@ -36,6 +36,21 @@
 - добавить запись в CHANGELOG;
 - не переписывать исторические аудиты задним числом.
 
+## Delivery-задачи и отчётность
+
+Перед implementation-run прочитать `docs/12-delivery/current-task.md` и linked task. Одновременно активна только одна current task.
+
+- В application task канонический Product OS read-only.
+- Исключение для исполнителя — отдельный additive-only report PR: только новые `submission-NN.md`, `blocker-NN.md`, `addendum-NN.md`, matching `evidence-manifest-NN.md` и явно разрешённые обезличенные artifacts.
+- Исполнитель не создаёт и не меняет `review-*`, `acceptance*`, task, registry, current-task, README и уже существующие reports/evidence; в его report PR запрещены Git-статусы `M/D/R`.
+- Код, миграции и application tests никогда не добавляются в Product OS.
+- Application repo нельзя угадывать по имени, URL опубликованного приложения или сходству stack: нужен authoritative handoff.
+- Submission исполнителя не является review или acceptance.
+- Интегратор и Claude Code не ставят своей работе `accepted`, не выступают reviewer/acceptance authority своей сдачи и не меняют канонический task status.
+- После review task curator может создать только draft следующей задачи; сделать её `ready` и переключить current-task можно лишь после `accepted`, `cancelled` или `superseded` текущей.
+- Отчёты после submission не переписываются для сокрытия failed/not-run результатов; следующая попытка получает новый номер.
+- Секреты, credentials, cookies, реальные персональные данные и unrestricted share links в reports/evidence запрещены.
+
 ## Каждая спецификация страницы должна содержать
 
 - ID и цель;

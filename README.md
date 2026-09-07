@@ -21,6 +21,8 @@ EXIM Super App проектируется как независимая multi-te
 - [Контракты обязательных экранов Gate](docs/04-pages/foundation-gate-contracts.md)
 - [Public Launch MVP](docs/07-mvp/mvp-v1.md)
 - [Текущее состояние приложения](docs/10-implementation/current-state.md)
+- [Текущая delivery-задача](docs/12-delivery/current-task.md)
+- [Цикл заданий, отчётов и приёмки](docs/12-delivery/README.md)
 
 ## Приоритет источников
 
@@ -50,10 +52,12 @@ npm run docs:preview
 
 ## Интегратору
 
-- Текущий крупный пакет реализации: [Foundation Gate](docs/07-mvp/foundation-gate.md).
-- Стартовый контекст для Claude Code: [CLAUDE_CODE_START_PROMPT.md](CLAUDE_CODE_START_PROMPT.md).
+- Первое текущее ready-задание: [TASK-2026-001 — Foundation Gate](docs/12-delivery/tasks/TASK-2026-001-foundation-gate.md).
+- Передача в Claude Code: [CLAUDE_CODE_START_PROMPT.md](CLAUDE_CODE_START_PROMPT.md).
+- Перед началом записи интегратор указывает точные application repo, base branch, expected HEAD и PR target.
 - Код рабочего приложения изменяется в его отдельном репозитории; этот репозиторий хранит Product OS, требования и приёмку.
 - Открытые вопросы и `TBD` не дают права самостоятельно придумывать бизнес-правила.
+- Подробная сдача возвращается в этот репозиторий через [report PR](docs/12-delivery/reports/README.md); после review здесь появляется следующая задача.
 
 ## Публикация
 

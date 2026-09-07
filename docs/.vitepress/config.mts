@@ -22,6 +22,7 @@ export default defineConfig({
       { text: 'Карта', link: '/03-product-map/app-map' },
       { text: 'Требования', link: '/06-requirements/index' },
       { text: 'Foundation Gate', link: '/07-mvp/foundation-gate' },
+      { text: 'Delivery', link: '/12-delivery/current-task' },
       { text: 'Реализация', link: '/10-implementation/current-state' },
       { text: 'Вопросы', link: '/09-decisions/open-questions' }
     ],
@@ -140,7 +141,25 @@ export default defineConfig({
         items: [
           { text: 'Платформенная директива 2026-08-26', link: '/10-sources/2026-08-26-platform-directive' },
           { text: 'Текущий live MVP', link: '/10-sources/current-mvp' },
+          { text: 'Delivery-директива 2026-09-07', link: '/10-sources/2026-09-07-delivery-directive' },
           { text: 'Исходная концепция', link: '/10-sources/original-brief' }
+        ]
+      },
+      {
+        text: '12. Delivery',
+        items: [
+          { text: 'Текущая задача', link: '/12-delivery/current-task' },
+          { text: 'Реестр задач', link: '/12-delivery/task-registry' },
+          { text: 'Правила цикла', link: '/12-delivery/README' },
+          { text: 'TASK-2026-001', link: '/12-delivery/tasks/TASK-2026-001-foundation-gate' },
+          { text: 'Отчёты исполнителя', link: '/12-delivery/reports/README' },
+          { text: 'Evidence manifests', link: '/12-delivery/evidence/README' },
+          { text: 'Blocker template', link: '/12-delivery/templates/blocker-template' },
+          { text: 'Submission template', link: '/12-delivery/templates/submission-template' },
+          { text: 'Evidence template', link: '/12-delivery/templates/evidence-manifest-template' },
+          { text: 'Review template', link: '/12-delivery/templates/review-template' },
+          { text: 'Acceptance template', link: '/12-delivery/templates/acceptance-template' },
+          { text: 'Task template', link: '/12-delivery/templates/task-template' }
         ]
       }
     ],
