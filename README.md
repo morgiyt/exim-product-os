@@ -20,10 +20,6 @@ npm run docs:build
 npm run docs:preview
 ```
 
-## Работа через Cursor
-
-Откройте `CURSOR_START_PROMPT.md`, скопируйте промпт целиком и отправьте агенту Cursor.
-
 ## Публикация
 
 В репозитории есть workflow GitHub Pages. После загрузки в GitHub выберите `Settings → Pages → Source: GitHub Actions`.
