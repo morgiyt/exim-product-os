@@ -1,30 +1,60 @@
 # Реестр страниц
 
-| ID | Страница | Роль | MVP | Статус |
-|---|---|---|:---:|---|
-| CL-001 | Главная клиента | Клиент | Да | Черновик |
-| CL-002 | Новый запрос | Клиент | Да | Черновик |
-| CL-003 | Мои запросы | Клиент | Да | Требует описания |
-| CL-004 | Карточка перевозки | Клиент | Да | Черновик |
-| CL-005 | Список рейсов | Клиент | Да | Требует описания |
-| CL-006 | Документы | Клиент | Да | Требует описания |
-| CL-007 | Чат с менеджером | Клиент | Да | Требует описания |
-| MG-001 | Главная менеджера | Менеджер | Да | Черновик |
-| MG-002 | Карточка клиента | Менеджер | Да | Черновик |
-| MG-003 | Карточка запроса | Менеджер | Да | Черновик |
-| MG-004 | Коммерческое предложение | Менеджер | Да | Требует описания |
-| MG-005 | Карточка перевозки | Менеджер | Да | Требует описания |
-| MG-006 | Публикация события | Менеджер | Да | Требует описания |
-| MG-007 | Передача клиента | Менеджер | Да | Требует описания |
-| MG-008 | Годовой договор / заявка к договору | Менеджер | Да | Требует описания |
-| LG-001 | Очередь расчётов | Логист | Да | Требует описания |
-| LG-002 | Форма расчёта | Логист | Да | Черновик |
-| LG-003 | Согласование с партнёром | Логист | Да | Требует описания |
-| LG-004 | Исполнение перевозки | Логист | Да | Требует описания |
-| LH-001 | Dashboard руководителя логистики | Рук. логистики | Да | Черновик |
-| SH-001 | Dashboard руководителя продаж | Рук. продаж | Да | Требует описания |
-| SH-002 | Согласование низкой маржи | Рук. продаж | Да | Требует описания |
-| AC-001 | Счета и оплаты | Бухгалтер | Да | Требует описания |
-| AD-001 | Workflow-шаблоны | Админ | Да | Черновик |
-| AD-002 | Пользователи и роли | Админ | Да | Требует описания |
-| AD-003 | Журнал аудита | Админ | Да | Требует описания |
+Статус реализации основан на live-аудите 2026-09-04 и не заменяет проверку исходного кода.
+
+| ID | Страница | Модуль | Доступ | Релиз | Спецификация | Реализация |
+|---|---|---|---|---|---|---|
+| AU-001 | Вход | Platform | Все | Foundation Gate | Gate contract ready | Работает |
+| AU-002 | Регистрация / организация | Platform | Новый пользователь | Launch MVP | Требует описания | Частично |
+| AU-003 | Подтверждение и восстановление | Platform | Все | Foundation Gate | Gate contract ready | Дефект callback |
+| PL-001 | Главная и выбор модуля | Platform | Авторизованные | Launch MVP | Черновик | Нет подтверждения |
+| ORG-001 | Организация и capabilities | Platform | Участники организации | Launch MVP | Черновик | Профиль частично |
+| ORG-002 | Участники, роли, приглашения | Platform | Tenant admin в Gate; финальная модель OQ-034 | Foundation Gate | Gate contract ready | Частично, права не проверены |
+| ORG-003 | Модули и план | Platform | Organization admin | Launch MVP | Черновик | Не обнаружено в live UI |
+| CL-001 | Главная клиента | Private OS | Клиент | Foundation Gate | Gate contract ready | UI-режим есть, RBAC не проверен |
+| CL-002 | Новый запрос | Private OS | Клиент | Foundation Gate | Gate contract ready | Частично |
+| CL-003 | Мои запросы | Private OS | Клиент | Foundation Gate | Gate contract ready | Частично |
+| CL-004 | Карточка перевозки | Private OS | Клиент | Foundation Gate | Gate contract ready | Нет тестовой перевозки |
+| CL-005 | Список рейсов | Private OS | Клиент | Foundation Gate | Gate contract ready | Не подтверждено |
+| CL-006 | Документы | Private OS | Клиент | Foundation Gate | Gate contract ready | UI частично |
+| CL-007 | Чат с менеджером | Private OS | Клиент | Post-Gate | Требует описания | UI есть |
+| MG-001 | Главная менеджера | Private OS | Менеджер | Foundation Gate | Gate contract ready | Частично, счётчики расходятся |
+| MG-002 | Карточка клиента | Private OS | Менеджер | Foundation Gate | Gate contract ready | Частично |
+| MG-003 | Карточка запроса | Private OS | Менеджер | Foundation Gate | Gate contract ready | Частично, действий workflow нет |
+| MG-004 | Коммерческое предложение | Private OS | Менеджер | Foundation Gate | Gate contract ready | Не подтверждено |
+| MG-005 | Карточка перевозки | Private OS | Менеджер | Foundation Gate | Gate contract ready | Нет данных |
+| MG-006 | Публикация события | Private OS | Менеджер | Foundation Gate | Gate contract ready | Не подтверждено |
+| MG-007 | Передача клиента | Private OS | Менеджер | Post-Gate | Требует описания | Не проверено |
+| MG-008 | Договор / заявка к договору | Private OS | Менеджер в Gate; юрист Post-Gate/TBD | Foundation Gate | Gate contract ready: minimum gate | Не подтверждено |
+| LG-001 | Очередь расчётов | Private OS | Логист | Foundation Gate | Gate contract ready | UI-режим частично |
+| LG-002 | Форма расчёта | Private OS | Логист | Foundation Gate | Gate contract ready | Не подтверждена |
+| LG-003 | Согласование с партнёром | Private OS | Логист | Foundation Gate | Gate contract ready: section allowed | Не подтверждено |
+| LG-004 | Исполнение перевозки | Private OS | Логист | Foundation Gate | Gate contract ready | Нет данных |
+| LG-005 | Документы от завода | Private OS | Логист | Foundation Gate | Gate contract ready | UI частично |
+| LH-001 | Dashboard логистики | Private OS | Руководитель логистики | Post-Gate | Черновик | Не подтверждено |
+| SH-001 | Dashboard продаж | Private OS | Руководитель продаж | Post-Gate | Требует описания | Не подтверждено |
+| SH-002 | Согласование низкой маржи | Private OS | Руководитель продаж | Post-Gate | Требует описания | Не подтверждено |
+| AC-001 | Счета и оплаты | Private OS | Бухгалтер | Post-Gate | Требует описания | Не подтверждено |
+| AD-001 | Workflow-шаблоны | Private OS | Tenant admin | Foundation Gate: read-only; Post-Gate: editor | Gate core ready; editor draft | Не подтверждено |
+| AD-002 | Пользователи и роли | Private OS | Tenant admin | Foundation Gate | Gate contract ready | UI есть, scope не проверен |
+| AD-003 | Tenant-аудит | Private OS | Tenant admin | Foundation Gate | Gate contract ready | Не подтверждено |
+| EX-001 | Главная Exchange | Exchange | Участник | Launch MVP | Черновик | Не обнаружено в live UI |
+| EX-002 | Поиск грузов | Exchange | Участник | Launch MVP | Черновик | Не обнаружено в live UI |
+| EX-003 | Карточка груза | Exchange | Участник | Launch MVP | Черновик | Не обнаружено в live UI |
+| EX-004 | Создание груза | Exchange | Cargo publisher | Launch MVP | Черновик | Не обнаружено в live UI |
+| EX-005 | Поиск транспорта | Exchange | Участник | Launch MVP | Черновик | Не обнаружено в live UI |
+| EX-006 | Карточка транспорта | Exchange | Участник | Launch MVP | Черновик | Не обнаружено в live UI |
+| EX-007 | Создание транспорта | Exchange | Transport publisher | Launch MVP | Черновик | Не обнаружено в live UI |
+| EX-008 | Мои объявления | Exchange | Владелец | Launch MVP | Черновик | Не обнаружено в live UI |
+| EX-009 | Отклики и предложения | Exchange | Участники объекта | Launch MVP | Черновик | Не обнаружено в live UI |
+| EX-010 | Выбор исполнителя / контакты | Exchange | Владелец и выбранный | Launch MVP | Черновик | Не обнаружено в live UI |
+| EX-011 | Профиль организации | Exchange | Участники | Launch MVP | Черновик | Не обнаружено в live UI |
+| PA-001 | Организации платформы | Platform admin | Platform admin | Launch MVP | Требует описания | Не подтверждено |
+| PA-002 | Модули и entitlements | Platform admin | Platform admin | Launch MVP | Требует описания | Не обнаружено в live UI |
+| PA-003 | Модерация и жалобы | Platform admin | Moderator | Launch MVP, conditional | Conditional draft после OQ-039 | Не обнаружено в live UI |
+| PA-004 | Платформенный аудит | Platform admin | Platform admin | Launch MVP | Требует описания | Не обнаружено в live UI |
+
+Детали:
+
+- [Контракты страниц Foundation Gate](./foundation-gate-contracts)
+- [Платформа и Exchange](./platform-and-exchange)
