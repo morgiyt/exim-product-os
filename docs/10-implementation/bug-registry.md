@@ -1,6 +1,76 @@
 # Bug Registry
 
-Дата расследования: 2026-07-27  
+## Перепроверка 2026-09-04
+
+Подробный источник: [Super App live audit](audits/2026-09-04-super-app-live-audit).
+
+| ID | Результат перепроверки |
+|---|---|
+| BUG-001 | Не воспроизведён: 10/10 reload завершились. Статус не менять на Fixed без версии/commit evidence. |
+| BUG-002 | Июльская самопроизвольная смена view state не воспроизведена. Разделение server role и view mode всё ещё не сертифицировано; намеренно выбранные несовместимые режимы учтены в BUG-011. |
+| BUG-003 | Workflow-список и Kanban загрузились; июльская нестабильность не воспроизведена. Сохранение выбранного view после reload отдельно не сертифицировано; статус Fixed не установлен. |
+| BUG-004 | Повторно подтверждён на 360/375/390 px. |
+
+## BUG-005 — Navigation state is not restored
+
+- Статус: Confirmed
+- Серьёзность: High
+- Факт: `/app#workflow` открывал другой раздел; CRM не обновлял hash; Back менял history без смены текущего экрана.
+- Ожидание: утверждённый path/hash contract работает для direct open, reload, Back и Forward.
+- Приёмка: REQ-005.
+
+## BUG-006 — Request counts disagree
+
+- Статус: Confirmed
+- Серьёзность: High
+- Факт: inbox показывал 0, workflow/analytics — 6, другой dashboard view — 2/4.
+- Ограничение: аудит не установил причину. Разные scopes или фильтры возможны, но интерфейс их не объяснял.
+- Ожидание: одна и та же метрика при одинаковом scope совпадает во всех разделах; разные scopes явно подписаны и показывают активный фильтр/владельца.
+- Приёмка: REQ-005/REQ-006.
+
+## BUG-007 — Global search misses an existing request
+
+- Статус: Confirmed
+- Серьёзность: High
+- Факт: существующий в workflow ID возвращал «не найдена».
+- Ожидание: доступный объект находится; права поиска равны правам карточки.
+- Приёмка: REQ-005.
+
+## BUG-008 — Tracking returns misleading empty state
+
+- Статус: Confirmed
+- Серьёзность: Medium
+- Факт: существующий request ID и заведомо неверный ID формата `EX-XXXX` приводили к одинаковому сообщению «все грузы доставлены».
+- Ожидание: доступный request без Shipment отличается от неизвестного ID и от отсутствия активных Shipment. Недоступный чужой объект обрабатывается по безопасному non-disclosure contract и не раскрывает факт своего существования.
+- Приёмка: REQ-002/REQ-005.
+
+## BUG-009 — Auth callback reports verification success for tested failure inputs
+
+- Статус: Confirmed
+- Серьёзность: High
+- Факт: callback без параметров, с `error=access_denied` и неверным code отвечал redirect на `/login?verified=1` без `Set-Cookie`.
+- Влияние: ложное сообщение об успехе; auth bypass не доказан.
+- Ожидание: success только после успешного exchange; ошибки сохраняют ошибочный статус.
+- Приёмка: REQ-005.
+
+## BUG-010 — Request form contains demo/hardcoded route data
+
+- Статус: Confirmed UI
+- Серьёзность: Medium
+- Факт: Шэньчжэнь → Алматы и «Адрес доставки в Алматы» были предзаполнены; состав полей расходится с REQ-001.
+- Ограничение: финальная отправка не проверялась.
+- Приёмка: REQ-001.
+
+## BUG-011 — Role view modes expose incompatible interface blocks
+
+- Статус: Confirmed UI, server impact unverified
+- Серьёзность: High
+- Факт: client view mode показывал manager KPI/employee tasks/role management; logist view mode — margin-related screen.
+- Не утверждать: настоящий клиент или логист уже получает эти данные сервером.
+- Ожидание: отдельные account tests и отсутствие закрытых полей в payload.
+- Приёмка: REQ-004/REQ-005.
+
+Дата расследования: 2026-07-27
 Окружение: published Vercel app, built-in Browser, authenticated manager-visible session.
 
 ## Scope And Safety

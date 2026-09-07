@@ -1,106 +1,135 @@
 # Жизненные циклы
 
-Этапы **не зашиты в код**. Ниже — референсные шаблоны v1 для запуска. Администратор может изменить их через workflow-редактор (D-066, D-068).
+## Правила
 
-См. [Configurable Workflow Foundation](../01-foundation/configurable-workflow-foundation).
+- Private OS workflow и Exchange lifecycle разделены.
+- Расчёт и договорный gate принадлежат `QuoteRequest`/связанным объектам.
+- `Shipment` появляется только после подписанного договорного основания.
+- Ни один этап не расширяет tenant scope или entitlement.
+- Клиент получает безопасное название, а не внутренний staff-код.
+- Ниже приведены референсные версии, а не жёсткое требование конкретной БД.
 
-## Шаблон: запрос на расчёт (референс v1)
+## QuoteRequest workflow v1
 
-```text
-Черновик
-→ Запрос от отдела продаж
-→ Отправлен на просчёт
-→ На проверке логиста
-→ Возвращён на уточнение
-→ На расчёте
-→ Ставка просчитана
-→ Запрос на перерасчёт
-→ Повторный расчёт
-→ Вариант выбран
-→ Закрыт / Отказ
-```
-
-## Шаблон: перевозка (референс v1, D-058)
+### Gate-enabled
 
 ```text
-Запрос от отдела продаж
-→ Отправлен на просчёт
-→ Ставка просчитана
-→ Запрос на перерасчёт (опц.)
-→ Повторный расчёт (опц.)
-→ Клиент подписал договор/заявку
-→ Рассмотрение договора агентом
-→ Договор рассмотрен
-→ Связь с заводом
-→ Ожидание забора
-→ Погрузка
-→ Груз едет до границы
-→ Груз на границе
-→ Груз едет до СВХ
-→ Груз прибыл на СВХ
-→ Ожидание оплаты
-→ Завершено
+draft → manager_review
+manager_review → data_required → manager_review
+manager_review → sent_to_logistician
+sent_to_logistician → data_required
+sent_to_logistician → rate_search
+rate_search → rate_received  (только после минимум двух валидных RateQuote)
+rate_received → offer_preparation
+offer_preparation → offer_to_client
+offer_to_client → clarification_requested → offer_to_client
+offer_to_client → approved → contract_pending → contract_signed
+contract_signed → converted_to_shipment → closed
+offer_to_client → rejected
+rate_search | sent_to_logistician → closed_without_rate
 ```
 
-Отрицательная ветка: **сделка провалена → анализ причины** (D-059).
+`RateQuote` создаётся отдельным действием внутри `rate_search`; добавление первой или второй ставки само по себе не является переходом.
 
-## Шаблон: финансы (базовый, D-074)
+### Post-Gate / TBD — отключено в Gate
+
+- `rate_received → recalculation → rate_received` — actor не утверждён;
+- произвольный переход в `cancelled` — actor и правила возврата не утверждены;
+- любые финалы, кроме явного client `rejected` и D-063 `closed_without_rate`, не засеваются как разрешённые Gate transitions.
+
+Все разрешённые отрицательные финалы требуют причину.
+
+Клиентские формулировки не обязаны повторять внутренние роли. Например `sent_to_logistician` и `rate_search` могут отображаться как «Выполняется расчёт».
+
+## Shipment workflow v1 для exim.kz
+
+### Gate-enabled
 
 ```text
-Счёт не выставлен
-→ Счёт выставлен
-→ Ожидается оплата
-→ Частично оплачено
-→ Оплачено
-→ АВР отправлен
-→ АВР подписан
-→ Документы возвращены
-→ Закрыто
+preparation
+→ factory_contact
+→ pickup_waiting
+→ loading
+→ in_transit
 ```
 
-Дополнительные состояния: **Просрочено**, **Возврат**, **Спор**, **Отменено**.
-
-Базовый шаблон, не окончательный процесс.
-
-## Шаблон: рейс (референс v1)
+### Post-Gate / TBD — отключено в Gate
 
 ```text
-Подготовка
-→ Назначен транспорт
-→ Погрузка
-→ В пути
-→ Таможня
-→ Доставка
-→ Закрыт
+in_transit
+→ border_or_customs
+→ final_delivery
+→ delivered
+→ documents_closing
+→ closed
 ```
 
-Детальные события рейса — см. [События рейса](./trip-events).
+Дополнительные состояния `problem`, `paused`, `cancelled` также отключены в Gate: actor, возврат в основной путь и полномочия не утверждены. После утверждения любой такой переход требует причину. Детальная D-058 последовательность сохраняется как стартовая конфигурация `exim.kz`, но не применяется ко всем видам транспорта и tenants автоматически.
 
-## Переходы и требования
+## Trip workflow v1
 
-Каждый переход может требовать (D-067):
+### Gate-enabled
 
-- обязательные настраиваемые поля;
-- комментарий;
-- файл;
-- права роли;
-- клиентский комментарий менеджера перед публикацией.
+```text
+preparation
+→ transport_assigned
+→ loading
+→ in_transit
+```
 
-## Версионирование
+Trip создаёт назначенный логист в `preparation`; обязательные поля и права переходов заданы в REQ-003. Gate проходит только до `in_transit`.
 
-- объект хранит `templateVersionId`;
-- история этапов не перезаписывается при публикации новой версии шаблона;
-- новые объекты получают актуальную версию.
+### Post-Gate / TBD — отключено в Gate
 
-## Tracking (D-060, D-061)
+```text
+in_transit
+→ customs_if_applicable
+→ delivery
+→ closed
+```
 
-Не отдельный жёсткий статус — события и обновления поверх этапов. Источник: звонок, WhatsApp. Поля: источник, дата, автор, текстовая локация.
+## Finance workflow
 
-## Аудит (D-069)
+Стартовый шаблон D-074, не окончательный универсальный процесс:
 
-Любое изменение этапа, поля или шаблона: старое значение, новое, автор, дата, причина.
+```text
+not_invoiced
+→ invoiced
+→ payment_expected
+→ partially_paid
+→ paid
+→ closing_documents
+→ closed
+```
+
+## Exchange Listing lifecycle
+
+```text
+draft → active
+draft → pending_moderation → active | rejected
+active ↔ paused
+active | paused → matched | expired | closed | blocked
+```
+
+Это неканонический draft до OQ-039/OQ-040. Ветка `pending_moderation` условная: обязательность самой модерации и премодерации не утверждена.
+
+## Exchange Response lifecycle
+
+```text
+sent → viewed
+sent | viewed → withdrawn | expired
+viewed → accepted | rejected
+```
+
+Это неканонический draft до OQ-040/OQ-043. `accepted` в предлагаемой модели означает выбор участника для продолжения общения. Это не договор, оплата, гарантия перевозки или принятие ответственности платформой.
+
+## История
+
+Каждый переход хранит объект, предыдущий и новый статус, автора, membership/роль, дату и комментарий/причину, если она обязательна.
 
 ## Открытые вопросы
 
-- OQ-029 — обязательные шаблоны в MVP;
-- OQ-031 — миграция объектов между версиями шаблона.
+- OQ-031 — миграция workflow-версий;
+- OQ-040 — точный lifecycle объявления и отклика;
+- OQ-042 — различия по видам транспорта;
+- OQ-044 — системные и tenant-шаблоны.

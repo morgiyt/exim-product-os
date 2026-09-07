@@ -1,61 +1,81 @@
 # Gap Registry
 
-Дата: 2026-07-27  
-Источник: published Vercel app technical recon and Product OS comparison.
+Дата актуализации: 2026-09-07. Источники: Product OS 0.5.0 draft и live-аудит 2026-09-04.
 
 ## GAP-001
 
-- ID: GAP-001
-- Название: Protected sections do not have independent deep-link URLs
-- Статус: Confirmed architecture gap
-- Приоритет: Medium
-- Затронутая область: protected `/app` navigation, Product OS page registry, QA automation.
+**Название:** Stable deep-link contract
 
-### Фактическое состояние
+- Статус: confirmed architecture/implementation gap.
+- Факт: приложение использует `/app` и hash/internal state, но прямое открытие, reload и browser history не восстанавливают выбранный раздел.
+- Решение: path-based или стабильный hash-контракт, проверяемый REQ-005.
 
-Приложение использует один защищённый shell `/app`. Разделы переключаются внутри `/app` через hash/internal state navigation:
+### Историческая фиксация 2026-07-27
 
-- `#dashboard`
-- `#workflow`
-- `#shipments`
-- `#tracking`
-- `#crm`
-- `#chats`
-- `#tasks`
-- `#profile`
+Первоначально приложение использовало единый защищённый shell `/app` и hash/internal-state navigation:
 
-`/app/requests` не является реализованным маршрутом. Его 404 не классифицируется как самостоятельный High-баг без требования на path-based routing.
+- `#dashboard`;
+- `#workflow`;
+- `#shipments`;
+- `#tracking`;
+- `#crm`;
+- `#chats`;
+- `#tasks`;
+- `#profile`.
 
-### Последствия
+`/app/requests` не являлся реализованным маршрутом и возвращал Next.js 404. Это было классифицировано как архитектурный gap, а не самостоятельный High-баг.
 
-- Нельзя использовать ожидаемые URL вида `/app/requests`.
-- Ограничены bookmarks и прямые ссылки на раздел.
-- Документация и тесты не должны предполагать path routes.
-- После reload должен корректно восстанавливаться hash-раздел.
+Первоначальная оценка влияния: Medium при условии, что hash-раздел стабильно восстанавливается после direct open, reload и Back/Forward.
 
-### Ожидаемое решение
+Доказательства:
 
-Product OS and implementation should align on one of two contracts:
+- [Production Technical Recon 2026-07-27](audits/2026-07-27-production-technical-recon#real-navigation-model);
+- ![Direct requests 404](../public/app-audit/2026-07-27/technical-evidence/technical-direct-requests-404.png).
 
-1. SPA-only contract: `/app` is the only protected route, and section state is hash/internal navigation with stable reload restoration.
-2. Path-based contract: protected sections receive independent routes such as `/app/requests`, `/app/shipments`, `/app/tracking`.
+### Перепроверка 2026-09-04
 
-### MVP Impact
+Условие безопасного SPA/hash-контракта не выполнено: direct open, reload и browser history не восстанавливают выбранный раздел. Наблюдаемое неправильное поведение отдельно зарегистрировано как BUG-005.
 
-Medium. GAP-001 does not block the current MVP if hash navigation is stable, reload restores the selected hash section, and documentation/tests stop assuming path routes.
+## GAP-002
 
-### Доказательства
+**Название:** Нет подтверждённого end-to-end Private OS flow
 
-- Technical recon: [Real Navigation Model](audits/2026-07-27-production-technical-recon#real-navigation-model)
-- Screenshot: ![Technical direct requests 404](../public/app-audit/2026-07-27/technical-evidence/technical-direct-requests-404.png)
+- Статус: release blocker.
+- Отсутствует доказанный сценарий request → rates → offer → contract gate → shipment → trip → tracking.
+- Решение: REQ-001, REQ-002, REQ-003 и REQ-006.
 
-### Связанные требования
+## GAP-003
 
-- [Карта приложения](../03-product-map/app-map)
-- [Реестр страниц](../04-pages/page-registry)
-- [MVP v1](../07-mvp/mvp-v1)
+**Название:** Tenant isolation и server RBAC не сертифицированы
 
-### Рекомендуемая проверка после решения
+- Статус: release blocker.
+- Одна admin-сессия и UI view switcher не доказывают права клиента, менеджера и логиста.
+- Решение: REQ-004/REQ-005, две компании и отдельные accounts.
 
-- If SPA-only: open `/app#workflow`, `/app#shipments`, `/app#tracking`, reload each hash state, and verify the same section is restored.
-- If path-based: open, reload and Back/Forward every protected route documented in the page registry.
+## GAP-004
+
+**Название:** EXIM Exchange и entitlements не обнаружены в live UI
+
+- Статус: planned product gap, не bug текущей ultra-basic alpha.
+- В проверенном live UI не обнаружены listings, Exchange search, responses, selection, free/paid access, profiles и moderation; исходный код не проверялся.
+- Решение: REQ-007…REQ-009 и conditional REQ-010 до Public Launch MVP.
+
+## GAP-005
+
+**Название:** Не подтверждена граница private request → public listing
+
+- Статус: architecture/security gap.
+- Требуется утверждённая граница; разные сущности, allowlist, явное действие, consent/authority и аудит пока являются рекомендуемым safe default, а не решённой механикой.
+- Решение: OQ-038 + REQ-004/REQ-007.
+
+## GAP-006
+
+**Название:** Несоответствующий контейнерный/marketing surface
+
+- Статус: product clarity gap.
+- Пустой контейнерный каталог относится к другому продукту; marketing claims не подтверждены источником.
+- Решение: OQ-048; подтвердить, скрыть или удалить из текущей навигации отдельным решением.
+
+## Правило
+
+Bug — наблюдаемое неправильное поведение относительно текущего контракта. Gap — отсутствующий продуктовый/архитектурный контур. Отсутствие Exchange в текущей alpha не следует называть техническим дефектом.

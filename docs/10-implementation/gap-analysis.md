@@ -1,120 +1,49 @@
-# Gap Analysis
+# Gap analysis — Product OS 0.5.0 vs live app
 
-Technical route/framework reconnaissance: [Production Technical Recon 2026-07-27](audits/2026-07-27-production-technical-recon). Confirmed architecture gaps are tracked in [Gap Registry](gap-registry).
+## Главный разрыв
 
-## Technical recon addendum
+Целевой продукт — multi-tenant Super App с Private OS и Exchange. Live app — ранняя одно-shell alpha с базовыми клиентско-менеджерскими экранами.
 
-| Область | Наблюдение | Риск | Связь с Product OS |
-|---|---|---|---|
-| Navigation architecture | Sidebar hrefs are hash/internal-state links inside one `/app` shell; direct `/app/requests` is a real Next.js 404 | Decide whether Product OS requires deep links or accepts SPA-only navigation | [Карта приложения](../03-product-map/app-map), [Реестр страниц](../04-pages/page-registry) |
-| Framework | Production app is served by Next.js and loads public `/exim/app.js`, `/exim/workflow.js`, `/exim/modules.js`, `/exim/crm.js` scripts | Source-level architecture cannot be certified without `exim-app` | [MVP v1](../07-mvp/mvp-v1) |
-| Role/view state | Public code separates `window.__EXIM.role` from `APP_STATE.currentRole` | Visible role button is not enough to prove server RBAC | [Роли](../02-process/roles), [Права и видимость](../03-product-map/permissions) |
-| Mobile overflow | `.dash-link` quick-action row extended document width to about `1054px` at 375/360px in client view mode | Protected mobile dashboard remains risky for demo | [Product Foundation](../01-foundation/product-foundation) |
+## Приоритет 1 — Foundation Gate
 
-Детализированный реестр подтверждений и ограничений по BUG-001...BUG-004: [Bug Registry](bug-registry). GAP-001 фиксирует deep-link architecture gap, а не самостоятельный routing bug.
+| Разрыв | Риск | Требование |
+|---|---|---|
+| Server RBAC не доказан | Утечка внутренних данных | REQ-004, REQ-005 |
+| Tenant isolation не доказан | Данные разных компаний могут смешиваться | REQ-004 |
+| Данные/счётчики расходятся | Нельзя доверять dashboard и workflow | REQ-005 |
+| Поиск не находит существующий объект | Операционная работа блокируется | REQ-005 |
+| Deep links/history сломаны | Нельзя делиться ссылками и стабильно возвращаться | REQ-005 |
+| Mobile overflow | Работа с телефона затруднена | REQ-005 |
+| Form demo/hardcoded | Нельзя использовать универсально | REQ-001 |
+| Полный rate/offer flow не подтверждён | Основной бизнес-процесс не доказан | REQ-001, REQ-006 |
+| Shipment/tracking flow не подтверждён | Клиентская ценность не доказана end-to-end | REQ-002, REQ-006 |
+| Auth callback врёт об успехе | Пользователь получает неверный статус | REQ-005 |
 
-## Проверенная область
+## Приоритет 2 — Public Launch MVP
 
-Проверены:
+| Разрыв | Риск | Требование |
+|---|---|---|
+| Cargo/Transport listings не обнаружены в live UI | Биржевой контур не подтверждён | REQ-007 |
+| Exchange search/interaction не обнаружен в live UI | Поиск участников не подтверждён | REQ-008 |
+| Entitlements не обнаружены в live UI | Free/paid модель не подтверждена | REQ-009 |
+| Verification/moderation не обнаружены в live UI | Необходимость и минимум trust & safety остаются OQ-039 | REQ-010 conditional |
+| Не закрыты юридические правила | Публичный запуск рискован | OQ-039…OQ-043 |
 
-- публичный auth flow: вход, регистрация, восстановление пароля как интерфейс, подтверждение email как интерфейс;
-- redirect `/app` без сессии на `/login`;
-- одна авторизованная сессия с фактической ролью менеджера;
-- боковое меню и доступные разделы текущей роли;
-- создание тестовой заявки `CODEX-AUDIT`;
-- сохранение созданной заявки после reload;
-- tracking search по тестовой заявке;
-- мобильный dashboard менеджера на 390px.
-- повторная проверка карточки тестовой заявки и переключателя `Список`/`Канбан`.
+Эти формулировки относятся к наблюдаемому UI. Исходный код не проверялся, поэтому они не доказывают отсутствие скрытой или незавершённой реализации.
 
-Не проверялись отдельные аккаунты клиента, логиста и администратора; исходный код, backend, база данных, API и Vercel-конфигурация; реальные документы, сообщения, платежи, настройки компании и существующие рабочие записи.
+## Что сохранить
 
-## Подтверждённые соответствия Product OS
+- существующий visual shell и навигационные паттерны после исправления маршрутов;
+- список/Kanban заявок;
+- CRM, задачи, чаты и профиль как частично работающие модули;
+- текущие данные без сброса;
+- исторические Product OS решения по процессу `exim.kz`;
+- ручной tracking как допустимый первый механизм.
 
-- Приложение имеет защищённую зону и auth gate, что соответствует [Ролям](../02-process/roles) и [Правам и видимости](../03-product-map/permissions).
-- Текущая сессия отображает менеджерский слой с dashboard, заявками и рабочими разделами, что частично соответствует [MG-001](../04-pages/manager-cabinet).
-- Создание запроса на расчёт существует и сохраняет тестовую заявку после reload, что частично соответствует [CL-002](../04-pages/client-cabinet), [D-006](../01-foundation/decisions) и [REQ-003](../06-requirements/REQ-003-configurable-workflow-mvp).
-- Уведомления имеют центр и пустое состояние, что частично соответствует [D-073](../01-foundation/decisions) и [MVP v1](../07-mvp/mvp-v1).
+## Что не использовать как замену
 
-## Расхождения и риски
-
-| Область | Наблюдение | Риск | Связь с Product OS |
-|---|---|---|---|
-| Routing | Прямые `/app/*` URL в авторизованной сессии открывают пустые экраны | Нельзя использовать страницы из реестра как стабильные маршруты | [Реестр страниц](../04-pages/page-registry) |
-| Workflow | Тестовая заявка создаётся, но переход этапа не найден | Не подтверждаются transitions, history и handoff | [REQ-003](../06-requirements/REQ-003-configurable-workflow-mvp), [Configurable Workflow Foundation](../01-foundation/configurable-workflow-foundation) |
-| UI state | Активная роль и kanban/list view проявлялись нестабильно между повторными проверками | Нельзя полагаться на видимый state как на RBAC или workflow proof | [Права и видимость](../03-product-map/permissions), [REQ-003](../06-requirements/REQ-003-configurable-workflow-mvp) |
-| Роли | Доступна только текущая роль менеджера | Нельзя подтвердить RBAC и клиентский слой видимости | [Роли](../02-process/roles), [Права и видимость](../03-product-map/permissions) |
-| Заявка -> перевозка | Созданная заявка не стала активной перевозкой; tracking её не нашёл | Нельзя показать lifecycle от расчёта до доставки | [От лида до перевозки](../02-process/lead-to-shipment), [MVP v1](../07-mvp/mvp-v1) |
-| Перевозки | Создание перевозки небезопасно из-за существующих реквизитов в форме | Shipment/trips/tracking нельзя проверить без sandbox data | [Доменная модель](../03-product-map/domain-model), [D-009](../01-foundation/decisions), [D-010](../01-foundation/decisions) |
-| Документы | Нет доступного списка документов; есть только фильтр услуг | Не подтверждается documents module | [CL-004](../04-pages/client-cabinet) |
-| Чат | Есть интерфейс раздела, сообщения не отправлялись | Не подтверждается клиент-менеджер коммуникация | [D-015, D-016](../01-foundation/decisions) |
-| Mobile | Видим горизонтальный overflow на защищённом dashboard | Риск для демонстрации на телефоне | [Product Foundation](../01-foundation/product-foundation) |
-
-## Что реально работает
-
-- Публичный вход отображается.
-- `/app` без сессии защищён redirect на `/login`.
-- Вход в текущую сессию менеджера работает, сессия сохраняется после reload.
-- Боковое меню менеджера открывает доступные SPA-разделы.
-- Менеджерский dashboard загружается.
-- Создание тестовой заявки `CODEX-AUDIT` работает.
-- Тестовая заявка сохраняется после reload.
-
-## Что работает частично
-
-- Регистрация доходит до email verification.
-- Менеджерский dashboard не полностью совпадает с Product OS.
-- Workflow показывает список и канбан, но не даёт сменить этап.
-- Карточка заявки открывается с назначением логиста, но отправка на расчёт не проверена безопасно.
-- Раздел перевозок показывает пустое состояние, но безопасное создание перевозки не выполнено.
-- Tracking UI работает, но тестовую заявку как перевозку не находит.
-- Уведомления открываются, но событий нет.
-- Мобильный dashboard отображается, но есть горизонтальный overflow.
-
-## Где только нарисован интерфейс
-
-- Восстановление пароля.
-- Подтверждение email.
-- CRM без проверенной карточки клиента.
-- Аналитика без данных в видимой области.
-- Чаты без отправки сообщений.
-- Задачи.
-- Документы как фильтр услуг, без документов как сущностей.
-
-## Что отсутствует или недоступно для проверки
-
-- Клиентский, логистический и административный кабинеты.
-- Список и карточка клиентов.
-- Передача запроса логисту.
-- Добавление ставки.
-- Формирование клиентской цены.
-- Создание перевозки из согласованной заявки.
-- Добавление рейсов.
-- Внутреннее tracking-событие.
-- Публикация события менеджером.
-- Отображение клиентского статуса.
-- Source-level audit backend/API/database/mock/env.
-
-## Что безопасно показывать руководству
-
-- Публичные auth-экраны с оговоркой о UX findings.
-- Менеджерский dashboard как прототип/частично рабочий интерфейс.
-- Создание тестовой заявки `CODEX-AUDIT` и её сохранение после reload.
-- Пустой центр уведомлений и read-only разделы как текущий фактический scope.
-
-## Что пока нельзя показывать как готовое
-
-- Полный quote-to-shipment workflow.
-- Смена этапов и передача логисту.
-- Расчёт ставок и клиентской цены.
-- Создание перевозки, рейсы и tracking events.
-- Документы, чат и уведомления как завершённые модули.
-- Соответствие всех ролей Product OS.
-
-## Следующие 5 задач
-
-1. Поднять sandbox-окружение с отдельными аккаунтами клиента, менеджера, логиста и администратора.
-2. Исправить прямые `/app/*` маршруты или явно документировать SPA-only навигацию.
-3. Реализовать и проверить transition controls для REQ-003 и D-065...D-074.
-4. Подготовить seed data: клиент, заявка, ставка, перевозка, рейс, документ, событие, уведомление.
-5. Предоставить `exim-app` для source audit backend/API/database/auth/mock/env.
+- UI-переключатель роли не заменяет RBAC;
+- контейнерный каталог не заменяет EXIM Exchange;
+- внешнее упоминание ATI.SU не означает собственную биржу;
+- успешная сборка не означает прохождение end-to-end acceptance;
+- отсутствие ошибки в одном admin-сеансе не доказывает tenant security.

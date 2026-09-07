@@ -1,124 +1,67 @@
 # Текущее состояние опубликованного приложения
 
-Дата внешнего аудита: 2026-07-27  
-Приложение: <https://exim-super-app.vercel.app/app>
-Версия Product OS: 0.4.0 - draft
+**Последняя read-only проверка:** 2026-09-04
+**Приложение:** <https://exim-super-app.vercel.app/app>
+**Версия Product OS:** 0.5.0 — draft
+**Подробный отчёт:** [Live-аудит 2026-09-04](audits/2026-09-04-super-app-live-audit)
 
-## Цель
+## Итог
 
-Зафиксировать наблюдаемое состояние опубликованного приложения и сравнить его с EXIM Product OS. Код приложения не изменялся, данные не удалялись, реальные сообщения не отправлялись, оплаты не проводились.
+Состояние: **ранняя functional alpha**.
 
-## Ограничения аудита
+Приложение не пустое: в существующей авторизованной сессии загружались shell, сохранённые backend-записи заявок и интерфейсы CRM, задач, чатов, аналитики, профиля и других разделов. Но один полный путь `request → rates → offer → contract gate → shipment → trip → tracking` не подтверждён, а серверные права отдельных ролей и tenant isolation не доказаны.
 
-- Нет полного набора подтверждённых тестовых аккаунтов ролей: клиент, менеджер, логист, администратор.
-- Репозиторий приложения `exim-app` в рабочей папке недоступен, поэтому исходный код, backend, база данных, API, auth policies, Vercel-конфигурация, mock-данные и env-переменные не проверялись.
-- Первичный аудит проверял только публичную auth-часть; продолжение аудита расширило область до одной текущей авторизованной сессии.
-- Фактически доступная роль в этой сессии: **менеджер**. Другие роли не предполагались и не проверялись через переключение ролей.
-- Логин, пароль, cookies, токены и значения `localStorage`/`sessionStorage` не сохранялись, не читались и не выводились.
+К реальному клиентскому пилоту не готово до [Foundation Gate](../07-mvp/foundation-gate).
 
-## Связь с Product OS
+## Что работает или существует
 
-Проверка сопоставлялась с [Product Foundation](../01-foundation/product-foundation), [Configurable Workflow Foundation](../01-foundation/configurable-workflow-foundation), [Ролями](../02-process/roles), [картой приложения](../03-product-map/app-map), [правами и видимостью](../03-product-map/permissions), [реестром страниц](../04-pages/page-registry), [MVP v1](../07-mvp/mvp-v1), [REQ-003](../06-requirements/REQ-003-configurable-workflow-mvp) и [открытыми вопросами](../09-decisions/open-questions).
+- защищённый `/app` в существующей авторизованной сессии;
+- сохранение авторизованной сессии;
+- заявки в списке и Kanban;
+- CRM lead и карточка;
+- задачи и чаты;
+- профиль компании, пользователи и UI ролей;
+- пустые состояния перевозок;
+- каталог услуг и контейнерный UI;
+- 10/10 успешных reload в последней проверке.
 
-## Проверенные публичные страницы
+## Что работает частично или расходится
 
-- `/login` отображается.
-- `/register` отображается; тестовая регистрация дошла до экрана подтверждения email.
-- `/forgot-password` отображается; отправка письма не выполнялась.
-- `/verify` отображается; повторная отправка письма не выполнялась.
-- `/app` без сессии перенаправляет на `/login`.
+- role view switcher не доказывает RBAC;
+- dashboard/inbox/workflow/analytics показывают разные числа;
+- поиск не находит существующую заявку;
+- tracking путает неизвестный номер и отсутствие перевозок;
+- hash/deep link/Back/Reload не восстанавливают раздел;
+- mobile overflow подтверждён на 360/375/390 px;
+- форма содержит demo/hardcoded значения и неполный набор REQ-001;
+- request workflow не имеет обнаруженного полного набора действий;
+- `/auth/callback` показывает ложный успех при ошибке.
 
-## Авторизованная сессия
+## Что не подтверждено
 
-После входа текущая роль определена как **менеджер** по активной кнопке роли `Менеджер` и менеджерским блокам dashboard. Сессия сохранилась после обновления `/app`: приложение осталось в защищённой зоне.
+- серверная конфиденциальность настоящего client account;
+- ограничения настоящего logistician account;
+- изоляция двух отдельных TenantWorkspaces и client companies внутри workspace;
+- ставки → клиентская цена → согласование;
+- создание Shipment после договора;
+- Trips и публикация tracking;
+- versioned workflow;
+- модульные entitlements.
 
-Повторная проверка в продолжении аудита подтвердила текущую роль **менеджер**: активна кнопка `Менеджер`, на главной отображается `Рабочее место менеджера` и dashboard `Входящие заявки`. Один раз после прямого возврата на `/app` Browser зафиксировал активную кнопку `Клиент`, но последующее состояние без ручного переключения снова вернулось к `Менеджер`. Это отмечено как нестабильность UI/state, а не как подтверждённый доступ к роли клиента.
+## Что не обнаружено в live UI относительно целевого Launch MVP
 
-Доступное боковое меню в текущей роли: Главная, Перевозки, Заявки, CRM, Аналитика, Чаты, Задачи, Отслеживание, Контейнеры, Услуги, Профиль, Выйти.
+- биржа грузов и транспорта;
+- объявления и Exchange search/interaction;
+- free/paid entitlements;
+- Exchange profiles и условные verification/moderation способности;
+- подтверждённая в реализации граница приватного запроса и публичного объявления.
 
-Верхняя панель содержит поиск по номеру заявки, кнопки ролей `Клиент`, `Менеджер`, `Логист`, переключатель темы, уведомления и профиль. Кнопки переключения ролей не нажимались, чтобы не менять роль и права.
+`Не обнаружено в live UI` не доказывает отсутствие кода: исходный код приложения не входил в этот аудит.
 
-## Проверенные разделы текущей роли
+## История аудитов
 
-| Раздел | URL | Что загружается | Фактическое состояние |
-|---|---|---|---|
-| Главная | `/app` | Обзор перевозок, рабочий стол менеджера, KPI, быстрые действия | Работает частично: экран загружается, но состав не полностью совпадает с Product OS manager dashboard |
-| Перевозки | `/app`, меню `#shipments` | Пустой список перевозок, фильтры, кнопка `+ Новая заявка` | Работает частично: список пуст, создание перевозки небезопасно проверять из-за подтягивания существующих реквизитов |
-| Заявки | `/app`, меню `#workflow` | Заявки и расчёты, список/канбан, тестовая заявка | Работает частично: создание и сохранение заявки работают, смена этапа не обнаружена |
-| CRM | `/app`, меню `#crm` | Заголовок CRM, вкладки воронки/списка, кнопка нового лида | Только интерфейс |
-| Аналитика | `/app`, меню `#analytics` | Заголовок показателей | Только интерфейс |
-| Чаты | `/app`, меню `#chats` | Заголовок и кнопка `+ Новый чат` | Только интерфейс; сообщения не отправлялись |
-| Задачи | `/app`, меню `#tasks` | Заголовок задач | Только интерфейс |
-| Отслеживание | `/app`, меню `#tracking` | Поиск по номеру заявки, пустое состояние активных перевозок | Работает частично: поиск показывает `Не найдено` для тестовой заявки |
-| Контейнеры | `/app`, меню `#containers` | Каталог контейнеров, фильтры, кнопка продажи контейнера | Только интерфейс относительно Product OS scope |
-| Услуги | `/app`, меню `#services` | Каталог услуг и фильтры, включая `Документы` | Только интерфейс; документов как сущностей нет |
-| Профиль | `/app`, меню `#profile` | Форма компании и контактного лица | Работает частично; сохранение профиля не проверялось, чтобы не менять рабочие данные |
+- [Vercel audit 2026-07-27](audits/2026-07-27-vercel-audit)
+- [Production technical recon 2026-07-27](audits/2026-07-27-production-technical-recon)
+- [Super App live audit 2026-09-04](audits/2026-09-04-super-app-live-audit)
 
-Прямые защищённые URL вида `/app/requests` и `/app/shipments` не являются реализованными маршрутами текущего приложения. Основная навигация фактически реализована внутри одного `/app` через hash/internal state; это зафиксировано как [GAP-001](gap-registry#gap-001), а не как самостоятельный High-баг routing.
-
-## Проверенные сценарии
-
-### Запрос на расчёт
-
-Создана тестовая заявка с префиксом `CODEX-AUDIT`: маршрут `CODEX-AUDIT Origin` -> `CODEX-AUDIT Destination`, груз `CODEX-AUDIT cargo`, статус после создания `Новая`. Заявка появилась в списке и в канбане, после обновления страницы сохранилась.
-
-Карточка тестовой заявки открывалась из списка и показывала назначение логиста, deadline и действие `Назначить и отправить на расчёт`. Кнопка не нажималась: действие могло назначить реального пользователя или создать рабочую задачу. Изменение доступного этапа поэтому осталось в статусе `Невозможно проверить`/`Невозможно безопасно проверить`.
-
-Переключатель `Канбан` работал нестабильно: ранее карточка `CODEX-AUDIT` отображалась в kanban-колонках, при повторной проверке нажатие `Канбан` оставляло табличное представление.
-
-### Перевозка и tracking
-
-Создание перевозки не выполнялось. Кнопка `+ Новая заявка` в разделе перевозок открывает форму с существующими данными отправителя и полями реквизитов, поэтому действие могло затронуть реальные рабочие данные.
-
-Поиск в tracking по тестовой заявке вернул `Не найдено`; активная перевозка из созданной заявки не сформировалась. Добавление tracking-события, история события и публикация менеджером не проверены: нет безопасной тестовой перевозки.
-
-## Developer Mode
-
-- В console logs приложения во время проверенных действий не зафиксированы ошибки приложения.
-- Во время работы Browser наблюдались сетевые предупреждения служебной среды Codex/Browser к внешнему telemetry-домену; они не отнесены к EXIM.
-- Network-ответы API и backend-эндпоинты приложения не удалось полноценно классифицировать без исходного кода и без раскрытия токенов/session storage.
-- Прямые `/app/*` маршруты в авторизованной сессии показали пустые экраны, что похоже на отсутствие роутинга для этих URL или SPA-only реализацию через внутреннее состояние.
-
-## Bug registry
-
-Подробный разбор четырёх проблем вынесен в [Bug Registry](bug-registry):
-
-- BUG-001: `/app` intermittently remains at loading-only state after auth/bootstrap.
-- BUG-002: visible role/interface mode state is not reliably explainable from the UI alone.
-- BUG-003: `Список` / `Канбан` switch is unstable.
-- BUG-004: mobile `/app` dashboard overflow is partially confirmed, but final pass was blocked by loading-only state.
-
-## Скриншоты
-
-![Login desktop](../public/app-audit/2026-07-27/login-desktop.png)
-
-![Register desktop](../public/app-audit/2026-07-27/register-desktop.png)
-
-![Verify desktop](../public/app-audit/2026-07-27/verify-desktop.png)
-
-![Login mobile 390](../public/app-audit/2026-07-27/login-mobile-390.png)
-
-![No authenticated session redirect](../public/app-audit/2026-07-27/authenticated/no-auth-session-redirect.png)
-
-![Manager dashboard](../public/app-audit/2026-07-27/authenticated/manager-dashboard.png)
-
-![Manager incoming dashboard](../public/app-audit/2026-07-27/authenticated/manager-incoming-dashboard.png)
-
-![Manager requests with CODEX-AUDIT](../public/app-audit/2026-07-27/authenticated/manager-requests-codex-audit.png)
-
-![Manager tracking no shipment](../public/app-audit/2026-07-27/authenticated/manager-tracking-no-shipment.png)
-
-![Mobile manager dashboard](../public/app-audit/2026-07-27/authenticated/mobile-manager-dashboard.png)
-
-## Technical recon addendum
-
-Additional production reconnaissance is documented in [Production Technical Recon 2026-07-27](audits/2026-07-27-production-technical-recon).
-
-Key clarifications:
-
-- The real protected document route is `/app`; sidebar navigation uses hash/internal state such as `#workflow`, `#shipments`, `#tracking`, not separate `/app/requests` or `/app/shipments` documents.
-- Direct `/app/requests` rendered a real Next.js 404 page in the authenticated Browser because it is not an implemented route; this is tracked as [GAP-001](gap-registry#gap-001), not as a standalone High bug.
-- The production app is served by Next.js and loads public app scripts from `/exim/app.js`, `/exim/workflow.js`, `/exim/modules.js` and `/exim/crm.js`.
-- Public scripts reference Supabase-backed globals (`window.__SUPA`, `window.__EXIM`, `window.__EXIM_DOCS`) but no token or storage values were read or documented.
-- Role behavior should be treated as server role plus UI view mode: `window.__EXIM.role` is the server-provided signal, while `APP_STATE.currentRole` controls the visible app mode.
-- Mobile overflow was localized to protected dashboard quick-action `.dash-link` buttons in client view mode at 375/360px widths.
+Исторические результаты не переписываются. `Не воспроизведён` не означает `исправлен` без доказательства версии приложения.
