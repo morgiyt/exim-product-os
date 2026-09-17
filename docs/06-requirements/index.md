@@ -17,6 +17,7 @@
 | [REQ-005](./REQ-005-secure-app-shell) | Безопасный и стабильный app shell | Ready for implementation | Foundation Gate |
 | [REQ-006](./REQ-006-agreement-to-shipment) | От согласования до перевозки | Ready for implementation | Foundation Gate |
 | [REQ-011](./REQ-011-crm-clients) | CRM, лиды и клиентские компании | Ready for implementation | Full Product / Wave 5 |
+| [REQ-012](./REQ-012-tasks-chats-notifications) | Задачи, чаты и in-app уведомления | Ready for implementation | Full Product / Wave 6 |
 
 ## EXIM Exchange Launch MVP
 
@@ -33,6 +34,7 @@
 REQ-004 tenant/security foundation
 ├── REQ-001 + REQ-003 + REQ-006 Private OS flow
 ├── REQ-011 CRM, лиды и клиентские компании
+├── REQ-012 задачи, чаты и in-app уведомления
 ├── REQ-002 tracking
 ├── REQ-005 reliable shell and RBAC verification
 └── REQ-007…009 Exchange Launch MVP

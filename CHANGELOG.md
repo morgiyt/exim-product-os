@@ -2,6 +2,8 @@
 
 ## 0.6.0 draft — Wave 4 handoff
 
+- TASK-2026-007 переведена в `submitted`: private PR #4, exact runtime `33cadb7`, 42/42 tests, tenant/role/transfer/browser/restore evidence сохранены; acceptance не заявляется;
+- добавлен REQ-012 и открыт TASK-2026-008 на server-authorized задачи, чаты, вложения, read state и in-app notifications без внешних каналов;
 - TASK-2026-006 переведена в `submitted`: private PR #3, exact runtime `88e1cdb`, 36/36 tests, seven-account E2E, browser/mobile и isolated restore evidence сохранены; acceptance не заявляется;
 - добавлен REQ-011 и открыт TASK-2026-007 на канонические CRM, лиды, клиентские компании, контакты, manager assignment/transfer и idempotent conversion в draft QuoteRequest;
 - TASK-2026-005 переведена в `submitted`: private PR #2, exact runtime `7af9476`, семиролевой E2E, migration/reapply/restore evidence и submission сохранены; acceptance не заявляется;

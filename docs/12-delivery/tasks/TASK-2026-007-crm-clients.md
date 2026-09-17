@@ -4,7 +4,7 @@ title: Канонические CRM, лиды и клиентские компа
 revision: 1
 release: Full Product / Wave 5
 product_module: Private Operating OS
-status: in_progress
+status: submitted
 handoff_gate: exact_application_identifiers_confirmed
 requested_by: product owner
 implementer: Codex
@@ -123,3 +123,4 @@ target_environment: managed preview, synthetic data only
 | Дата | Было | Стало | Actor | Причина |
 |---|---|---|---|---|
 | 2026-09-17 | proposed | in_progress | Product owner authorization + task curator | Full-product roadmap и непрерывное выполнение утверждены; TASK-2026-006 сдана private PR #3, CRM-волна открыта stacked без заявления acceptance |
+| 2026-09-17 | in_progress | submitted | Codex implementation agent + task curator | Private PR #4, exact runtime `33cadb7`, 42/42 tests, role/tenant/transfer/browser/restore evidence сохранены; independent review и acceptance не заявляются |
