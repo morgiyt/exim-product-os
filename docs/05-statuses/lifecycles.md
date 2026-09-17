@@ -117,19 +117,36 @@ draft | published | paused → closed
 - `expired` наступает детерминированно по `expires_at` и не возвращается в `published` в Wave 9;
 - редактировать можно owner organization с optimistic version; foreign/direct-ID mutation запрещена.
 
-### Post-Wave 9 / TBD
+### Wave 10 task extension
 
-`pending_moderation`, `rejected`, `blocked` зависят от OQ-039/REQ-010. `matched` зависит от OQ-040/REQ-008. Эти codes не создаются и не принимаются TASK-2026-011. Исторический термин `active` в старом draft нормализован в `published`, чтобы storage, API и UI не расходились.
+```text
+published → matched
+```
+
+`matched` создаётся только транзакционным выбором ровно одного ExchangeResponse в TASK-2026-012, убирает listing из публичного поиска и запрещает новые отклики. Повторная публикация, отмена выбора и возврат из `matched` остаются отключены до OQ-040.
+
+### Post-Wave 10 / TBD
+
+`pending_moderation`, `rejected`, `blocked` зависят от OQ-039/REQ-010. Эти codes не создаются и не принимаются TASK-2026-011/012. Исторический термин `active` в старом draft нормализован в `published`, чтобы storage, API и UI не расходились.
 
 ## Exchange Response lifecycle
 
+### Wave 10 task canonical
+
 ```text
-sent → viewed
-sent | viewed → withdrawn | expired
-viewed → accepted | rejected
+submitted → shortlisted → selected | rejected
+submitted → rejected | withdrawn
+shortlisted → withdrawn
 ```
 
-Это неканонический draft до OQ-040/OQ-043. `accepted` в предлагаемой модели означает выбор участника для продолжения общения. Это не договор, оплата, гарантия перевозки или принятие ответственности платформой.
+- mutation actor Wave 10 — `tenant_admin` организации-владельца либо ответчика в пределах своего действия;
+- `selected` создаётся только вместе с unique `ExecutorSelection` и listing `matched`; остальные active responses этого listing транзакционно получают `rejected` с системной причиной;
+- `withdrawn`, `selected` и `rejected` финальны; прямые пропуски к `selected`, повторный выбор и возврат запрещены;
+- `shortlisted` не означает гарантию выбора;
+- `selected` не является договором, оплатой, гарантией перевозки или принятием ответственности платформой;
+- раскрытие контактов и `ContactAccessEvent` отключены до OQ-043.
+
+Финальные сроки, коммерческие поля, expiration response и relisting остаются OQ-040.
 
 ## История
 

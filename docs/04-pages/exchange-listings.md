@@ -1,6 +1,6 @@
 # EXIM Exchange — объявления грузов и транспорта
 
-**Статус:** Wave 9 contract ready для TASK-2026-011. Финальные коммерческие, moderation, response/contact и mode-specific правила остаются открытыми вопросами.
+**Статус:** Wave 9 contract implemented/submitted в TASK-2026-011. Search/response/selection продолжены в [Wave 10 contract](./exchange-search-responses); контакты, финальные коммерческие, moderation и mode-specific правила остаются открытыми вопросами.
 
 ## Общие правила Wave 9
 
@@ -9,7 +9,7 @@
 - Только активная membership, enabled module entitlement и нужная organization capability дают право создать/изменить объявление.
 - В preview Wave 9 менять объявления может только `tenant_admin` организации-владельца. Это безопасный task-level default, а не финальная role governance.
 - Любой активный участник Exchange с entitlement может читать только `published` объявления и минимальный публичный профиль владельца.
-- Контакты, verification badge, rating, responses, moderation, billing и связь с Private OS отсутствуют до следующих утверждённых волн.
+- В Wave 9 контакты, verification badge, rating, responses, moderation, billing и связь с Private OS отсутствуют. Wave 10 добавляет отдельные responses/selection без контактов; остальные ограничения сохраняются.
 - Стабильные URL, Reload, Back/Forward, loading/empty/error/forbidden/not-found/conflict и Retry обязательны.
 - Интерфейс должен работать с клавиатуры и без page-level overflow на 360/375/390 px.
 
@@ -21,7 +21,7 @@
 
 **Блоки:** переключатель «Грузы / Транспорт», последние опубликованные объявления, собственные счётчики, capability/entitlement state, предупреждение «Платформа не является стороной сделки» и видимая маркировка demo-limit preview.
 
-**Действия:** открыть карточку, перейти в «Мои объявления», создать разрешённый тип. Полнотекстовый поиск, filters, ranking, saved search и responses относятся к Wave 10.
+**Действия:** открыть карточку, перейти в «Мои объявления», создать разрешённый тип. Search, filters, saved search и responses определены отдельным Wave 10 contract; финальный ranking остаётся OQ-045.
 
 ## EX-003 / EX-006 — Публичная карточка объявления
 
@@ -55,7 +55,7 @@
 
 **Блоки:** тип, title/route, status, updated/version, expiry, public preview и audit summary.
 
-**Lifecycle Wave 9:** `draft → published ↔ paused → closed`; `published | paused → expired` по `expires_at`. Повтор одинаковой команды идемпотентен. `pending_moderation`, `matched`, `rejected` и `blocked` отключены.
+**Lifecycle Wave 9:** `draft → published ↔ paused → closed`; `published | paused → expired` по `expires_at`. Повтор одинаковой команды идемпотентен. Wave 10 разрешает только task-level `published → matched` через unique selection; `pending_moderation`, listing-level `rejected` и `blocked` остаются отключены.
 
 **Действия:** редактировать с optimistic version, публиковать, приостанавливать, возобновлять и закрывать с причиной. Чужая organization не может читать owner draft или выполнять mutation ни через UI, ни прямым API.
 
@@ -88,4 +88,4 @@ Server принимает только schema-validated keys каждого mode
 - owner управляет своим lifecycle, foreign actor получает safe denial;
 - данные каждого mode проходят create/read/update без потери и без произвольных keys;
 - disabled entitlement, отсутствующая capability, forbidden, validation, conflict и demo limit reached различаются;
-- private objects, contacts, verification/moderation, responses и billing отсутствуют в payload/routes/controls.
+- Wave 9 submission не содержит private objects, contacts, verification/moderation, responses или billing; Wave 10 response surfaces обязаны сохранять тот же public boundary.

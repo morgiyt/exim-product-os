@@ -2,6 +2,8 @@
 
 ## 0.6.0 draft — Wave 4 handoff
 
+- TASK-2026-011 переведена в `submitted`: private PR #8, exact runtime `7554c46`, 72/72 tests, browser/mobile, migration/reapply, isolated restore и 3/3 GitHub checks PASS; acceptance не заявляется;
+- REQ-008 и page contracts уточнены до task-ready Wave 10 baseline; открыт TASK-2026-012 на search/filters/saved searches/responses/selection без contacts, commercial bidding, moderation или billing;
 - TASK-2026-010 переведена в `submitted`: private PR #7, exact runtime `b3da470`, 62/62 tests, browser/mobile, isolated restore и 3/3 GitHub checks PASS; acceptance не заявляется;
 - REQ-007 уточнён до task-ready Wave 9 baseline и открыт TASK-2026-011 на отдельные CargoListing/TransportListing, safe public projection и lifecycle без Private OS conversion, responses/contacts, moderation или billing;
 - TASK-2026-009 переведена в `submitted`: private PR #6, exact runtime `d4f436f`, 55/55 tests, expanded-role finance E2E, browser/mobile, isolated restore и 3/3 GitHub checks PASS; acceptance не заявляется;

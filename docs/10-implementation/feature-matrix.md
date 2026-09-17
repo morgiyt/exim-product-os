@@ -1,6 +1,6 @@
 # Матрица реализации
 
-Дата актуализации: 2026-09-17. Self-hosted managed preview; семь synthetic accounts, два tenants и три client companies. Это implementer evidence, а не независимая приёмка.
+Дата актуализации: 2026-09-18. Self-hosted managed preview; synthetic accounts/organizations, два tenants и отдельный Exchange public contour. Это implementer evidence, а не независимая приёмка.
 
 | Область | Функция | Статус live | Релиз | Следующее доказательство |
 |---|---|---|---|---|
@@ -9,7 +9,7 @@
 | Auth | Recovery context | Server flow реализован; provider delivery не подключён | Gate | Expired/used token browser test |
 | Shell | Reload | Работает на stable object routes | Gate | Independent rerun |
 | Shell | Deep link/Back/Forward | Работает для request и shipment cards | Gate | Independent rerun |
-| Shell | Mobile 360–390 | Нет page-level overflow в workflow/shipment/CRM/tasks/chats/finance/workflow-editor экранах | Gate / Wave 8 | Расширить на Exchange TASK-2026-011 |
+| Shell | Mobile 360–390 | Нет page-level overflow в workflow/shipment/CRM/tasks/chats/finance/workflow-editor/Exchange listing экранах | Gate / Wave 9 | Расширить на Exchange search/responses TASK-2026-012 |
 | Roles | Client/manager/logistician/tenant-admin/accountant/sales_head/logistics_head | Отдельные server-derived contexts работают | Gate / Wave 7 | Independent review |
 | RBAC | Server-side permissions | Seven-account direct-request matrix PASS | Gate | Independent review |
 | Tenant | Изоляция A/B и A1/A2 | Safe 404 matrix PASS | Gate | Independent review |
@@ -34,9 +34,9 @@
 | Profile | Компания/пользователи/роли | UI работает | Gate | Tenant-scoped admin test |
 | Services | Каталог и claims | UI, claims не подтверждены | Gate cleanup | Source or removal |
 | Containers | Пустой каталог | UI вне текущего scope | OQ-048 | Product decision |
-| Exchange | Cargo listings | Не реализовано в текущем exact preview; active scope TASK-2026-011 | Full Product / Wave 9 | REQ-007 |
-| Exchange | Transport listings | Не реализовано в текущем exact preview; active scope TASK-2026-011 | Full Product / Wave 9 | REQ-007 |
-| Exchange | Search/responses/selection | Не обнаружено в live UI | Launch MVP | REQ-008 |
+| Exchange | Cargo listings | Independent draft/publish/pause/resume/close/expire, safe public projection и profile работают; PR #8 submitted | Full Product / Wave 9 | Independent review |
+| Exchange | Transport listings | Те же гарантии; combinable capabilities и five-mode typed details подтверждены; PR #8 submitted | Full Product / Wave 9 | Independent review |
+| Exchange | Search/responses/selection | Active scope TASK-2026-012; contacts и commercial rules disabled | Full Product / Wave 10 | REQ-008 |
 | Access | Free/paid entitlements | Не обнаружено в live UI | Launch MVP | REQ-009 |
 | Trust | Profiles/verification/moderation | Не обнаружено в live UI | Launch MVP, conditional | REQ-010 / OQ-039 |
 

@@ -4,22 +4,22 @@
 
 | Поле | Значение |
 |---|---|
-| Current task | `TASK-2026-011` |
-| Название | EXIM Exchange — объявления грузов и транспорта |
+| Current task | `TASK-2026-012` |
+| Название | EXIM Exchange — поиск, сохранённые поиски и безопасные отклики |
 | Revision | `1` |
 | Статус | `in_progress` |
 | Owner authorization | Full-product roadmap утверждён 2026-09-17, D-086…D-089 |
-| Task | [TASK-2026-011](./tasks/TASK-2026-011-exchange-listings) |
-| Product OS ref | `product-os-task-2026-011-r1` |
+| Task | [TASK-2026-012](./tasks/TASK-2026-012-exchange-search-responses) |
+| Product OS ref | `product-os-task-2026-012-r1` |
 | Application repository | `https://github.com/morgiyt/exim-super-app.git` — private |
-| Application stacked base | `task/TASK-2026-010-workflow-template-studio` @ `418cd628e968c864ea89680cf6d9f228675e2922` |
-| Implementation branch | `task/TASK-2026-011-exchange-listings` |
+| Application stacked base | `task/TASK-2026-011-exchange-listings` @ `ef5ee0093824088775fa7d454303c01d19217a89` |
+| Implementation branch | `task/TASK-2026-012-exchange-search-responses` |
 | Target | managed preview; synthetic data only |
 | Production switch | `FORBIDDEN` |
 | Исполнитель | Codex |
 | Reviewer | independent reviewer / assigned human |
 | Acceptance authority | владелец продукта или явно назначенный им человек |
-| Следующее действие | REQ-007 отдельные CargoListing/TransportListing, safe public projection и lifecycle без Private OS conversion |
+| Следующее действие | REQ-008 search/saved searches/responses/selection без contacts, commercial bidding, moderation или billing |
 
 ## Почему разрешено непрерывное продолжение
 
@@ -39,3 +39,4 @@
 | 2026-09-17 | TASK-2026-008 in_progress | TASK-2026-008 submitted; TASK-2026-009 in_progress | Codex implementation agent + task curator | Private PR #5 и exact communication evidence сохранены; finance/closing/analytics wave открыта stacked по утверждённому roadmap без заявления acceptance |
 | 2026-09-18 | TASK-2026-009 in_progress | TASK-2026-009 submitted; TASK-2026-010 in_progress | Codex implementation agent + task curator | Private PR #6 и exact finance evidence сохранены; editor wave открыта с task-level preview defaults без закрытия OQ и без заявления acceptance |
 | 2026-09-18 | TASK-2026-010 in_progress | TASK-2026-010 submitted; TASK-2026-011 in_progress | Codex implementation agent + task curator | Private PR #7 и exact workflow-studio evidence сохранены; Exchange listings wave открыта с отдельными public objects и без закрытия OQ |
+| 2026-09-18 | TASK-2026-011 in_progress | TASK-2026-011 submitted; TASK-2026-012 in_progress | Codex implementation agent + task curator | Private PR #8 и exact Exchange listing evidence сохранены; search/response wave открыта без contacts, commercial bidding и moderation |
