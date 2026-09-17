@@ -6,11 +6,11 @@
 
 **Application repository:** <https://github.com/morgiyt/exim-super-app> — private
 
-**Application branch:** `task/TASK-2026-004-stable-shell-read-model`
+**Application branch:** `task/TASK-2026-005-quote-to-offer-workflow` (active wave поверх submitted TASK-2026-004)
 
-**Branch head:** `7542e1d`
+**Stacked base head:** `f2604b76e5b72e6d9d72f5f6b68072dde2400c2f`
 
-**Exact deployed application code:** `afc85f6feb6dda989b6efda8aec6d5b1a0527e86`
+**Exact deployed application code:** `164f66beeb865a1636e44712576f0432cc958b37`
 
 **Product OS:** 0.6.0 — draft
 
@@ -35,22 +35,27 @@
 - Hub и Daily не используют Super App DB, cookies или secrets;
 - explicit workspace/role context и server-side module guards;
 - seven-account/two-tenant A1/A2/B1 acceptance matrix — PASS 7/7;
-- локальные checks последней проверки: typecheck, lint, 22 tests и production build — PASS.
+- единый server-derived read model синхронизирует dashboard/workflow/shipments/inbox/search;
+- stable hash routes переживают direct open, reload и Back/Forward;
+- client/logistician projections и exact scoped search проверены семью synthetic accounts;
+- 360/375/390 px не имеют page-level overflow в проверенном workflow shell;
+- локальные checks последней проверки: typecheck, lint, 27 tests и production build — PASS;
+- private PR #1 имеет три GitHub checks PASS и не self-merged.
 
 ## Реализовано частично
 
-- shell и legacy разделы загружаются, но их write parity ещё не подтверждена;
+- shell и server read path работают, но legacy write parity ещё не подтверждена;
 - orders/CRM/tasks/chats/shipments/tracking имеют schema/legacy UI, но не полный server domain API;
 - client/manager/logistician/tenant-admin accounts и full seven-account/two-tenant acceptance matrix созданы на synthetic preview;
 - документы server-side работают, но полный visibility/version/replacement contract ещё впереди;
-- dashboard и legacy списки пока могут показывать разные counts при одном server scope; это активный scope TASK-2026-004.
+- QuoteRequest/RateQuote/CommercialOffer ещё не являются каноническими versioned server entities; это active scope TASK-2026-005.
 
 ## Не готово
 
 - полный путь request → rates → offer → agreement → shipment → trips → tracking → closing;
 - versioned workflow engine/editor;
 - полноценные tenant-admin invitations и multi-membership UX;
-- стабильные object URLs, полный search/inbox/dashboard contract;
+- канонический QuoteRequest → RateQuote → CommercialOffer write path;
 - финансы, закрытие и достоверная аналитика;
 - EXIM Exchange listings/search/responses/trust/tariffs;
 - API/SSO/events с Hub и контекстный Jarvis;
@@ -59,8 +64,8 @@
 ## Delivery state
 
 - старые публичные PR #6 и #7 в репозитории интегратора закрыты, созданные нами remote branches удалены;
-- private repository `morgiyt/exim-super-app` содержит `main` на report head `ef411cf` и отдельную active branch TASK-2026-004;
-- submission TASK-2026-003 не является acceptance;
+- private repository `morgiyt/exim-super-app` содержит `main` на report head `ef411cf`, submitted PR #1 TASK-2026-004 и новую stacked wave TASK-2026-005;
+- submissions TASK-2026-003/004 не являются acceptance;
 - владелец утвердил продолжение по [full-product roadmap](../07-mvp/full-product-roadmap).
 
 ## История аудитов

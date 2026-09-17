@@ -2,6 +2,8 @@
 
 ## 0.6.0 — draft — 2026-09-17
 
+- TASK-2026-004 переведена в `submitted`: private PR #1, exact runtime `164f66b`, report/coordination head `f2604b7`, 27/27 tests и три GitHub checks PASS; acceptance не заявляется;
+- открыт `TASK-2026-005` на канонический versioned путь QuoteRequest → две RateQuote → CommercialOffer → exact client decision в private stacked branch;
 - канонический код EXIM Super App перенесён в приватный репозиторий владельца `morgiyt/exim-super-app`; публичные PR #6/#7 закрыты, созданные нами remote branches удалены;
 - TASK-2026-004 повышена до revision 2 и закреплена immutable ref `product-os-task-2026-004-r2`; r1 сохранён как исторический ref до переноса repository boundary;
 - владелец утвердил roadmap до функционально полного release candidate и поручил начать реализацию;

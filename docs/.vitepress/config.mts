@@ -155,6 +155,8 @@ export default defineConfig({
           { text: 'Правила цикла', link: '/12-delivery/README' },
           { text: 'TASK-2026-001', link: '/12-delivery/tasks/TASK-2026-001-foundation-gate' },
           { text: 'TASK-2026-003', link: '/12-delivery/tasks/TASK-2026-003-release-foundation-identity' },
+          { text: 'TASK-2026-004', link: '/12-delivery/tasks/TASK-2026-004-stable-shell-read-model' },
+          { text: 'TASK-2026-005', link: '/12-delivery/tasks/TASK-2026-005-quote-to-offer-workflow' },
           { text: 'Отчёты TASK-2026-003', link: '/12-delivery/reports/TASK-2026-003/README' },
           { text: 'Отчёты исполнителя', link: '/12-delivery/reports/README' },
           { text: 'Evidence manifests', link: '/12-delivery/evidence/README' },

@@ -4,7 +4,7 @@ title: Стабильная рабочая оболочка и единый read
 revision: 2
 release: Full Product / Wave 2
 product_module: Platform + Private Operating OS
-status: in_progress
+status: submitted
 handoff_gate: exact_application_identifiers_confirmed
 requested_by: product owner
 implementer: Codex
@@ -71,3 +71,4 @@ target_environment: managed preview, synthetic data only
 |---|---|---|---|---|
 | 2026-09-17 | proposed | in_progress | Product owner authorization + task curator | Full-product roadmap и автономное продолжение утверждены; TASK-2026-003 сдана отдельно и не объявляется accepted |
 | 2026-09-17 | revision 1 | revision 2 | Product owner + task curator | Канонический application repository перенесён в приватный `morgiyt/exim-super-app`; scope и acceptance criteria не изменены |
+| 2026-09-17 | in_progress | submitted | Codex implementation agent + task curator | Private PR #1 открыт; runtime `164f66b`, report/guard head `f2604b7`, 27/27 tests и три GitHub checks PASS; independent review и human acceptance не выполнены |
