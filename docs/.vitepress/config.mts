@@ -77,7 +77,8 @@ export default defineConfig({
           { text: 'Руководитель логистики', link: '/04-pages/logistics-head-cabinet' },
           { text: 'Кабинет администратора', link: '/04-pages/admin-cabinet' },
           { text: 'Финансы и аналитика', link: '/04-pages/finance-and-analytics' },
-          { text: 'Workflow Template Studio', link: '/04-pages/workflow-template-studio' }
+          { text: 'Workflow Template Studio', link: '/04-pages/workflow-template-studio' },
+          { text: 'Exchange listings', link: '/04-pages/exchange-listings' }
         ]
       },
       {
@@ -168,6 +169,7 @@ export default defineConfig({
           { text: 'TASK-2026-008', link: '/12-delivery/tasks/TASK-2026-008-tasks-chats-notifications' },
           { text: 'TASK-2026-009', link: '/12-delivery/tasks/TASK-2026-009-finance-closing-analytics' },
           { text: 'TASK-2026-010', link: '/12-delivery/tasks/TASK-2026-010-workflow-template-studio' },
+          { text: 'TASK-2026-011', link: '/12-delivery/tasks/TASK-2026-011-exchange-listings' },
           { text: 'Отчёты TASK-2026-003', link: '/12-delivery/reports/TASK-2026-003/README' },
           { text: 'Отчёты исполнителя', link: '/12-delivery/reports/README' },
           { text: 'Evidence manifests', link: '/12-delivery/evidence/README' },

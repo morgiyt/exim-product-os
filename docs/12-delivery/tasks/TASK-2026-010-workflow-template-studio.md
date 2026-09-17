@@ -4,7 +4,7 @@ title: Workflow Template Studio и безопасная activation
 revision: 1
 release: Full Product / Wave 8
 product_module: Private Operating OS
-status: in_progress
+status: submitted
 handoff_gate: exact_application_identifiers_confirmed
 requested_by: product owner
 implementer: Codex
@@ -98,3 +98,4 @@ target_environment: managed preview, synthetic data only
 | Дата | Было | Стало | Actor | Причина |
 |---|---|---|---|---|
 | 2026-09-18 | proposed | in_progress | Product owner authorization + task curator | Full-product roadmap продолжен безопасным editor scope после private submission TASK-2026-009; открытые OQ сохранены |
+| 2026-09-18 | in_progress | submitted | Codex implementation agent + task curator | Private PR #7, exact runtime `b3da470`, 62/62 tests, browser/mobile, backup/isolated restore и 3/3 checks PASS; acceptance не заявляется |

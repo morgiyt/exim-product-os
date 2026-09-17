@@ -53,7 +53,7 @@ npm run docs:preview
 
 ## Интегратору
 
-- Текущая реализация: [TASK-2026-010 — Workflow Template Studio и безопасная activation](docs/12-delivery/tasks/TASK-2026-010-workflow-template-studio.md).
+- Текущая реализация: [TASK-2026-011 — EXIM Exchange: объявления грузов и транспорта](docs/12-delivery/tasks/TASK-2026-011-exchange-listings.md).
 - Передача в Claude Code: [CLAUDE_CODE_START_PROMPT.md](CLAUDE_CODE_START_PROMPT.md).
 - Перед началом записи интегратор указывает точные application repo, base branch, expected HEAD и PR target.
 - Код рабочего приложения изменяется в его отдельном репозитории; этот репозиторий хранит Product OS, требования и приёмку.

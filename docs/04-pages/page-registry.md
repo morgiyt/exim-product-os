@@ -39,17 +39,17 @@
 | AD-004 | Workflow draft editor | Private OS | Tenant admin preview default | Full Product / Wave 8 | Wave 8 contract ready | Не реализовано |
 | AD-002 | Пользователи и роли | Private OS | Tenant admin | Foundation Gate | Gate contract ready | UI есть, scope не проверен |
 | AD-003 | Tenant-аудит | Private OS | Tenant admin | Foundation Gate | Gate contract ready | Не подтверждено |
-| EX-001 | Главная Exchange | Exchange | Участник | Launch MVP | Черновик | Не обнаружено в live UI |
+| EX-001 | Главная Exchange | Exchange | Участник | Full Product / Wave 9 | Wave 9 contract ready | Не реализовано |
 | EX-002 | Поиск грузов | Exchange | Участник | Launch MVP | Черновик | Не обнаружено в live UI |
-| EX-003 | Карточка груза | Exchange | Участник | Launch MVP | Черновик | Не обнаружено в live UI |
-| EX-004 | Создание груза | Exchange | Cargo publisher | Launch MVP | Черновик | Не обнаружено в live UI |
+| EX-003 | Карточка груза | Exchange | Участник | Full Product / Wave 9 | Wave 9 contract ready | Не реализовано |
+| EX-004 | Создание груза | Exchange | Cargo publisher | Full Product / Wave 9 | Wave 9 contract ready | Не реализовано |
 | EX-005 | Поиск транспорта | Exchange | Участник | Launch MVP | Черновик | Не обнаружено в live UI |
-| EX-006 | Карточка транспорта | Exchange | Участник | Launch MVP | Черновик | Не обнаружено в live UI |
-| EX-007 | Создание транспорта | Exchange | Transport publisher | Launch MVP | Черновик | Не обнаружено в live UI |
-| EX-008 | Мои объявления | Exchange | Владелец | Launch MVP | Черновик | Не обнаружено в live UI |
+| EX-006 | Карточка транспорта | Exchange | Участник | Full Product / Wave 9 | Wave 9 contract ready | Не реализовано |
+| EX-007 | Создание транспорта | Exchange | Transport publisher | Full Product / Wave 9 | Wave 9 contract ready | Не реализовано |
+| EX-008 | Мои объявления | Exchange | Владелец | Full Product / Wave 9 | Wave 9 contract ready | Не реализовано |
 | EX-009 | Отклики и предложения | Exchange | Участники объекта | Launch MVP | Черновик | Не обнаружено в live UI |
 | EX-010 | Выбор исполнителя / контакты | Exchange | Владелец и выбранный | Launch MVP | Черновик | Не обнаружено в live UI |
-| EX-011 | Профиль организации | Exchange | Участники | Launch MVP | Черновик | Не обнаружено в live UI |
+| EX-011 | Профиль организации | Exchange | Участники | Full Product / Wave 9 | Wave 9 minimum profile contract ready | Не реализовано |
 | PA-001 | Организации платформы | Platform admin | Platform admin | Launch MVP | Требует описания | Не подтверждено |
 | PA-002 | Модули и entitlements | Platform admin | Platform admin | Launch MVP | Требует описания | Не обнаружено в live UI |
 | PA-003 | Модерация и жалобы | Platform admin | Moderator | Launch MVP, conditional | Conditional draft после OQ-039 | Не обнаружено в live UI |
@@ -61,3 +61,4 @@
 - [Платформа и Exchange](./platform-and-exchange)
 - [Финансы, закрытие и аналитика](./finance-and-analytics)
 - [Workflow Template Studio](./workflow-template-studio)
+- [Exchange: объявления грузов и транспорта](./exchange-listings)

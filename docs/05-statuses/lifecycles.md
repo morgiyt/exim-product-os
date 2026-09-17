@@ -104,14 +104,22 @@ not_invoiced
 
 ## Exchange Listing lifecycle
 
+### Wave 9 task canonical
+
 ```text
-draft → active
-draft → pending_moderation → active | rejected
-active ↔ paused
-active | paused → matched | expired | closed | blocked
+draft → published ↔ paused
+published | paused → expired
+draft | published | paused → closed
 ```
 
-Это неканонический draft до OQ-039/OQ-040. Ветка `pending_moderation` условная: обязательность самой модерации и премодерации не утверждена.
+- `published` хранится как канонический code; клиентский label — «Опубликовано»;
+- повтор одинаковой команды идемпотентен, каждое реальное изменение версии и visibility аудируется;
+- `expired` наступает детерминированно по `expires_at` и не возвращается в `published` в Wave 9;
+- редактировать можно owner organization с optimistic version; foreign/direct-ID mutation запрещена.
+
+### Post-Wave 9 / TBD
+
+`pending_moderation`, `rejected`, `blocked` зависят от OQ-039/REQ-010. `matched` зависит от OQ-040/REQ-008. Эти codes не создаются и не принимаются TASK-2026-011. Исторический термин `active` в старом draft нормализован в `published`, чтобы storage, API и UI не расходились.
 
 ## Exchange Response lifecycle
 

@@ -25,7 +25,7 @@
 
 | ID | Требование | Статус | Релиз |
 |---|---|---|---|
-| [REQ-007](./REQ-007-exchange-listings) | Объявления грузов и транспорта | Draft | Launch MVP |
+| [REQ-007](./REQ-007-exchange-listings) | Объявления грузов и транспорта | Wave 9 task-ready; later mechanics remain Draft | Full Product / Wave 9 |
 | [REQ-008](./REQ-008-exchange-search-and-responses) | Поиск, отклики и выбор исполнителя | Draft | Launch MVP |
 | [REQ-009](./REQ-009-modules-and-entitlements) | Модули, бесплатный/платный доступ | Draft | Launch MVP |
 | [REQ-010](./REQ-010-verification-and-moderation) | Проверка, жалобы и модерация | Conditional Draft после OQ-039…041 | Launch MVP, если утверждено |
