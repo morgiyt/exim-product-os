@@ -4,22 +4,22 @@
 
 | Поле | Значение |
 |---|---|
-| Current task | `TASK-2026-003` |
-| Название | Release foundation и явный access context |
+| Current task | `TASK-2026-004` |
+| Название | Стабильная рабочая оболочка и единый read model |
 | Revision | `1` |
 | Статус | `in_progress` |
 | Owner authorization | Full-product roadmap утверждён 2026-09-17, D-086…D-089 |
-| Task | [TASK-2026-003](./tasks/TASK-2026-003-release-foundation-identity) |
-| Product OS ref | `product-os-task-2026-003-r2` |
+| Task | [TASK-2026-004](./tasks/TASK-2026-004-stable-shell-read-model) |
+| Product OS ref | `product-os-task-2026-004-r1` |
 | Application repository | `https://github.com/alanbykov11work-ux/exim.git` |
-| Application stacked base | `task/TASK-2026-002-self-hosted-postgres` @ `b3dd29751fbb9a6334f255e58576764dd44a29cd` |
-| Implementation branch | `task/TASK-2026-003-release-foundation-identity` |
+| Application stacked base | `task/TASK-2026-003-release-foundation-identity` @ `ef411cf` |
+| Implementation branch | `task/TASK-2026-004-stable-shell-read-model` |
 | Target | managed preview; synthetic data only |
 | Production switch | `FORBIDDEN` |
 | Исполнитель | Codex |
 | Reviewer | independent reviewer / assigned human |
 | Acceptance authority | владелец продукта или явно назначенный им человек |
-| Следующее действие | migration + explicit session membership context + authorization matrix |
+| Следующее действие | server dashboard/read model + stable navigation + browser acceptance |
 
 ## Почему разрешена stacked-разработка
 
@@ -30,3 +30,4 @@ TASK-2026-002 остаётся submitted и не объявляется accepted
 | Дата | Было | Стало | Actor | Причина |
 |---|---|---|---|---|
 | 2026-09-17 | TASK-2026-001 ready | TASK-2026-001 superseded; TASK-2026-003 in_progress | Product owner authorization + task curator | Реальный application repo и self-hosted baseline уже установлены; утверждён roadmap до полного продукта |
+| 2026-09-17 | TASK-2026-003 in_progress | TASK-2026-003 submitted; TASK-2026-004 in_progress | Task curator | PR #7 и evidence отделены; продолжается следующая утверждённая roadmap-волна без заявления acceptance |

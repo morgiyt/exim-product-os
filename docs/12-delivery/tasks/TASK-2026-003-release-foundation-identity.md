@@ -4,7 +4,7 @@ title: Release foundation и явный access context
 revision: 1
 release: Full Product / Wave 1
 product_module: Platform + Private Operating OS
-status: in_progress
+status: submitted
 handoff_gate: exact_application_identifiers_confirmed
 requested_by: product owner
 implementer: Codex
@@ -73,3 +73,4 @@ TASK-2026-002 остаётся отдельной технической сда�
 | Дата | Было | Стало | Actor | Причина |
 |---|---|---|---|---|
 | 2026-09-17 | proposed | in_progress | Product owner authorization + task curator | Roadmap утверждён; известный self-hosted baseline разрешает безопасную stacked-разработку без production writes |
+| 2026-09-17 | in_progress | submitted | Codex implementation agent | Exact app commit `afc85f6` развернут на managed preview; CI и матрица 7/7 прошли; submission/evidence находятся в application PR #7. Это не independent review и не acceptance |
