@@ -10,6 +10,7 @@
 - открыт `TASK-2026-003` на release foundation и явный session/workspace/role context;
 - ожидание review `TASK-2026-002` не названо acceptance: следующая работа ведётся stacked и не может попасть в `main` до включения base dependency;
 - добавлены решения D-086…D-089 и source record прямого owner approval.
+- task ref повышен до `product-os-task-2026-003-r2`; опубликованный r1 сохранён как исторический pre-QA tag и не переписан.
 
 ## 0.5.0 — draft — 2026-09-07
 

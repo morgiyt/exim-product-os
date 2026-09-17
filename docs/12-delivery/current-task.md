@@ -10,7 +10,7 @@
 | Статус | `in_progress` |
 | Owner authorization | Full-product roadmap утверждён 2026-09-17, D-086…D-089 |
 | Task | [TASK-2026-003](./tasks/TASK-2026-003-release-foundation-identity) |
-| Product OS ref | `product-os-task-2026-003-r1` |
+| Product OS ref | `product-os-task-2026-003-r2` |
 | Application repository | `https://github.com/alanbykov11work-ux/exim.git` |
 | Application stacked base | `task/TASK-2026-002-self-hosted-postgres` @ `b3dd29751fbb9a6334f255e58576764dd44a29cd` |
 | Implementation branch | `task/TASK-2026-003-release-foundation-identity` |

@@ -10,7 +10,7 @@ requested_by: product owner
 implementer: Codex
 reviewer: independent reviewer or assigned human
 acceptance_authority: product owner or explicitly delegated human
-product_os_ref: product-os-task-2026-003-r1
+product_os_ref: product-os-task-2026-003-r2
 application_repository: https://github.com/alanbykov11work-ux/exim.git
 application_base_branch: task/TASK-2026-002-self-hosted-postgres
 application_expected_head: b3dd29751fbb9a6334f255e58576764dd44a29cd
@@ -73,4 +73,3 @@ TASK-2026-002 остаётся отдельной технической сда�
 | Дата | Было | Стало | Actor | Причина |
 |---|---|---|---|---|
 | 2026-09-17 | proposed | in_progress | Product owner authorization + task curator | Roadmap утверждён; известный self-hosted baseline разрешает безопасную stacked-разработку без production writes |
-
