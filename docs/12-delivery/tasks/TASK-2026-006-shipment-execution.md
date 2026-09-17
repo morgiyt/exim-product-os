@@ -4,7 +4,7 @@ title: AgreementBasis → Shipment → Trip → tracking и документы
 revision: 1
 release: Full Product / Wave 4
 product_module: Private Operating OS
-status: in_progress
+status: submitted
 handoff_gate: exact_application_identifiers_confirmed
 requested_by: product owner
 implementer: Codex
@@ -122,3 +122,4 @@ target_environment: managed preview, synthetic data only
 | Дата | Было | Стало | Actor | Причина |
 |---|---|---|---|---|
 | 2026-09-17 | proposed | in_progress | Product owner authorization + task curator | Full-product roadmap утверждён; TASK-2026-005 сдана private PR #2, следующая зависимая execution-волна открыта stacked без заявления acceptance |
+| 2026-09-17 | in_progress | submitted | Codex implementation agent + task curator | Private PR #3, runtime 88e1cdb, 36/36 tests, seven-account E2E, browser/mobile и isolated restore evidence сохранены; acceptance не заявляется |

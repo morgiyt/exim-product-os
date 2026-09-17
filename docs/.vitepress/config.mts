@@ -88,7 +88,7 @@ export default defineConfig({
       {
         text: '06. Требования',
         items: [
-          { text: 'Реестр REQ-001…REQ-010', link: '/06-requirements/index' },
+          { text: 'Реестр REQ-001…REQ-011', link: '/06-requirements/index' },
           { text: 'REQ-001: запрос и расчёт', link: '/06-requirements/REQ-001-request-to-calculation' },
           { text: 'REQ-002: tracking', link: '/06-requirements/REQ-002-shipment-tracking' },
           { text: 'REQ-003: workflow MVP', link: '/06-requirements/REQ-003-configurable-workflow-mvp' },
@@ -98,7 +98,8 @@ export default defineConfig({
           { text: 'REQ-007: Exchange listings', link: '/06-requirements/REQ-007-exchange-listings' },
           { text: 'REQ-008: search and responses', link: '/06-requirements/REQ-008-exchange-search-and-responses' },
           { text: 'REQ-009: modules and access', link: '/06-requirements/REQ-009-modules-and-entitlements' },
-          { text: 'REQ-010: trust and moderation', link: '/06-requirements/REQ-010-verification-and-moderation' }
+          { text: 'REQ-010: trust and moderation', link: '/06-requirements/REQ-010-verification-and-moderation' },
+          { text: 'REQ-011: CRM и клиенты', link: '/06-requirements/REQ-011-crm-clients' }
         ]
       },
       {
@@ -158,6 +159,7 @@ export default defineConfig({
           { text: 'TASK-2026-004', link: '/12-delivery/tasks/TASK-2026-004-stable-shell-read-model' },
           { text: 'TASK-2026-005', link: '/12-delivery/tasks/TASK-2026-005-quote-to-offer-workflow' },
           { text: 'TASK-2026-006', link: '/12-delivery/tasks/TASK-2026-006-shipment-execution' },
+          { text: 'TASK-2026-007', link: '/12-delivery/tasks/TASK-2026-007-crm-clients' },
           { text: 'Отчёты TASK-2026-003', link: '/12-delivery/reports/TASK-2026-003/README' },
           { text: 'Отчёты исполнителя', link: '/12-delivery/reports/README' },
           { text: 'Evidence manifests', link: '/12-delivery/evidence/README' },

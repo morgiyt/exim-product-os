@@ -2,6 +2,8 @@
 
 ## 0.6.0 draft — Wave 4 handoff
 
+- TASK-2026-006 переведена в `submitted`: private PR #3, exact runtime `88e1cdb`, 36/36 tests, seven-account E2E, browser/mobile и isolated restore evidence сохранены; acceptance не заявляется;
+- добавлен REQ-011 и открыт TASK-2026-007 на канонические CRM, лиды, клиентские компании, контакты, manager assignment/transfer и idempotent conversion в draft QuoteRequest;
 - TASK-2026-005 переведена в `submitted`: private PR #2, exact runtime `7af9476`, семиролевой E2E, migration/reapply/restore evidence и submission сохранены; acceptance не заявляется;
 - открыт `TASK-2026-006` на договорный gate, ровно один Shipment, Trip execution, безопасную публикацию tracking и versioned documents в private stacked branch;
 - текущий delivery pointer, реестр и VitePress navigation синхронизированы с immutable ref `product-os-task-2026-006-r1`.

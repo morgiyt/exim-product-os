@@ -6,21 +6,21 @@
 
 **Application repository:** <https://github.com/morgiyt/exim-super-app> — private
 
-**Application branch:** `task/TASK-2026-005-quote-to-offer-workflow` (active wave поверх submitted TASK-2026-004)
+**Application branch:** `task/TASK-2026-007-crm-clients` (active stacked wave поверх submitted TASK-2026-006)
 
-**Stacked base head:** `f2604b76e5b72e6d9d72f5f6b68072dde2400c2f`
+**Stacked base head:** `83164cf690ff004a028dd911921ff0fb4a65707b`
 
-**Exact deployed application code:** `164f66beeb865a1636e44712576f0432cc958b37`
+**Exact deployed application code:** `88e1cdbfe7aa7e2a0545cbc32559ed2299f10ed5`
 
 **Product OS:** 0.6.0 — draft
 
 ## Итог
 
-Состояние: **self-hosted functional alpha / foundation in progress**.
+Состояние: **self-hosted functional alpha / Private OS core in progress**.
 
 Исторический Vercel/Supabase вариант больше не является текущим техническим baseline. Существующий код перенесён в отдельный managed preview рядом с Hub и Daily, но не смешан с ними. Runtime Supabase заменён на собственную server-side auth/session модель, PostgreSQL 16, приватное файловое хранилище и отдельные backup volumes.
 
-Это не production-ready продукт: серверный фундамент работает, но большая часть legacy интерфейса ещё не переведена на полноценные domain write API, сквозной Private OS не завершён, Exchange отсутствует. Дальнейшая разработка идёт только в приватном репозитории владельца.
+Это не production-ready продукт: серверный фундамент и сквозной путь от QuoteRequest до Shipment/Trip in_transit работают, но CRM, коммуникации, финансы, полное закрытие, Exchange и release hardening ещё не завершены. Дальнейшая разработка идёт только в приватном репозитории владельца.
 
 ## Подтверждено в текущем baseline
 
@@ -39,23 +39,27 @@
 - stable hash routes переживают direct open, reload и Back/Forward;
 - client/logistician projections и exact scoped search проверены семью synthetic accounts;
 - 360/375/390 px не имеют page-level overflow в проверенном workflow shell;
-- локальные checks последней проверки: typecheck, lint, 27 tests и production build — PASS;
-- private PR #1 имеет три GitHub checks PASS и не self-merged.
+- canonical QuoteRequest → две RateQuote → CommercialOffer → exact client decision работает через server domain API;
+- AgreementBasis → exactly one Shipment → Trip → in_transit, safe tracking publication и versioned documents работают;
+- dashboard и Shipment list используют согласованные canonical counts; stable route/reload/Back/Forward проверены;
+- role payload boundaries, direct-ID file authorization и A1/A2/B1 isolation подтверждены seven-account smoke;
+- локальные checks последней проверки: typecheck, lint, 36/36 tests и production build — PASS;
+- private PR #1/#2/#3 существуют как отдельный stacked chain и не self-merged.
 
 ## Реализовано частично
 
 - shell и server read path работают, но legacy write parity ещё не подтверждена;
-- orders/CRM/tasks/chats/shipments/tracking имеют schema/legacy UI, но не полный server domain API;
+- CRM/tasks/chats имеют schema/legacy UI, но не полный server domain API;
 - client/manager/logistician/tenant-admin accounts и full seven-account/two-tenant acceptance matrix созданы на synthetic preview;
-- документы server-side работают, но полный visibility/version/replacement contract ещё впереди;
-- QuoteRequest/RateQuote/CommercialOffer ещё не являются каноническими versioned server entities; это active scope TASK-2026-005.
+- shipment documents имеют version, visibility, publication и direct-ID authorization; closing documents после in_transit остаются вне текущего workflow;
+- CRM lead/company/contact/assignment/interaction/conversion — active scope TASK-2026-007.
 
 ## Не готово
 
-- полный путь request → rates → offer → agreement → shipment → trips → tracking → closing;
+- полный путь после in_transit до closing, включая нерешённые условия OQ-025;
 - versioned workflow engine/editor;
 - полноценные tenant-admin invitations и multi-membership UX;
-- канонический QuoteRequest → RateQuote → CommercialOffer write path;
+- канонический CRM lead → client company → draft QuoteRequest path;
 - финансы, закрытие и достоверная аналитика;
 - EXIM Exchange listings/search/responses/trust/tariffs;
 - API/SSO/events с Hub и контекстный Jarvis;
@@ -64,8 +68,8 @@
 ## Delivery state
 
 - старые публичные PR #6 и #7 в репозитории интегратора закрыты, созданные нами remote branches удалены;
-- private repository `morgiyt/exim-super-app` содержит `main` на report head `ef411cf`, submitted PR #1 TASK-2026-004 и новую stacked wave TASK-2026-005;
-- submissions TASK-2026-003/004 не являются acceptance;
+- private repository `morgiyt/exim-super-app` содержит submitted stacked PR #1 TASK-2026-004, PR #2 TASK-2026-005 и PR #3 TASK-2026-006; новая CRM wave стартует от exact head `83164cf`;
+- submissions TASK-2026-003/004/005/006 не являются acceptance;
 - владелец утвердил продолжение по [full-product roadmap](../07-mvp/full-product-roadmap).
 
 ## История аудитов

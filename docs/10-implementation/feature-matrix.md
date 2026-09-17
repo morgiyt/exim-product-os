@@ -1,29 +1,30 @@
 # Матрица реализации
 
-Дата актуализации: 2026-09-04. Проверка одной admin-сессией; client/manager/logistician RBAC не сертифицирован.
+Дата актуализации: 2026-09-17. Self-hosted managed preview; семь synthetic accounts, два tenants и три client companies. Это implementer evidence, а не независимая приёмка.
 
 | Область | Функция | Статус live | Релиз | Следующее доказательство |
 |---|---|---|---|---|
-| Auth | Защищённый `/app` в существующей auth-сессии | Работает | Gate | Полный login/logout regression всеми ролями |
-| Auth | Email callback | Дефект ложного успеха | Gate | success/error/invalid tests |
-| Auth | Recovery context | Только UI | Gate | valid/expired link tests |
-| Shell | 10/10 reload | Работает в последнем проходе | Gate | Проверить на Gate Preview |
-| Shell | Deep link/Back/Forward | Не работает последовательно | Gate | Route/hash acceptance |
-| Shell | Mobile 360–390 | Не работает | Gate | scrollWidth + visual test |
-| Roles | Client/manager/logist UI modes | Есть, смешивают блоки | Gate | Отдельные аккаунты |
-| RBAC | Server-side permissions | Не проверено | Gate | Direct forbidden requests |
-| Tenant | Изоляция A/B | Не проверено | Gate | Two-company matrix |
-| Data | Согласованность и объяснимость request counts | Не работает: scopes не объяснены | Gate | Одинаковый scope или явные фильтры |
-| Search | Существующий request ID | Не работает | Gate | Positive/negative search |
-| Request | Список и Kanban | Работает частично | Gate | Stable status/action tests |
-| Request | Полная форма REQ-001 | Частично | Gate | Empty form + persistence |
-| Rate | Несколько ставок логиста | Не подтверждено | Gate | Two-rate scenario |
-| Offer | Маржа и клиентская цена | UI частично | Gate | Manager/client payload test |
-| Contract | Договорный gate | Не подтверждено | Gate | Prevent early Shipment |
-| Shipment | Создание из согласованного запроса | Не подтверждено | Gate | Idempotent creation |
-| Trip | Один Shipment → несколько Trips | Не подтверждено | Gate | Create/read test |
-| Tracking | Manual event + manager publish | Не подтверждено | Gate | Two published events |
-| CRM | Lead/Kanban/list | Работает частично | Gate regression; развитие Post-Gate | Safe regression |
+| Auth | Защищённый `/app`, login/logout и семь ролей | Работает на preview | Gate | Independent rerun |
+| Auth | Email callback | Ошибочные сценарии исправлены и тестируются | Gate | Реальный valid provider callback до production |
+| Auth | Recovery context | Server flow реализован; provider delivery не подключён | Gate | Expired/used token browser test |
+| Shell | Reload | Работает на stable object routes | Gate | Independent rerun |
+| Shell | Deep link/Back/Forward | Работает для request и shipment cards | Gate | Independent rerun |
+| Shell | Mobile 360–390 | Нет page-level overflow в проверенных канонических экранах | Gate | Расширить на CRM TASK-2026-007 |
+| Roles | Client/manager/logistician/tenant-admin | Отдельные server-derived contexts работают | Gate | Independent review |
+| RBAC | Server-side permissions | Seven-account direct-request matrix PASS | Gate | Independent review |
+| Tenant | Изоляция A/B и A1/A2 | Safe 404 matrix PASS | Gate | Independent review |
+| Data | Согласованность request/shipment counts | Работает в одном role-scoped read model | Gate | Продолжить для CRM |
+| Search | Exact request/shipment/trip ID | Работает с safe unknown/foreign result | Gate | Добавить CRM exact search |
+| Request | Список, карточка и canonical workflow | Работает на preview | Gate | Independent review |
+| Request | Форма REQ-001 | Draft/validation/idempotent submit работают | Gate | Independent review |
+| Rate | Несколько ставок логиста | Two-rate scenario PASS | Gate | Independent review |
+| Offer | Маржа и клиентская цена | Versioned manager/client projections PASS | Gate | Independent review |
+| Contract | Договорный gate | Prevent early Shipment и exact basis PASS | Gate | Independent review |
+| Shipment | Создание из согласованного запроса | Exactly-one idempotent creation PASS | Gate | Independent review |
+| Trip | Один Shipment → несколько Trips | Schema/API поддерживают; synthetic one-Trip path PASS | Gate | Multi-Trip browser scenario |
+| Tracking | Manual event + manager publish | Correction + two safe publications PASS | Gate | Independent review |
+| Documents | Versioning/visibility/direct ID | Published client download и foreign/unpublished denial PASS | Gate | Replacement browser scenario |
+| CRM | Lead/Kanban/list | Legacy read UI существует; server writes отключены, canonical CRM — TASK-2026-007 | Full Product / Wave 5 | REQ-011 + TASK-2026-007 |
 | Tasks | List/Kanban | Работает, загрузка заметна | Gate regression; развитие Post-Gate | Role/scope regression |
 | Chats | Три группы | Работает частично | Gate regression; развитие Post-Gate | Client/private scope test |
 | Profile | Компания/пользователи/роли | UI работает | Gate | Tenant-scoped admin test |
