@@ -1,7 +1,7 @@
 ---
 task_id: TASK-2026-004
 title: Стабильная рабочая оболочка и единый read model
-revision: 1
+revision: 2
 release: Full Product / Wave 2
 product_module: Platform + Private Operating OS
 status: in_progress
@@ -10,9 +10,9 @@ requested_by: product owner
 implementer: Codex
 reviewer: independent reviewer or assigned human
 acceptance_authority: product owner or explicitly delegated human
-product_os_ref: product-os-task-2026-004-r1
-application_repository: https://github.com/alanbykov11work-ux/exim.git
-application_base_branch: task/TASK-2026-003-release-foundation-identity
+product_os_ref: product-os-task-2026-004-r2
+application_repository: https://github.com/morgiyt/exim-super-app.git
+application_base_branch: main
 application_expected_head: ef411cf
 target_environment: managed preview, synthetic data only
 ---
@@ -21,7 +21,7 @@ target_environment: managed preview, synthetic data only
 
 ## Авторизация и цель
 
-Владелец утвердил full-product roadmap и непрерывное выполнение до release-ready продукта. TASK-2026-003 сдана в PR #7, но не объявляется принятой. Чтобы ожидание независимого review не блокировало утверждённый roadmap, эта волна является отдельным stacked continuation.
+Владелец утвердил full-product roadmap и непрерывное выполнение до release-ready продукта. TASK-2026-003 сохранена отдельной сдачей в приватном repository, но не объявляется принятой. Чтобы ожидание независимого review не блокировало утверждённый roadmap, эта волна является отдельным continuation от private `main`.
 
 Цель — убрать расхождение, при котором сервер уже видит заявки и перевозки, а главная страница показывает нули или локальные данные. Все видимые списки, KPI, поиск и переходы должны опираться на один server-derived tenant/role read model.
 
@@ -56,7 +56,7 @@ target_environment: managed preview, synthetic data only
 | AC-004-07 | Loading/empty/error/forbidden/not-found различимы; network error имеет Retry; бесконечного bootstrap нет. | Failure injection + browser evidence | Да |
 | AC-004-08 | 360/375/390 px не имеют page-level overflow в основных разделах Wave 2. | Multi-viewport browser evidence | Да |
 | AC-004-09 | CI/build/lint/typecheck/tests проходят; managed preview связан с exact code commit; production/real data не затронуты. | CI + deployment evidence | Да |
-| AC-004-10 | TASK-2026-004 оформлена отдельным stacked PR поверх PR #7 и не self-merges. | Git/PR evidence | Да |
+| AC-004-10 | TASK-2026-004 оформлена отдельной branch/PR в приватном repository владельца и не self-merges. | Git/PR evidence | Да |
 
 ## Stop conditions
 
@@ -70,3 +70,4 @@ target_environment: managed preview, synthetic data only
 | Дата | Было | Стало | Actor | Причина |
 |---|---|---|---|---|
 | 2026-09-17 | proposed | in_progress | Product owner authorization + task curator | Full-product roadmap и автономное продолжение утверждены; TASK-2026-003 сдана отдельно и не объявляется accepted |
+| 2026-09-17 | revision 1 | revision 2 | Product owner + task curator | Канонический application repository перенесён в приватный `morgiyt/exim-super-app`; scope и acceptance criteria не изменены |

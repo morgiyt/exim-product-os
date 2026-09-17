@@ -4,13 +4,13 @@
 
 **Managed preview:** <https://superapp.185-129-49-242.sslip.io/app>
 
-**Application repository:** <https://github.com/alanbykov11work-ux/exim>
+**Application repository:** <https://github.com/morgiyt/exim-super-app> — private
 
-**Application branch:** `task/TASK-2026-002-self-hosted-postgres`
+**Application branch:** `task/TASK-2026-004-stable-shell-read-model`
 
-**Branch head:** `b3dd29751fbb9a6334f255e58576764dd44a29cd`
+**Branch head:** `7542e1d`
 
-**Exact deployed application code:** `2a140832b81a363c4589a6b781b12ed4cc67d1ed`
+**Exact deployed application code:** `afc85f6feb6dda989b6efda8aec6d5b1a0527e86`
 
 **Product OS:** 0.6.0 — draft
 
@@ -20,7 +20,7 @@
 
 Исторический Vercel/Supabase вариант больше не является текущим техническим baseline. Существующий код перенесён в отдельный managed preview рядом с Hub и Daily, но не смешан с ними. Runtime Supabase заменён на собственную server-side auth/session модель, PostgreSQL 16, приватное файловое хранилище и отдельные backup volumes.
 
-Это не production-ready продукт: серверный фундамент работает, но большая часть legacy интерфейса ещё не переведена на полноценные domain write API, сквозной Private OS не завершён, Exchange отсутствует, а application PR #6 ожидает независимый review.
+Это не production-ready продукт: серверный фундамент работает, но большая часть legacy интерфейса ещё не переведена на полноценные domain write API, сквозной Private OS не завершён, Exchange отсутствует. Дальнейшая разработка идёт только в приватном репозитории владельца.
 
 ## Подтверждено в текущем baseline
 
@@ -33,15 +33,17 @@
 - migration checksum, backup/export/restore scripts и health endpoints;
 - synthetic preview data only;
 - Hub и Daily не используют Super App DB, cookies или secrets;
-- локальные checks последней проверки: typecheck, lint, 17 tests и production build — PASS.
+- explicit workspace/role context и server-side module guards;
+- seven-account/two-tenant A1/A2/B1 acceptance matrix — PASS 7/7;
+- локальные checks последней проверки: typecheck, lint, 22 tests и production build — PASS.
 
 ## Реализовано частично
 
 - shell и legacy разделы загружаются, но их write parity ещё не подтверждена;
 - orders/CRM/tasks/chats/shipments/tracking имеют schema/legacy UI, но не полный server domain API;
-- client/manager/logistician/tenant-admin accounts существуют, но full seven-account/two-tenant acceptance matrix ещё не завершена;
+- client/manager/logistician/tenant-admin accounts и full seven-account/two-tenant acceptance matrix созданы на synthetic preview;
 - документы server-side работают, но полный visibility/version/replacement contract ещё впереди;
-- current actor выбирается из membership, однако до TASK-2026-003 выбор при нескольких memberships не является явным session context.
+- dashboard и legacy списки пока могут показывать разные counts при одном server scope; это активный scope TASK-2026-004.
 
 ## Не готово
 
@@ -56,10 +58,10 @@
 
 ## Delivery state
 
-- application PR [#6](https://github.com/alanbykov11work-ux/exim/pull/6) открыт и ждёт requested review от code owner;
-- submission не является acceptance;
-- владелец утвердил продолжение по [full-product roadmap](../07-mvp/full-product-roadmap);
-- TASK-2026-003 ведётся stacked от exact head PR #6 и не может быть слит в `main`, пока base dependency не включён или безопасно не rebased.
+- старые публичные PR #6 и #7 в репозитории интегратора закрыты, созданные нами remote branches удалены;
+- private repository `morgiyt/exim-super-app` содержит `main` на report head `ef411cf` и отдельную active branch TASK-2026-004;
+- submission TASK-2026-003 не является acceptance;
+- владелец утвердил продолжение по [full-product roadmap](../07-mvp/full-product-roadmap).
 
 ## История аудитов
 

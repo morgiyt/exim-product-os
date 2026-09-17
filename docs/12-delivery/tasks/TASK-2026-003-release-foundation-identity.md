@@ -11,7 +11,7 @@ implementer: Codex
 reviewer: independent reviewer or assigned human
 acceptance_authority: product owner or explicitly delegated human
 product_os_ref: product-os-task-2026-003-r2
-application_repository: https://github.com/alanbykov11work-ux/exim.git
+application_repository: https://github.com/morgiyt/exim-super-app.git
 application_base_branch: task/TASK-2026-002-self-hosted-postgres
 application_expected_head: b3dd29751fbb9a6334f255e58576764dd44a29cd
 target_environment: managed preview, synthetic data only
@@ -73,4 +73,4 @@ TASK-2026-002 остаётся отдельной технической сда�
 | Дата | Было | Стало | Actor | Причина |
 |---|---|---|---|---|
 | 2026-09-17 | proposed | in_progress | Product owner authorization + task curator | Roadmap утверждён; известный self-hosted baseline разрешает безопасную stacked-разработку без production writes |
-| 2026-09-17 | in_progress | submitted | Codex implementation agent | Exact app commit `afc85f6` развернут на managed preview; CI и матрица 7/7 прошли; submission/evidence находятся в application PR #7. Это не independent review и не acceptance |
+| 2026-09-17 | in_progress | submitted | Codex implementation agent | Exact app commit `afc85f6` развернут на managed preview; CI и матрица 7/7 прошли; submission/evidence сохранены в private repository. Старый публичный PR #7 закрыт и branch удалена. Это не independent review и не acceptance |

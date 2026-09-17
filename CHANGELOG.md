@@ -2,6 +2,8 @@
 
 ## 0.6.0 — draft — 2026-09-17
 
+- канонический код EXIM Super App перенесён в приватный репозиторий владельца `morgiyt/exim-super-app`; публичные PR #6/#7 закрыты, созданные нами remote branches удалены;
+- TASK-2026-004 повышена до revision 2 и закреплена immutable ref `product-os-task-2026-004-r2`; r1 сохранён как исторический ref до переноса repository boundary;
 - владелец утвердил roadmap до функционально полного release candidate и поручил начать реализацию;
 - добавлен 18-этапный full-product roadmap от self-hosted foundation до design handoff и отдельного production launch;
 - финальный дизайн вынесен после функциональной полноты страниц, ролей, данных и состояний;
