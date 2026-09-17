@@ -26,10 +26,10 @@ LG-002,Форма расчёта,Private OS,Логист,Foundation Gate,Gate co
 LG-003,Согласование с партнёром,Private OS,Логист,Foundation Gate,Gate contract ready: section allowed,Не подтверждено
 LG-004,Исполнение перевозки,Private OS,Логист,Foundation Gate,Gate contract ready,Нет данных
 LG-005,Документы от завода,Private OS,Логист,Foundation Gate,Gate contract ready,UI частично
-LH-001,Dashboard логистики,Private OS,Руководитель логистики,Post-Gate,Черновик,Не подтверждено
-SH-001,Dashboard продаж,Private OS,Руководитель продаж,Post-Gate,Требует описания,Не подтверждено
-SH-002,Согласование низкой маржи,Private OS,Руководитель продаж,Post-Gate,Требует описания,Не подтверждено
-AC-001,Счета и оплаты,Private OS,Бухгалтер,Post-Gate,Требует описания,Не подтверждено
+LH-001,Dashboard логистики,Private OS,Руководитель логистики,Full Product / Wave 7,Wave 7 contract ready,Не реализовано
+SH-001,Dashboard продаж,Private OS,Руководитель продаж,Full Product / Wave 7,Wave 7 contract ready,Не реализовано
+SH-002,Согласование низкой маржи,Private OS,Руководитель продаж,Full Product / Wave 7,Wave 7 contract ready,Не реализовано
+AC-001,"Счета, оплаты и закрытие",Private OS,Бухгалтер,Full Product / Wave 7,Wave 7 contract ready,Не реализовано
 AD-001,Workflow-шаблоны,Private OS,Tenant admin,"Foundation Gate: read-only; Post-Gate: editor","Gate core ready; editor draft",Не подтверждено
 AD-002,Пользователи и роли,Private OS,Tenant admin,Foundation Gate,Gate contract ready,"UI есть, scope не проверен"
 AD-003,Tenant-аудит,Private OS,Tenant admin,Foundation Gate,Gate contract ready,Не подтверждено

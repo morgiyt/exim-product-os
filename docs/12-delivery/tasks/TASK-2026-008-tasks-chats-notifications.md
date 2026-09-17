@@ -4,7 +4,7 @@ title: Канонические задачи, чаты и in-app уведомл�
 revision: 1
 release: Full Product / Wave 6
 product_module: Private Operating OS
-status: in_progress
+status: submitted
 handoff_gate: exact_application_identifiers_confirmed
 requested_by: product owner
 implementer: Codex
@@ -120,3 +120,4 @@ target_environment: managed preview, synthetic data only
 | Дата | Было | Стало | Actor | Причина |
 |---|---|---|---|---|
 | 2026-09-17 | proposed | in_progress | Product owner authorization + task curator | Full-product roadmap и непрерывное выполнение утверждены; TASK-2026-007 сдана private PR #4, communication wave открыта stacked без заявления acceptance |
+| 2026-09-17 | in_progress | submitted | Codex implementation agent + task curator | Private PR #5, exact runtime `9d27042`, 49/49 tests, seven-account E2E, browser/mobile и isolated restore evidence сохранены; acceptance не заявляется |

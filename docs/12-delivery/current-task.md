@@ -4,22 +4,22 @@
 
 | Поле | Значение |
 |---|---|
-| Current task | `TASK-2026-008` |
-| Название | Канонические задачи, чаты и in-app уведомления |
+| Current task | `TASK-2026-009` |
+| Название | Финансы, закрытие и управленческая аналитика |
 | Revision | `1` |
 | Статус | `in_progress` |
 | Owner authorization | Full-product roadmap утверждён 2026-09-17, D-086…D-089 |
-| Task | [TASK-2026-008](./tasks/TASK-2026-008-tasks-chats-notifications) |
-| Product OS ref | `product-os-task-2026-008-r1` |
+| Task | [TASK-2026-009](./tasks/TASK-2026-009-finance-closing-analytics) |
+| Product OS ref | `product-os-task-2026-009-r1` |
 | Application repository | `https://github.com/morgiyt/exim-super-app.git` — private |
-| Application stacked base | `task/TASK-2026-007-crm-clients` @ `857725a5f86015129378e54ea8f72ac86ba10d6a` |
-| Implementation branch | `task/TASK-2026-008-tasks-chats-notifications` |
+| Application stacked base | `task/TASK-2026-008-tasks-chats-notifications` @ `2a64cb913089da150c37564197dc42c7e4ca591b` |
+| Implementation branch | `task/TASK-2026-009-finance-closing-analytics` |
 | Target | managed preview; synthetic data only |
 | Production switch | `FORBIDDEN` |
 | Исполнитель | Codex |
 | Reviewer | independent reviewer / assigned human |
 | Acceptance authority | владелец продукта или явно назначенный им человек |
-| Следующее действие | Server-authorized tasks, chats, attachments, read state и in-app notifications без внешних каналов |
+| Следующее действие | Tenant-safe finance, manual closing, leadership roles и scoped analytics без реальных цен/provider |
 
 ## Почему разрешено непрерывное продолжение
 
@@ -36,3 +36,4 @@
 | 2026-09-17 | TASK-2026-005 in_progress | TASK-2026-005 submitted; TASK-2026-006 in_progress | Codex implementation agent + task curator | Private PR #2 и evidence сохранены; следующая утверждённая roadmap-волна открыта stacked без заявления acceptance |
 | 2026-09-17 | TASK-2026-006 in_progress | TASK-2026-006 submitted; TASK-2026-007 in_progress | Codex implementation agent + task curator | Private PR #3 и exact preview evidence сохранены; каноническая CRM-волна открыта stacked по утверждённому full-product roadmap без заявления acceptance |
 | 2026-09-17 | TASK-2026-007 in_progress | TASK-2026-007 submitted; TASK-2026-008 in_progress | Codex implementation agent + task curator | Private PR #4 и exact CRM evidence сохранены; tasks/chats/notifications wave открыта stacked по утверждённому roadmap без заявления acceptance |
+| 2026-09-17 | TASK-2026-008 in_progress | TASK-2026-008 submitted; TASK-2026-009 in_progress | Codex implementation agent + task curator | Private PR #5 и exact communication evidence сохранены; finance/closing/analytics wave открыта stacked по утверждённому roadmap без заявления acceptance |
