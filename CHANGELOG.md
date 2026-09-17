@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.6.0 — draft — 2026-09-17
+
+- владелец утвердил roadmap до функционально полного release candidate и поручил начать реализацию;
+- добавлен 18-этапный full-product roadmap от self-hosted foundation до design handoff и отдельного production launch;
+- финальный дизайн вынесен после функциональной полноты страниц, ролей, данных и состояний;
+- разрешены только явно маркированные синтетические цены, тарифы и demo content до получения реальных коммерческих значений;
+- текущее фактическое состояние обновлено с исторического Vercel-аудита на отдельный self-hosted PostgreSQL preview;
+- открыт `TASK-2026-003` на release foundation и явный session/workspace/role context;
+- ожидание review `TASK-2026-002` не названо acceptance: следующая работа ведётся stacked и не может попасть в `main` до включения base dependency;
+- добавлены решения D-086…D-089 и source record прямого owner approval.
+
 ## 0.5.0 — draft — 2026-09-07
 
 - Foundation Gate выбран task curator первым ready implementation-заданием `TASK-2026-001` по подтверждённому поручению владельца;

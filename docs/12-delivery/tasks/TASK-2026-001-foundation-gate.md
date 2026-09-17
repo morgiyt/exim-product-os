@@ -4,7 +4,7 @@ title: Foundation Gate — безопасный Private OS core
 revision: 1
 release: Release 0 / pre-launch foundation
 product_module: Platform + Private Operating OS
-status: ready
+status: superseded
 handoff_gate: exact_application_identifiers_required_at_runtime
 requested_by: product owner
 implementer: integrator + Claude Code
@@ -180,3 +180,4 @@ Claude останавливает мутации и создаёт blocker repor
 | Дата | Было | Стало | Actor | Причина |
 |---|---|---|---|---|
 | 2026-09-07 | proposed | ready | Task curator по поручению владельца | Foundation Gate выбран первым заданием; scope и AC зафиксированы, запуск после authoritative preflight |
+| 2026-09-17 | ready | superseded | Product owner authorization + task curator | Известный application repo уже получил self-hosted foundation в TASK-2026-002; оставшийся scope распределён по утверждённому full-product roadmap и текущему TASK-2026-003 |

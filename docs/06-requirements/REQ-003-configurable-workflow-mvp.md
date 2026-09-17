@@ -3,7 +3,7 @@
 ## Статус и цель
 
 **Статус:** Foundation Gate core — ready for implementation; editor, inheritance и migrations — draft/later.
-**Версия Product OS:** 0.5.0 — draft.
+**Версия Product OS:** 0.6.0 — draft.
 **Цель:** обеспечить версионируемые этапы QuoteRequest, Shipment и минимального Trip без обязательного полноценного визуального конструктора.
 
 ## Область

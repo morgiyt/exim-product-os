@@ -1,67 +1,70 @@
-# Текущее состояние опубликованного приложения
+# Текущее состояние EXIM Super App
 
-**Последняя read-only проверка:** 2026-09-04
-**Приложение:** <https://exim-super-app.vercel.app/app>
-**Версия Product OS:** 0.5.0 — draft
-**Подробный отчёт:** [Live-аудит 2026-09-04](audits/2026-09-04-super-app-live-audit)
+**Последняя проверка baseline:** 2026-09-17
+
+**Managed preview:** <https://superapp.185-129-49-242.sslip.io/app>
+
+**Application repository:** <https://github.com/alanbykov11work-ux/exim>
+
+**Application branch:** `task/TASK-2026-002-self-hosted-postgres`
+
+**Branch head:** `b3dd29751fbb9a6334f255e58576764dd44a29cd`
+
+**Exact deployed application code:** `2a140832b81a363c4589a6b781b12ed4cc67d1ed`
+
+**Product OS:** 0.6.0 — draft
 
 ## Итог
 
-Состояние: **ранняя functional alpha**.
+Состояние: **self-hosted functional alpha / foundation in progress**.
 
-Приложение не пустое: в существующей авторизованной сессии загружались shell, сохранённые backend-записи заявок и интерфейсы CRM, задач, чатов, аналитики, профиля и других разделов. Но один полный путь `request → rates → offer → contract gate → shipment → trip → tracking` не подтверждён, а серверные права отдельных ролей и tenant isolation не доказаны.
+Исторический Vercel/Supabase вариант больше не является текущим техническим baseline. Существующий код перенесён в отдельный managed preview рядом с Hub и Daily, но не смешан с ними. Runtime Supabase заменён на собственную server-side auth/session модель, PostgreSQL 16, приватное файловое хранилище и отдельные backup volumes.
 
-К реальному клиентскому пилоту не готово до [Foundation Gate](../07-mvp/foundation-gate).
+Это не production-ready продукт: серверный фундамент работает, но большая часть legacy интерфейса ещё не переведена на полноценные domain write API, сквозной Private OS не завершён, Exchange отсутствует, а application PR #6 ожидает независимый review.
 
-## Что работает или существует
+## Подтверждено в текущем baseline
 
-- защищённый `/app` в существующей авторизованной сессии;
-- сохранение авторизованной сессии;
-- заявки в списке и Kanban;
-- CRM lead и карточка;
-- задачи и чаты;
-- профиль компании, пользователи и UI ролей;
-- пустые состояния перевозок;
-- каталог услуг и контейнерный UI;
-- 10/10 успешных reload в последней проверке.
+- отдельные процессы, PostgreSQL, документы, backups и секреты Super App;
+- БД не имеет публичного host port;
+- регистрация создаёт user/profile/organization/workspace/client company/client membership;
+- login, session cookie, logout, password flow и membership guard;
+- server API для profile, user state, files и read-only workflow snapshot;
+- workspace/client-company columns и composite references в private business tables;
+- migration checksum, backup/export/restore scripts и health endpoints;
+- synthetic preview data only;
+- Hub и Daily не используют Super App DB, cookies или secrets;
+- локальные checks последней проверки: typecheck, lint, 17 tests и production build — PASS.
 
-## Что работает частично или расходится
+## Реализовано частично
 
-- role view switcher не доказывает RBAC;
-- dashboard/inbox/workflow/analytics показывают разные числа;
-- поиск не находит существующую заявку;
-- tracking путает неизвестный номер и отсутствие перевозок;
-- hash/deep link/Back/Reload не восстанавливают раздел;
-- mobile overflow подтверждён на 360/375/390 px;
-- форма содержит demo/hardcoded значения и неполный набор REQ-001;
-- request workflow не имеет обнаруженного полного набора действий;
-- `/auth/callback` показывает ложный успех при ошибке.
+- shell и legacy разделы загружаются, но их write parity ещё не подтверждена;
+- orders/CRM/tasks/chats/shipments/tracking имеют schema/legacy UI, но не полный server domain API;
+- client/manager/logistician/tenant-admin accounts существуют, но full seven-account/two-tenant acceptance matrix ещё не завершена;
+- документы server-side работают, но полный visibility/version/replacement contract ещё впереди;
+- current actor выбирается из membership, однако до TASK-2026-003 выбор при нескольких memberships не является явным session context.
 
-## Что не подтверждено
+## Не готово
 
-- серверная конфиденциальность настоящего client account;
-- ограничения настоящего logistician account;
-- изоляция двух отдельных TenantWorkspaces и client companies внутри workspace;
-- ставки → клиентская цена → согласование;
-- создание Shipment после договора;
-- Trips и публикация tracking;
-- versioned workflow;
-- модульные entitlements.
+- полный путь request → rates → offer → agreement → shipment → trips → tracking → closing;
+- versioned workflow engine/editor;
+- полноценные tenant-admin invitations и multi-membership UX;
+- стабильные object URLs, полный search/inbox/dashboard contract;
+- финансы, закрытие и достоверная аналитика;
+- EXIM Exchange listings/search/responses/trust/tariffs;
+- API/SSO/events с Hub и контекстный Jarvis;
+- design handoff, release hardening и production cutover.
 
-## Что не обнаружено в live UI относительно целевого Launch MVP
+## Delivery state
 
-- биржа грузов и транспорта;
-- объявления и Exchange search/interaction;
-- free/paid entitlements;
-- Exchange profiles и условные verification/moderation способности;
-- подтверждённая в реализации граница приватного запроса и публичного объявления.
-
-`Не обнаружено в live UI` не доказывает отсутствие кода: исходный код приложения не входил в этот аудит.
+- application PR [#6](https://github.com/alanbykov11work-ux/exim/pull/6) открыт и ждёт requested review от code owner;
+- submission не является acceptance;
+- владелец утвердил продолжение по [full-product roadmap](../07-mvp/full-product-roadmap);
+- TASK-2026-003 ведётся stacked от exact head PR #6 и не может быть слит в `main`, пока base dependency не включён или безопасно не rebased.
 
 ## История аудитов
 
-- [Vercel audit 2026-07-27](audits/2026-07-27-vercel-audit)
-- [Production technical recon 2026-07-27](audits/2026-07-27-production-technical-recon)
-- [Super App live audit 2026-09-04](audits/2026-09-04-super-app-live-audit)
+- [Super App live audit 2026-09-04](audits/2026-09-04-super-app-live-audit) — исторический Vercel/Supabase срез;
+- [Vercel audit 2026-07-27](audits/2026-07-27-vercel-audit);
+- [Production technical recon 2026-07-27](audits/2026-07-27-production-technical-recon).
 
-Исторические результаты не переписываются. `Не воспроизведён` не означает `исправлен` без доказательства версии приложения.
+Исторические отчёты не переписываются. Новый baseline фиксируется отдельными dated reports и exact commits.

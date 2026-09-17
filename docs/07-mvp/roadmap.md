@@ -1,8 +1,10 @@
 # Roadmap EXIM Super App
 
+> Этот файл сохраняет прежний release split Product OS 0.5. Текущий утверждённый план до функционально полного release candidate находится в [full-product roadmap](./full-product-roadmap). Public Launch MVP остаётся промежуточным продуктовым gate, а не конечной целью.
+
 ## Этап 0 — Формализация платформы
 
-Статус: текущий Product OS `0.5.0 — draft`.
+Статус: историческая структура Product OS `0.5.0 — draft`; текущая версия — `0.6.0 — draft`.
 
 - multi-tenant направление;
 - два продуктовых контура;
@@ -13,7 +15,7 @@
 - новый Release split;
 - открытые коммерческие, юридические и технические вопросы.
 
-## Этап 1 — Foundation Gate (активный TASK-2026-001)
+## Этап 1 — Foundation Gate (исторический TASK-2026-001; superseded)
 
 Текущий ready-пакет, выбранный task curator по поручению владельца; статус и отчётность ведутся в [Delivery Loop](../12-delivery/current-task):
 

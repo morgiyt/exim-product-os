@@ -113,6 +113,7 @@ export default defineConfig({
         items: [
           { text: 'Foundation Gate', link: '/07-mvp/foundation-gate' },
           { text: 'Public Launch MVP', link: '/07-mvp/mvp-v1' },
+          { text: 'Full-product roadmap', link: '/07-mvp/full-product-roadmap' },
           { text: 'Roadmap', link: '/07-mvp/roadmap' }
         ]
       },
@@ -142,6 +143,7 @@ export default defineConfig({
           { text: 'Платформенная директива 2026-08-26', link: '/10-sources/2026-08-26-platform-directive' },
           { text: 'Текущий live MVP', link: '/10-sources/current-mvp' },
           { text: 'Delivery-директива 2026-09-07', link: '/10-sources/2026-09-07-delivery-directive' },
+          { text: 'Full-product директива 2026-09-17', link: '/10-sources/2026-09-17-full-product-roadmap-directive' },
           { text: 'Исходная концепция', link: '/10-sources/original-brief' }
         ]
       },
@@ -152,6 +154,8 @@ export default defineConfig({
           { text: 'Реестр задач', link: '/12-delivery/task-registry' },
           { text: 'Правила цикла', link: '/12-delivery/README' },
           { text: 'TASK-2026-001', link: '/12-delivery/tasks/TASK-2026-001-foundation-gate' },
+          { text: 'TASK-2026-003', link: '/12-delivery/tasks/TASK-2026-003-release-foundation-identity' },
+          { text: 'Отчёты TASK-2026-003', link: '/12-delivery/reports/TASK-2026-003/README' },
           { text: 'Отчёты исполнителя', link: '/12-delivery/reports/README' },
           { text: 'Evidence manifests', link: '/12-delivery/evidence/README' },
           { text: 'Blocker template', link: '/12-delivery/templates/blocker-template' },

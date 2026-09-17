@@ -24,29 +24,29 @@ features:
   - title: Контролируемые данные
     details: Клиентские и внутренние слои разделены на сервере; механизм связи Private OS с Exchange остаётся OQ-038.
   - title: Проверяемый релиз
-    details: Foundation Gate сначала стабилизирует права и сквозной процесс, затем Exchange входит в Public Launch MVP.
+    details: Утверждённый full-product roadmap доводит Private OS и Exchange до release candidate, после чего начинается отдельный дизайн-handoff.
 ---
 
 ## Текущий фокус
 
 ```text
-Foundation Gate
-→ роли + tenant isolation + стабильный shell
-→ запрос → ставки → цена → договорный gate → перевозка → tracking
-→ Exchange MVP
-→ первый публичный запуск
+Self-hosted release foundation
+→ полный Private OS exim.kz
+→ EXIM Exchange
+→ hardening и design handoff
+→ отдельное решение о production launch
 ```
 
 | Блок | Статус |
 |---|---|
-| Версия Product OS | 0.5.0 — draft |
+| Версия Product OS | 0.6.0 — draft |
 | Платформенная концепция | Подтверждена |
 | exim.kz как первый tenant | Подтверждено |
 | Private Operating OS | Спроектирован базовый процесс, реализация частичная |
 | EXIM Exchange | Обязателен для Launch MVP, детальные правила частично TBD |
 | Технический microservice | Не утверждён |
-| Foundation Gate | ТЗ подготовлено |
-| Live app | Ранняя alpha, аудит 2026-09-04 |
+| Foundation Gate | Self-hosted foundation реализован частично; полный scope перенесён в последовательные волны |
+| Live app | Отдельный PostgreSQL preview; application PR #6 ждёт review |
 | Public Launch MVP | Подтверждён верхний состав; механика Exchange — draft/TBD |
 | Bitrix | Открытый вопрос |
 
@@ -59,5 +59,6 @@ Foundation Gate
 5. [Foundation Gate](/07-mvp/foundation-gate)
 6. [Контракты обязательных экранов Gate](/04-pages/foundation-gate-contracts)
 7. [Public Launch MVP](/07-mvp/mvp-v1)
-8. [Текущее состояние](/10-implementation/current-state)
-9. [Открытые вопросы](/09-decisions/open-questions)
+8. [Утверждённый full-product roadmap](/07-mvp/full-product-roadmap)
+9. [Текущее состояние](/10-implementation/current-state)
+10. [Открытые вопросы](/09-decisions/open-questions)

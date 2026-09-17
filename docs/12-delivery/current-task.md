@@ -1,35 +1,32 @@
 # Текущая задача
 
-> Этот файл меняет task curator. Исполнитель читает его, но не переключает активную задачу самостоятельно.
+> Канонический scope находится в task-файле. Production и реальные данные запрещены.
 
 | Поле | Значение |
 |---|---|
-| Current task | `TASK-2026-001` |
-| Название | Foundation Gate — безопасный Private OS core |
+| Current task | `TASK-2026-003` |
+| Название | Release foundation и явный access context |
 | Revision | `1` |
-| Статус | `ready` |
-| Implementation write gate | `exact_application_identifiers_required_at_runtime` |
-| Owner authorization | Поручение на первое задание подтверждено 2026-09-07; scope выбран task curator, D-084 |
-| Task | [TASK-2026-001](./tasks/TASK-2026-001-foundation-gate) |
-| Product OS ref | `product-os-task-2026-001-r1` |
-| Application repository | Обязательное точное значение в implementation handoff |
-| Target | Application PR + Preview; production запрещён |
-| Исполнитель | Интегратор + Claude Code |
-| Reviewer | Codex / назначенный независимый reviewer |
-| Acceptance authority | Владелец продукта или явно назначенный им человек |
-| Активная сдача | Нет |
-| Следующее действие | Заполнить handoff, выполнить read-only preflight; при совпадении сразу начать реализацию |
-| Папка отчётов | [reports/TASK-2026-001](./reports/TASK-2026-001/README) |
+| Статус | `in_progress` |
+| Owner authorization | Full-product roadmap утверждён 2026-09-17, D-086…D-089 |
+| Task | [TASK-2026-003](./tasks/TASK-2026-003-release-foundation-identity) |
+| Product OS ref | `product-os-task-2026-003-r1` |
+| Application repository | `https://github.com/alanbykov11work-ux/exim.git` |
+| Application stacked base | `task/TASK-2026-002-self-hosted-postgres` @ `b3dd29751fbb9a6334f255e58576764dd44a29cd` |
+| Implementation branch | `task/TASK-2026-003-release-foundation-identity` |
+| Target | managed preview; synthetic data only |
+| Production switch | `FORBIDDEN` |
+| Исполнитель | Codex |
+| Reviewer | independent reviewer / assigned human |
+| Acceptance authority | владелец продукта или явно назначенный им человек |
+| Следующее действие | migration + explicit session membership context + authorization matrix |
 
-## Условие немедленного старта
+## Почему разрешена stacked-разработка
 
-Claude не ждёт второго разрешения, если одновременно выполнено всё ниже:
+TASK-2026-002 остаётся submitted и не объявляется accepted. Владелец отдельно утвердил следующий full-product roadmap и поручил начать. Поэтому новая работа изолируется новой веткой от exact head предыдущей сдачи. Она не загрязняет PR #6 и не может быть слита в `main` до разрешения зависимости.
 
-- в сообщении передачи указаны точные `APPLICATION_REPO`, `APPLICATION_BASE_BRANCH`, immutable `APPLICATION_EXPECTED_HEAD`, совпадающий `PR_TARGET`, точный non-production `TARGET_ENVIRONMENT`, `DEPLOYMENT_LINKAGE`, `TEST_DATA` и безопасный способ получить `TEST_ACCOUNTS`;
-- Product OS tag разрешается и рабочее дерево Product OS чистое;
-- application checkout имеет ровно ожидаемый `origin`, baseline и чистое дерево;
-- найдены инструкции и штатные команды самого приложения;
-- доступна указанная Preview/staging/test среда и способ развернуть в ней exact application commit;
-- отсутствуют противоречия, требующие нового бизнес-решения.
+## История
 
-Если хотя бы одно условие не выполнено, разрешён только preflight и blocker report — не запись в код.
+| Дата | Было | Стало | Actor | Причина |
+|---|---|---|---|---|
+| 2026-09-17 | TASK-2026-001 ready | TASK-2026-001 superseded; TASK-2026-003 in_progress | Product owner authorization + task curator | Реальный application repo и self-hosted baseline уже установлены; утверждён roadmap до полного продукта |

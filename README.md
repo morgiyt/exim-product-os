@@ -20,6 +20,7 @@ EXIM Super App проектируется как независимая multi-te
 - [Foundation Gate — текущий пакет интегратору](docs/07-mvp/foundation-gate.md)
 - [Контракты обязательных экранов Gate](docs/04-pages/foundation-gate-contracts.md)
 - [Public Launch MVP](docs/07-mvp/mvp-v1.md)
+- [Утверждённый full-product roadmap](docs/07-mvp/full-product-roadmap.md)
 - [Текущее состояние приложения](docs/10-implementation/current-state.md)
 - [Текущая delivery-задача](docs/12-delivery/current-task.md)
 - [Цикл заданий, отчётов и приёмки](docs/12-delivery/README.md)
@@ -32,7 +33,7 @@ EXIM Super App проектируется как независимая multi-te
 4. Гипотезы и открытые вопросы — не считаются утверждёнными решениями.
 5. Живое приложение показывает факт реализации, но само по себе не меняет требования.
 
-Июльская версия Product OS сохраняется в Git-истории. Версия `0.5.0 — draft` формализует более новое платформенное направление от 2026-08-26 и результаты live-аудита от 2026-09-04.
+Июльская версия Product OS сохраняется в Git-истории. Версия `0.6.0 — draft` фиксирует утверждённый 2026-09-17 roadmap до функционально полного release candidate и self-hosted PostgreSQL baseline. Исторические live-аудиты не переписываются.
 
 ## Быстрый запуск документации
 
@@ -52,7 +53,7 @@ npm run docs:preview
 
 ## Интегратору
 
-- Первое текущее ready-задание: [TASK-2026-001 — Foundation Gate](docs/12-delivery/tasks/TASK-2026-001-foundation-gate.md).
+- Текущая реализация: [TASK-2026-003 — Release foundation и явный access context](docs/12-delivery/tasks/TASK-2026-003-release-foundation-identity.md).
 - Передача в Claude Code: [CLAUDE_CODE_START_PROMPT.md](CLAUDE_CODE_START_PROMPT.md).
 - Перед началом записи интегратор указывает точные application repo, base branch, expected HEAD и PR target.
 - Код рабочего приложения изменяется в его отдельном репозитории; этот репозиторий хранит Product OS, требования и приёмку.
@@ -63,4 +64,4 @@ npm run docs:preview
 
 В репозитории есть workflow GitHub Pages. После загрузки в GitHub выберите `Settings → Pages → Source: GitHub Actions`.
 
-Версия Product Foundation: **0.5.0 — draft**.
+Версия Product Foundation: **0.6.0 — draft**.

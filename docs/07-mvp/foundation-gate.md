@@ -3,7 +3,7 @@
 ## Статус
 
 **Release:** 0 / pre-launch foundation<br>
-**Версия Product OS:** 0.5.0 — draft<br>
+**Версия Product OS:** введено в 0.5.0; scope распределён по волнам 0.6.0<br>
 **Статус:** выбран task curator по подтверждённому поручению владельца как ready `TASK-2026-001`; реализация начинается после authoritative preflight<br>
 **Не является:** публичным запуском EXIM Super App
 
