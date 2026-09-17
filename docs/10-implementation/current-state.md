@@ -6,21 +6,21 @@
 
 **Application repository:** <https://github.com/morgiyt/exim-super-app> — private
 
-**Application branch:** `task/TASK-2026-012-exchange-search-responses` (active stacked wave поверх submitted TASK-2026-011)
+**Application branch:** `task/TASK-2026-013-exchange-trust-safety` (active stacked wave поверх submitted TASK-2026-012)
 
-**Stacked base head:** `ef5ee0093824088775fa7d454303c01d19217a89`
+**Stacked base head:** `4689ac079f8762ab0e6936012424a2bebcf3dbe1`
 
-**Exact deployed application code:** `7554c46617bab11ec152f73497bf89027487145a`
+**Exact deployed application code:** `10fa061570313c2022dc239171cb3fe70843d3ea`
 
 **Product OS:** 0.6.0 — draft
 
 ## Итог
 
-Состояние: **self-hosted functional alpha / Private OS operational core, Workflow Template Studio и Exchange listings implemented; search/responses in progress**.
+Состояние: **self-hosted functional alpha / Private OS operational core, Workflow Template Studio и Exchange listings/search/responses implemented; trust/safety in progress**.
 
 Исторический Vercel/Supabase вариант больше не является текущим техническим baseline. Существующий код перенесён в отдельный managed preview рядом с Hub и Daily, но не смешан с ними. Runtime Supabase заменён на собственную server-side auth/session модель, PostgreSQL 16, приватное файловое хранилище и отдельные backup volumes.
 
-Это не production-ready продукт: серверный фундамент, CRM, расчёт, предложение, договорный gate, Shipment/Trip, tracking/documents, задачи/чаты/уведомления, manual finance/closing contour, Workflow Template Studio и отдельные Exchange listings работают. Exchange search/responses, trust/tariffs, integrations и release hardening ещё не завершены. Дальнейшая разработка идёт только в приватном репозитории владельца.
+Это не production-ready продукт: серверный фундамент, CRM, расчёт, предложение, договорный gate, Shipment/Trip, tracking/documents, задачи/чаты/уведомления, manual finance/closing contour, Workflow Template Studio и отдельные Exchange listings/search/responses работают. Trust/safety, tariffs, integrations и release hardening ещё не завершены. Дальнейшая разработка идёт только в приватном репозитории владельца.
 
 ## Подтверждено в текущем baseline
 
@@ -51,9 +51,11 @@
 - tenant-safe Workflow Template Studio создаёт optimistic drafts, валидирует stages/transitions/typed fields/notifications, показывает diff/role matrix и активирует immutable versions; existing instances остаются pinned, новые получают current active version;
 - отдельные CargoListing/TransportListing, совмещаемые capabilities, entitlement/demo limits, lifecycle, safe public projection и minimum organization profile работают без Private OS conversion;
 - все пять transport modes сохраняются typed allowlist, contacts/private/finance fields server-rejected, cross-tenant/direct-ID boundaries подтверждены;
-- локальные checks последней проверки: typecheck, lint, 72/72 tests и production build — PASS;
-- fresh backup `20260917T214611Z` прошёл checksum и isolated no-port restore с 11 migrations;
-- private PR #1…#8 существуют как отдельный stacked chain и не self-merged.
+- server-side Exchange search, stable cursor, membership-owned saved searches, safe response lifecycle и unique selection работают без contacts/commercial/private links;
+- matched listing исчезает из search, peer responses отклоняются транзакционно, three-organization isolation и Retry failure recovery подтверждены;
+- локальные/CI checks последней проверки: typecheck, lint, 78/78 tests и production build — PASS;
+- fresh backup `20260917T225153Z` прошёл checksum и isolated no-port restore с 12 migrations;
+- private PR #1…#9 существуют как отдельный stacked chain и не self-merged.
 
 ## Реализовано частично
 
@@ -66,15 +68,15 @@
 
 - полный путь после in_transit до closing, включая нерешённые условия OQ-025;
 - полноценные tenant-admin invitations и multi-membership UX;
-- EXIM Exchange search/responses/trust/tariffs;
+- EXIM Exchange trust/tariffs;
 - API/SSO/events с Hub и контекстный Jarvis;
 - design handoff, release hardening и production cutover.
 
 ## Delivery state
 
 - старые публичные PR #6 и #7 в репозитории интегратора закрыты, созданные нами remote branches удалены;
-- private repository `morgiyt/exim-super-app` содержит submitted stacked PR #1…#8; Exchange search/response wave стартует от exact head `ef5ee00`;
-- submissions TASK-2026-003…011 не являются acceptance;
+- private repository `morgiyt/exim-super-app` содержит submitted stacked PR #1…#9; Trust & Safety wave стартует от exact head `4689ac0`;
+- submissions TASK-2026-003…012 не являются acceptance;
 - владелец утвердил продолжение по [full-product roadmap](../07-mvp/full-product-roadmap).
 
 ## История аудитов

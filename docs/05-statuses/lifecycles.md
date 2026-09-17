@@ -125,9 +125,21 @@ published → matched
 
 `matched` создаётся только транзакционным выбором ровно одного ExchangeResponse в TASK-2026-012, убирает listing из публичного поиска и запрещает новые отклики. Повторная публикация, отмена выбора и возврат из `matched` остаются отключены до OQ-040.
 
-### Post-Wave 10 / TBD
+### Wave 11 moderation overlay
 
-`pending_moderation`, `rejected`, `blocked` зависят от OQ-039/REQ-010. Эти codes не создаются и не принимаются TASK-2026-011/012. Исторический термин `active` в старом draft нормализован в `published`, чтобы storage, API и UI не расходились.
+Business status объявления не заменяется moderation status. TASK-2026-013 добавляет отдельный overlay:
+
+```text
+clear → restricted → clear
+```
+
+- `restricted` создаёт только moderator action с обязательной причиной;
+- restricted object независимо от business status отсутствует в search/public detail и не принимает publish/resume/response/selection;
+- снятие restriction — новое append-only action, а не удаление истории;
+- после снятия публичность возвращается только если business status сам допускает её;
+- `pending_moderation`, listing-level `rejected` и необратимый `blocked` не создаются: final policy остаётся OQ-039/OQ-040.
+
+Исторический термин `active` в старом draft нормализован в `published`, чтобы storage, API и UI не расходились.
 
 ## Exchange Response lifecycle
 
@@ -147,6 +159,20 @@ shortlisted → withdrawn
 - раскрытие контактов и `ContactAccessEvent` отключены до OQ-043.
 
 Финальные сроки, коммерческие поля, expiration response и relisting остаются OQ-040.
+
+## Exchange Moderation Case lifecycle
+
+### Wave 11 task canonical
+
+```text
+open → in_review → actioned | dismissed → closed
+```
+
+- take/release case, restrict/unrestrict listing и resolve/dismiss требуют platform role, optimistic version, idempotency key и reason;
+- report status и case status не раскрывают reporter/actor/internal note другой стороне;
+- terminal correction выполняется новым case/action, прежняя история append-only;
+- organization Exchange suspension хранится отдельным reversible platform state и не меняет tenant membership или Private OS access;
+- appeals, SLA, KYC, final reason taxonomy и legal dispute lifecycle остаются OQ-039…041.
 
 ## История
 

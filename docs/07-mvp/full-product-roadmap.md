@@ -160,6 +160,8 @@
 
 ## Этап 14 — Trust & Safety и Platform Admin
 
+**Текущая implementation wave:** [TASK-2026-013](../12-delivery/tasks/TASK-2026-013-exchange-trust-safety). Task-level preview включает complaints, moderation, listing restriction, Exchange-only organization suspension и platform audit. KYC/verified badge, final legal policy, appeals, ratings и fraud scoring остаются отключены до решений.
+
 - moderation queue, abuse reports, suspension и reason codes;
 - verification/KYC только в утверждённом объёме;
 - platform audit, incident trail и data-access controls;

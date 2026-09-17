@@ -1,6 +1,6 @@
 # Платформенные и Exchange-страницы
 
-Статус: рабочий draft для Launch MVP. Контракт объявлений Wave 9 уточнён в [спецификации listings](./exchange-listings), а search/response Wave 10 — в [спецификации поиска и откликов](./exchange-search-responses). Точная административная, contacts и trust-механика зависит от OQ-034…OQ-045.
+Статус: рабочий draft для Launch MVP. Контракт объявлений Wave 9 уточнён в [спецификации listings](./exchange-listings), search/response Wave 10 — в [спецификации поиска и откликов](./exchange-search-responses), а безопасный moderation preview Wave 11 — в [Trust & Safety contract](./exchange-trust-safety). Contacts, KYC/verification, legal/dispute и финальные trust rules зависят от OQ-034…OQ-045.
 
 ## Общие требования ко всем страницам
 
@@ -77,9 +77,9 @@ Wave 10 выбор создаёт только `ExecutorSelection`, перево
 
 Рабочий draft: выдать/отозвать module entitlement, лимит и период действия с обязательным audit. Для Launch должен существовать утверждённый способ активации paid access: manual external-payment flow либо billing provider — OQ-037.
 
-## PA-003 — Модерация и жалобы (conditional)
+## PA-003 — Модерация и жалобы
 
-Само включение moderation в Launch и её минимум определяются OQ-039. Если способность утверждена, она должна принять жалобу, связать её с объектом/организацией, ограничить объявление и сохранить решение/audit. Причины, SLA, апелляции и fraud rules — OQ-039…OQ-041.
+Wave 11 task-level preview принимает жалобу, связывает её с public объектом/организацией, позволяет уполномоченному moderator ограничить объявление и сохраняет versioned decision/audit. Подробный контракт — [Exchange Trust & Safety](./exchange-trust-safety). KYC/verified badge, final reasons, SLA, appeals, legal/dispute и fraud rules остаются OQ-039…OQ-041.
 
 ## PA-004 — Платформенный аудит
 

@@ -1,6 +1,6 @@
 # EXIM Exchange — поиск, сохранённые поиски и отклики
 
-**Статус:** Wave 10 contract ready для TASK-2026-012. Финальные цены/торги, moderation, ranking и раскрытие контактов остаются открытыми вопросами.
+**Статус:** Wave 10 contract implemented/submitted в TASK-2026-012. Trust/moderation продолжены в [Wave 11 contract](./exchange-trust-safety); финальные цены/торги, ranking и раскрытие контактов остаются открытыми вопросами.
 
 ## Общие правила Wave 10
 

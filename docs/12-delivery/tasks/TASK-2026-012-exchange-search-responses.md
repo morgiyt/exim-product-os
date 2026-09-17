@@ -4,7 +4,7 @@ title: EXIM Exchange — поиск, сохранённые поиски и бе
 revision: 1
 release: Full Product / Wave 10
 product_module: EXIM Exchange
-status: in_progress
+status: submitted
 handoff_gate: exact_application_identifiers_confirmed
 requested_by: product owner
 implementer: Codex
@@ -101,3 +101,4 @@ target_environment: managed preview, synthetic data only
 | Дата | Было | Стало | Actor | Причина |
 |---|---|---|---|---|
 | 2026-09-18 | proposed | in_progress | Product owner authorization + task curator | Утверждённый Stage 13 открыт после private submission TASK-2026-011; contacts, commercial fields, moderation и final ranking остаются закрыты |
+| 2026-09-18 | in_progress | submitted | Codex implementation agent + task curator | Private PR #9; runtime `10fa061`; report head `4689ac0`; 78/78 tests, Retry failure-injection, browser/mobile, migration/reapply и isolated restore evidence сохранены; acceptance не заявляется |

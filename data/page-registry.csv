@@ -35,17 +35,18 @@ AD-004,Workflow draft editor,Private OS,Tenant admin preview default,Full Produc
 AD-002,Пользователи и роли,Private OS,Tenant admin,Foundation Gate,Gate contract ready,"UI есть, scope не проверен"
 AD-003,Tenant-аудит,Private OS,Tenant admin,Foundation Gate,Gate contract ready,Не подтверждено
 EX-001,Главная Exchange,Exchange,Участник,Full Product / Wave 9,Wave 9 contract ready,Реализовано на preview; PR #8 submitted
-EX-002,Поиск грузов,Exchange,Участник,Full Product / Wave 10,Wave 10 contract ready,Не реализовано
+EX-002,Поиск грузов,Exchange,Участник,Full Product / Wave 10,Wave 10 contract ready,Реализовано на preview; PR #9 submitted
 EX-003,Карточка груза,Exchange,Участник,Full Product / Wave 9,Wave 9 contract ready,Реализовано на preview; PR #8 submitted
 EX-004,Создание груза,Exchange,Cargo publisher,Full Product / Wave 9,Wave 9 contract ready,Реализовано на preview; PR #8 submitted
-EX-005,Поиск транспорта,Exchange,Участник,Full Product / Wave 10,Wave 10 contract ready,Не реализовано
+EX-005,Поиск транспорта,Exchange,Участник,Full Product / Wave 10,Wave 10 contract ready,Реализовано на preview; PR #9 submitted
 EX-006,Карточка транспорта,Exchange,Участник,Full Product / Wave 9,Wave 9 contract ready,Реализовано на preview; PR #8 submitted
 EX-007,Создание транспорта,Exchange,Transport publisher,Full Product / Wave 9,Wave 9 contract ready,Реализовано на preview; PR #8 submitted
 EX-008,Мои объявления,Exchange,Владелец,Full Product / Wave 9,Wave 9 contract ready,Реализовано на preview; PR #8 submitted
-EX-009,Отклики и предложения,Exchange,Участники объекта,Full Product / Wave 10,Wave 10 contract ready,Не реализовано
-EX-010,Выбор исполнителя / контакты,Exchange,Владелец и выбранный,Full Product / Wave 10,Wave 10 selection contract ready; contacts disabled,Не реализовано
+EX-009,Отклики и предложения,Exchange,Участники объекта,Full Product / Wave 10,Wave 10 contract ready,Реализовано на preview; PR #9 submitted
+EX-010,Выбор исполнителя / контакты,Exchange,Владелец и выбранный,Full Product / Wave 10,Wave 10 selection contract ready; contacts disabled,Выбор реализован; контакты отключены; PR #9 submitted
 EX-011,Профиль организации,Exchange,Участники,Full Product / Wave 9,Wave 9 minimum profile contract ready,Реализовано на preview; PR #8 submitted
-PA-001,Организации платформы,Platform admin,Platform admin,Launch MVP,Требует описания,Не подтверждено
+EX-012,Жалоба на объявление / организацию,Exchange,Участник,Full Product / Wave 11,Wave 11 contract ready,Не реализовано
+PA-001,Организации платформы,Platform admin,Platform admin,Full Product / Wave 11,Wave 11 Exchange-control contract ready,Не реализовано
 PA-002,Модули и entitlements,Platform admin,Platform admin,Launch MVP,Требует описания,Не обнаружено в live UI
-PA-003,Модерация и жалобы,Platform admin,Moderator,"Launch MVP, conditional",Conditional draft после OQ-039,Не обнаружено в live UI
-PA-004,Платформенный аудит,Platform admin,Platform admin,Launch MVP,Требует описания,Не обнаружено в live UI
+PA-003,Модерация и жалобы,Platform admin,Moderator,Full Product / Wave 11,Wave 11 preview contract ready; KYC/legal remain disabled,Не реализовано
+PA-004,Платформенный аудит,Platform admin,Platform admin,Full Product / Wave 11,Wave 11 contract ready,Не реализовано

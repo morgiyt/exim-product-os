@@ -1,7 +1,9 @@
 # Changelog
 
-## 0.6.0 draft — Wave 4 handoff
+## 0.6.0 draft — Wave 11 handoff
 
+- TASK-2026-012 переведена в `submitted`: private PR #9, exact runtime `10fa061`, report head `4689ac0`, 78/78 tests, Retry failure-injection, browser/mobile, migration/reapply и isolated restore evidence сохранены; acceptance не заявляется;
+- REQ-010 и page contracts уточнены до task-ready Wave 11 preview baseline; открыт TASK-2026-013 на complaints, listing restriction, Exchange-only organization suspension и platform audit без KYC/verified/legal/fraud предположений;
 - TASK-2026-011 переведена в `submitted`: private PR #8, exact runtime `7554c46`, 72/72 tests, browser/mobile, migration/reapply, isolated restore и 3/3 GitHub checks PASS; acceptance не заявляется;
 - REQ-008 и page contracts уточнены до task-ready Wave 10 baseline; открыт TASK-2026-012 на search/filters/saved searches/responses/selection без contacts, commercial bidding, moderation или billing;
 - TASK-2026-010 переведена в `submitted`: private PR #7, exact runtime `b3da470`, 62/62 tests, browser/mobile, isolated restore и 3/3 GitHub checks PASS; acceptance не заявляется;

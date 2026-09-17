@@ -79,7 +79,8 @@ export default defineConfig({
           { text: 'Финансы и аналитика', link: '/04-pages/finance-and-analytics' },
           { text: 'Workflow Template Studio', link: '/04-pages/workflow-template-studio' },
           { text: 'Exchange listings', link: '/04-pages/exchange-listings' },
-          { text: 'Exchange search and responses', link: '/04-pages/exchange-search-responses' }
+          { text: 'Exchange search and responses', link: '/04-pages/exchange-search-responses' },
+          { text: 'Exchange Trust & Safety', link: '/04-pages/exchange-trust-safety' }
         ]
       },
       {
@@ -172,6 +173,7 @@ export default defineConfig({
           { text: 'TASK-2026-010', link: '/12-delivery/tasks/TASK-2026-010-workflow-template-studio' },
           { text: 'TASK-2026-011', link: '/12-delivery/tasks/TASK-2026-011-exchange-listings' },
           { text: 'TASK-2026-012', link: '/12-delivery/tasks/TASK-2026-012-exchange-search-responses' },
+          { text: 'TASK-2026-013', link: '/12-delivery/tasks/TASK-2026-013-exchange-trust-safety' },
           { text: 'Отчёты TASK-2026-003', link: '/12-delivery/reports/TASK-2026-003/README' },
           { text: 'Отчёты исполнителя', link: '/12-delivery/reports/README' },
           { text: 'Evidence manifests', link: '/12-delivery/evidence/README' },

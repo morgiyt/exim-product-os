@@ -9,7 +9,7 @@
 | Auth | Recovery context | Server flow реализован; provider delivery не подключён | Gate | Expired/used token browser test |
 | Shell | Reload | Работает на stable object routes | Gate | Independent rerun |
 | Shell | Deep link/Back/Forward | Работает для request и shipment cards | Gate | Independent rerun |
-| Shell | Mobile 360–390 | Нет page-level overflow в workflow/shipment/CRM/tasks/chats/finance/workflow-editor/Exchange listing экранах | Gate / Wave 9 | Расширить на Exchange search/responses TASK-2026-012 |
+| Shell | Mobile 360–390 | Нет page-level overflow в workflow/shipment/CRM/tasks/chats/finance/workflow-editor/Exchange listing/search/response экранах | Gate / Wave 10 | Расширить на platform moderation TASK-2026-013 |
 | Roles | Client/manager/logistician/tenant-admin/accountant/sales_head/logistics_head | Отдельные server-derived contexts работают | Gate / Wave 7 | Independent review |
 | RBAC | Server-side permissions | Seven-account direct-request matrix PASS | Gate | Independent review |
 | Tenant | Изоляция A/B и A1/A2 | Safe 404 matrix PASS | Gate | Independent review |
@@ -36,8 +36,8 @@
 | Containers | Пустой каталог | UI вне текущего scope | OQ-048 | Product decision |
 | Exchange | Cargo listings | Independent draft/publish/pause/resume/close/expire, safe public projection и profile работают; PR #8 submitted | Full Product / Wave 9 | Independent review |
 | Exchange | Transport listings | Те же гарантии; combinable capabilities и five-mode typed details подтверждены; PR #8 submitted | Full Product / Wave 9 | Independent review |
-| Exchange | Search/responses/selection | Active scope TASK-2026-012; contacts и commercial rules disabled | Full Product / Wave 10 | REQ-008 |
+| Exchange | Search/responses/selection | Реализовано на preview; PR #9 submitted; contacts и commercial rules disabled | Full Product / Wave 10 | Independent review |
 | Access | Free/paid entitlements | Не обнаружено в live UI | Launch MVP | REQ-009 |
-| Trust | Profiles/verification/moderation | Не обнаружено в live UI | Launch MVP, conditional | REQ-010 / OQ-039 |
+| Trust | Complaints/moderation/platform control | Active scope TASK-2026-013; KYC/verified/legal/fraud disabled | Full Product / Wave 11 | REQ-010 |
 
 Статус `Не подтверждено` не означает доказанное отсутствие кода. Он означает отсутствие безопасного end-to-end доказательства. Статус `Не обнаружено в live UI` также не доказывает отсутствие реализации в исходном коде.

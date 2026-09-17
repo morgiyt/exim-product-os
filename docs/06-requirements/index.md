@@ -28,7 +28,7 @@
 | [REQ-007](./REQ-007-exchange-listings) | Объявления грузов и транспорта | Wave 9 task-ready; later mechanics remain Draft | Full Product / Wave 9 |
 | [REQ-008](./REQ-008-exchange-search-and-responses) | Поиск, сохранённые поиски, отклики и выбор | Wave 10 task-ready; contacts/commercial rules remain Draft | Full Product / Wave 10 |
 | [REQ-009](./REQ-009-modules-and-entitlements) | Модули, бесплатный/платный доступ | Draft | Launch MVP |
-| [REQ-010](./REQ-010-verification-and-moderation) | Проверка, жалобы и модерация | Conditional Draft после OQ-039…041 | Launch MVP, если утверждено |
+| [REQ-010](./REQ-010-verification-and-moderation) | Жалобы, модерация и platform control | Wave 11 task-ready preview; KYC/legal/fraud remain Draft | Full Product / Wave 11 |
 
 ## Зависимости
 
@@ -42,7 +42,7 @@ REQ-004 tenant/security foundation
 ├── REQ-002 tracking
 ├── REQ-005 reliable shell and RBAC verification
 └── REQ-007…009 Exchange Launch MVP
-    └── REQ-010 conditional trust & safety, только если утверждено
+    └── REQ-010 Wave 11 complaints/moderation preview; KYC/legal/fraud conditional
 ```
 
 REQ-007…REQ-009 и любую утверждённую часть conditional REQ-010 нельзя считать реализованными по наличию каталога контейнеров или упоминанию ATI.SU как внешнего источника ставок.

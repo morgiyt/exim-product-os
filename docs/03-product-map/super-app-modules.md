@@ -12,7 +12,7 @@
 | Private Operating OS | Внутренняя работа логистической компании | Сквозной процесс exim.kz | Да |
 | Client Portal | Безопасный клиентский слой tenant | Сквозной процесс | Да |
 | Биржа грузов/транспорта (`EXIM Exchange` — working name) | Грузы, транспорт и поиск; механизм взаимодействия — OQ-040 | Только границы | Да, точная механика draft |
-| Moderation | Возможные жалобы, блокировки и проверки Exchange | Нет | Conditional после OQ-039 |
+| Moderation | Жалобы, reversible restriction/suspension и platform audit; KYC/verified/fraud disabled | Нет | Wave 11 preview baseline |
 | Platform Audit | Критические события доступа и администрирования | Основа | Да |
 | Integrations | Bitrix, внешние уведомления, tracking-источники | Нет | По отдельным решениям |
 

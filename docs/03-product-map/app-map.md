@@ -147,7 +147,7 @@ Workflow-шаблоны
 Системные настройки
 ```
 
-Точная модель platform admin и tenant admin — OQ-034.
+Wave 11 фиксирует минимальную техническую границу: tenant admin не является platform admin/moderator; moderator ограничен public Exchange/moderation metadata; organization Exchange suspension доступна только platform admin. Финальная governance/onboarding модель остаётся OQ-034.
 
 ## Граница отдельного продукта
 

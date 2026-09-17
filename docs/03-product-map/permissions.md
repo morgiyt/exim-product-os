@@ -19,9 +19,9 @@
 
 \* Логист не получает итоговую цену вместе с себестоимостью, если из этого можно вычислить закрытую маржу. Возможные исключения — OQ-049.
 
-## Exchange: capabilities и объекты — рабочий draft
+## Exchange: capabilities и объекты
 
-Точная response/contact/moderation модель не утверждена. Таблица ниже задаёт предлагаемые безопасные границы и должна быть уточнена после OQ-036/OQ-039/OQ-040/OQ-043. Колонки Moderator/Platform admin применимы только если такие роли утверждены.
+Wave 9/10 фиксируют listings/responses/selection, Wave 11 — task-level moderator/platform-admin boundary. Contact disclosure, KYC/verified, final governance/legal/fraud rules остаются draft после OQ-036/OQ-039/OQ-040/OQ-043.
 
 | Действие | Владелец объявления | Другой участник | Moderator | Platform admin |
 |---|:---:|:---:|:---:|:---:|
@@ -30,8 +30,11 @@
 | Видеть отклики | Да | Только свой | По расследованию | По отдельному праву |
 | Отправить отклик | Нет к своему | При capability + entitlement | Нет | Нет |
 | Выбрать исполнителя | Да | Нет | Нет | Нет |
-| Открыть контакты | По правилу | По правилу | По расследованию | По отдельному праву |
-| Заблокировать объявление | Нет | Нет | Да | Да |
+| Открыть контакты | Отключено | Отключено | Нет | Нет |
+| Подать жалобу | Нет к своему | Да к public target | Нет | Нет |
+| Restrict/unrestrict объявление | Нет | Нет | Да | Да |
+| Suspend/restore organization в Exchange | Нет | Нет | Нет | Да |
+| Читать platform audit | Нет | Нет | Только свои доступные cases | Да |
 
 ## Создание объектов
 
@@ -45,6 +48,8 @@
 | CargoListing | Участник с capability и entitlement |
 | TransportListing | Участник с capability и entitlement |
 | ExchangeResponse | Разрешённый участник другой стороны |
+| Exchange abuse report | Active Exchange participant на чужой public target |
+| Moderation case/action | Moderator или platform admin по Wave 11 contract |
 | Workflow template | По tenant/platform модели OQ-030, OQ-044 |
 
 ## Правила

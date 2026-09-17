@@ -1,6 +1,6 @@
 # EXIM Exchange — объявления грузов и транспорта
 
-**Статус:** Wave 9 contract implemented/submitted в TASK-2026-011. Search/response/selection продолжены в [Wave 10 contract](./exchange-search-responses); контакты, финальные коммерческие, moderation и mode-specific правила остаются открытыми вопросами.
+**Статус:** Wave 9 contract implemented/submitted в TASK-2026-011. Search/response/selection реализованы и сданы по [Wave 10 contract](./exchange-search-responses); moderation preview продолжен в [Wave 11 contract](./exchange-trust-safety). Контакты, финальные коммерческие, KYC/legal и mode-specific правила остаются открытыми вопросами.
 
 ## Общие правила Wave 9
 

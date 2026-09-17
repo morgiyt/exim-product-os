@@ -69,7 +69,7 @@ WorkflowTemplate
 
 ## Биржа грузов и транспорта — рабочая logical model
 
-Сам контур подтверждён, но точный набор сущностей ниже является draft до OQ-039…OQ-043.
+Контур подтверждён. CargoListing/TransportListing/ExchangeResponse/ExecutorSelection реализованы Wave 9/10; Report/ModerationCase и platform audit входят в task-ready Wave 11. ContactAccessEvent, ExchangeConversation и VerificationProfile остаются отключённым draft до OQ-039…OQ-043.
 
 ```text
 Organization
@@ -92,9 +92,9 @@ Organization
 | ExecutorSelection | Выбор участника владельцем объявления |
 | ContactAccessEvent | Аудит открытия контактов |
 | ExchangeConversation | Отдельное общение участников Exchange |
-| VerificationProfile | Состояние проверки; точная модель TBD |
-| Report | Жалоба участника |
-| ModerationCase | Рассмотрение и решение модератора |
+| VerificationProfile | Состояние проверки; точная модель TBD, Wave 11 не создаёт |
+| Report | Жалоба участника; Wave 11 task-ready public-target contract |
+| ModerationCase | Versioned рассмотрение и append-only решение moderator |
 
 Выбор исполнителя не создаёт автоматически Shipment в чужом tenant и не делает платформу стороной сделки.
 
