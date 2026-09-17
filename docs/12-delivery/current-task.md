@@ -4,22 +4,22 @@
 
 | Поле | Значение |
 |---|---|
-| Current task | `TASK-2026-009` |
-| Название | Финансы, закрытие и управленческая аналитика |
+| Current task | `TASK-2026-010` |
+| Название | Workflow Template Studio и безопасная activation |
 | Revision | `1` |
 | Статус | `in_progress` |
 | Owner authorization | Full-product roadmap утверждён 2026-09-17, D-086…D-089 |
-| Task | [TASK-2026-009](./tasks/TASK-2026-009-finance-closing-analytics) |
-| Product OS ref | `product-os-task-2026-009-r1` |
+| Task | [TASK-2026-010](./tasks/TASK-2026-010-workflow-template-studio) |
+| Product OS ref | `product-os-task-2026-010-r1` |
 | Application repository | `https://github.com/morgiyt/exim-super-app.git` — private |
-| Application stacked base | `task/TASK-2026-008-tasks-chats-notifications` @ `2a64cb913089da150c37564197dc42c7e4ca591b` |
-| Implementation branch | `task/TASK-2026-009-finance-closing-analytics` |
+| Application stacked base | `task/TASK-2026-009-finance-closing-analytics` @ `2c3b4844365500481665f1071c5486aeced7efd7` |
+| Implementation branch | `task/TASK-2026-010-workflow-template-studio` |
 | Target | managed preview; synthetic data only |
 | Production switch | `FORBIDDEN` |
 | Исполнитель | Codex |
 | Reviewer | independent reviewer / assigned human |
 | Acceptance authority | владелец продукта или явно назначенный им человек |
-| Следующее действие | Tenant-safe finance, manual closing, leadership roles и scoped analytics без реальных цен/provider |
+| Следующее действие | REQ-014 tenant-safe drafts, validation, preview/diff и immutable activation без existing-instance migration |
 
 ## Почему разрешено непрерывное продолжение
 
@@ -37,3 +37,4 @@
 | 2026-09-17 | TASK-2026-006 in_progress | TASK-2026-006 submitted; TASK-2026-007 in_progress | Codex implementation agent + task curator | Private PR #3 и exact preview evidence сохранены; каноническая CRM-волна открыта stacked по утверждённому full-product roadmap без заявления acceptance |
 | 2026-09-17 | TASK-2026-007 in_progress | TASK-2026-007 submitted; TASK-2026-008 in_progress | Codex implementation agent + task curator | Private PR #4 и exact CRM evidence сохранены; tasks/chats/notifications wave открыта stacked по утверждённому roadmap без заявления acceptance |
 | 2026-09-17 | TASK-2026-008 in_progress | TASK-2026-008 submitted; TASK-2026-009 in_progress | Codex implementation agent + task curator | Private PR #5 и exact communication evidence сохранены; finance/closing/analytics wave открыта stacked по утверждённому roadmap без заявления acceptance |
+| 2026-09-18 | TASK-2026-009 in_progress | TASK-2026-009 submitted; TASK-2026-010 in_progress | Codex implementation agent + task curator | Private PR #6 и exact finance evidence сохранены; editor wave открыта с task-level preview defaults без закрытия OQ и без заявления acceptance |

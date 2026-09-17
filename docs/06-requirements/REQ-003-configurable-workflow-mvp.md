@@ -2,7 +2,7 @@
 
 ## Статус и цель
 
-**Статус:** Foundation Gate core — ready for implementation; editor, inheritance и migrations — draft/later.
+**Статус:** Foundation Gate core — ready/implemented baseline; editor contract перенесён в REQ-014; inheritance и migrations остаются draft/later.
 **Версия Product OS:** 0.6.0 — draft.
 **Цель:** обеспечить версионируемые этапы QuoteRequest, Shipment и минимального Trip без обязательного полноценного визуального конструктора.
 
@@ -20,7 +20,7 @@ Foundation Gate требует:
 - историю переходов;
 - read-only просмотр шаблонов администратором.
 
-Редактор создания/изменения шаблонов через UI, drag-and-drop, form builder и миграция старых объектов не входят в Gate.
+Редактор создания/изменения шаблонов через UI и миграция старых объектов не входят в Gate. Ограниченный form-based editor для уже утверждённых object types описан отдельно в [REQ-014](./REQ-014-workflow-template-studio); он не меняет этот Gate-контракт задним числом.
 
 ## Tenant-граница
 

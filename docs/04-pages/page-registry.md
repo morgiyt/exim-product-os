@@ -35,7 +35,8 @@
 | SH-001 | Dashboard продаж | Private OS | Руководитель продаж | Full Product / Wave 7 | Wave 7 contract ready | Не реализовано |
 | SH-002 | Согласование низкой маржи | Private OS | Руководитель продаж | Full Product / Wave 7 | Wave 7 contract ready | Не реализовано |
 | AC-001 | Счета, оплаты и закрытие | Private OS | Бухгалтер | Full Product / Wave 7 | Wave 7 contract ready | Не реализовано |
-| AD-001 | Workflow-шаблоны | Private OS | Tenant admin | Foundation Gate: read-only; Post-Gate: editor | Gate core ready; editor draft | Не подтверждено |
+| AD-001 | Workflow-шаблоны | Private OS | Tenant admin | Foundation Gate read-only; Full Product / Wave 8 | Gate core + Wave 8 list contract ready | Read-only реализован; editor не реализован |
+| AD-004 | Workflow draft editor | Private OS | Tenant admin preview default | Full Product / Wave 8 | Wave 8 contract ready | Не реализовано |
 | AD-002 | Пользователи и роли | Private OS | Tenant admin | Foundation Gate | Gate contract ready | UI есть, scope не проверен |
 | AD-003 | Tenant-аудит | Private OS | Tenant admin | Foundation Gate | Gate contract ready | Не подтверждено |
 | EX-001 | Главная Exchange | Exchange | Участник | Launch MVP | Черновик | Не обнаружено в live UI |
@@ -59,3 +60,4 @@
 - [Контракты страниц Foundation Gate](./foundation-gate-contracts)
 - [Платформа и Exchange](./platform-and-exchange)
 - [Финансы, закрытие и аналитика](./finance-and-analytics)
+- [Workflow Template Studio](./workflow-template-studio)

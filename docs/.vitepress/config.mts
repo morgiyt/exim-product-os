@@ -76,7 +76,8 @@ export default defineConfig({
           { text: 'Кабинет логиста', link: '/04-pages/logistics-cabinet' },
           { text: 'Руководитель логистики', link: '/04-pages/logistics-head-cabinet' },
           { text: 'Кабинет администратора', link: '/04-pages/admin-cabinet' },
-          { text: 'Финансы и аналитика', link: '/04-pages/finance-and-analytics' }
+          { text: 'Финансы и аналитика', link: '/04-pages/finance-and-analytics' },
+          { text: 'Workflow Template Studio', link: '/04-pages/workflow-template-studio' }
         ]
       },
       {
@@ -89,7 +90,7 @@ export default defineConfig({
       {
         text: '06. Требования',
         items: [
-          { text: 'Реестр REQ-001…REQ-013', link: '/06-requirements/index' },
+          { text: 'Реестр REQ-001…REQ-014', link: '/06-requirements/index' },
           { text: 'REQ-001: запрос и расчёт', link: '/06-requirements/REQ-001-request-to-calculation' },
           { text: 'REQ-002: tracking', link: '/06-requirements/REQ-002-shipment-tracking' },
           { text: 'REQ-003: workflow MVP', link: '/06-requirements/REQ-003-configurable-workflow-mvp' },
@@ -102,7 +103,8 @@ export default defineConfig({
           { text: 'REQ-010: trust and moderation', link: '/06-requirements/REQ-010-verification-and-moderation' },
           { text: 'REQ-011: CRM и клиенты', link: '/06-requirements/REQ-011-crm-clients' },
           { text: 'REQ-012: задачи, чаты, уведомления', link: '/06-requirements/REQ-012-tasks-chats-notifications' },
-          { text: 'REQ-013: финансы и аналитика', link: '/06-requirements/REQ-013-finance-closing-analytics' }
+          { text: 'REQ-013: финансы и аналитика', link: '/06-requirements/REQ-013-finance-closing-analytics' },
+          { text: 'REQ-014: workflow editor', link: '/06-requirements/REQ-014-workflow-template-studio' }
         ]
       },
       {
@@ -165,6 +167,7 @@ export default defineConfig({
           { text: 'TASK-2026-007', link: '/12-delivery/tasks/TASK-2026-007-crm-clients' },
           { text: 'TASK-2026-008', link: '/12-delivery/tasks/TASK-2026-008-tasks-chats-notifications' },
           { text: 'TASK-2026-009', link: '/12-delivery/tasks/TASK-2026-009-finance-closing-analytics' },
+          { text: 'TASK-2026-010', link: '/12-delivery/tasks/TASK-2026-010-workflow-template-studio' },
           { text: 'Отчёты TASK-2026-003', link: '/12-delivery/reports/TASK-2026-003/README' },
           { text: 'Отчёты исполнителя', link: '/12-delivery/reports/README' },
           { text: 'Evidence manifests', link: '/12-delivery/evidence/README' },

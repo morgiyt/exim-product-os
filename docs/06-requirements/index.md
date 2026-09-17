@@ -12,13 +12,14 @@
 |---|---|---|---|
 | [REQ-001](./REQ-001-request-to-calculation) | Запрос и передача на расчёт | Ready for implementation | Foundation Gate |
 | [REQ-002](./REQ-002-shipment-tracking) | Ручной tracking перевозки | Ready for implementation | Foundation Gate |
-| [REQ-003](./REQ-003-configurable-workflow-mvp) | Минимальный versioned workflow | Gate core: Ready; editor: Draft | Foundation Gate / later editor |
+| [REQ-003](./REQ-003-configurable-workflow-mvp) | Минимальный versioned workflow | Gate core: Ready; editor вынесен в REQ-014 | Foundation Gate |
 | [REQ-004](./REQ-004-organizations-and-tenant-isolation) | Организации, memberships и tenant isolation | Ready for implementation | Foundation Gate |
 | [REQ-005](./REQ-005-secure-app-shell) | Безопасный и стабильный app shell | Ready for implementation | Foundation Gate |
 | [REQ-006](./REQ-006-agreement-to-shipment) | От согласования до перевозки | Ready for implementation | Foundation Gate |
 | [REQ-011](./REQ-011-crm-clients) | CRM, лиды и клиентские компании | Ready for implementation | Full Product / Wave 5 |
 | [REQ-012](./REQ-012-tasks-chats-notifications) | Задачи, чаты и in-app уведомления | Ready for implementation | Full Product / Wave 6 |
 | [REQ-013](./REQ-013-finance-closing-analytics) | Финансы, закрытие и управленческая аналитика | Ready for implementation | Full Product / Wave 7 |
+| [REQ-014](./REQ-014-workflow-template-studio) | Workflow Template Studio и безопасная activation | Ready for implementation | Full Product / Wave 8 |
 
 ## EXIM Exchange Launch MVP
 
@@ -37,6 +38,7 @@ REQ-004 tenant/security foundation
 ├── REQ-011 CRM, лиды и клиентские компании
 ├── REQ-012 задачи, чаты и in-app уведомления
 ├── REQ-013 финансы, закрытие и управленческая аналитика
+├── REQ-014 workflow template studio
 ├── REQ-002 tracking
 ├── REQ-005 reliable shell and RBAC verification
 └── REQ-007…009 Exchange Launch MVP

@@ -9,11 +9,11 @@
 | Auth | Recovery context | Server flow реализован; provider delivery не подключён | Gate | Expired/used token browser test |
 | Shell | Reload | Работает на stable object routes | Gate | Independent rerun |
 | Shell | Deep link/Back/Forward | Работает для request и shipment cards | Gate | Independent rerun |
-| Shell | Mobile 360–390 | Нет page-level overflow в workflow/shipment/CRM экранах | Gate / Wave 5 | Расширить на tasks/chats TASK-2026-008 |
-| Roles | Client/manager/logistician/tenant-admin | Отдельные server-derived contexts работают | Gate | Independent review |
+| Shell | Mobile 360–390 | Нет page-level overflow в workflow/shipment/CRM/tasks/chats/finance экранах | Gate / Wave 7 | Расширить на workflow editor TASK-2026-010 |
+| Roles | Client/manager/logistician/tenant-admin/accountant/sales_head/logistics_head | Отдельные server-derived contexts работают | Gate / Wave 7 | Independent review |
 | RBAC | Server-side permissions | Seven-account direct-request matrix PASS | Gate | Independent review |
 | Tenant | Изоляция A/B и A1/A2 | Safe 404 matrix PASS | Gate | Independent review |
-| Data | Согласованность request/shipment/CRM counts | Работает в role-scoped read models | Gate / Wave 5 | Продолжить для communications |
+| Data | Согласованность request/shipment/CRM/work/finance counts | Работает в role-scoped read models | Gate / Wave 7 | Продолжить для editor audit |
 | Search | Exact request/shipment/trip/CRM ID | Работает с safe unknown/foreign result | Gate / Wave 5 | Добавить tasks/chats exact search |
 | Request | Список, карточка и canonical workflow | Работает на preview | Gate | Independent review |
 | Request | Форма REQ-001 | Draft/validation/idempotent submit работают | Gate | Independent review |
@@ -25,9 +25,12 @@
 | Tracking | Manual event + manager publish | Correction + two safe publications PASS | Gate | Independent review |
 | Documents | Versioning/visibility/direct ID | Published client download и foreign/unpublished denial PASS | Gate | Replacement browser scenario |
 | CRM | Lead/Kanban/list/cards/conversion | Canonical server API и exact preview работают; PR #4 submitted | Full Product / Wave 5 | Independent review |
-| Tasks | List/Kanban/comments | Legacy/localStorage path существует; canonical server domain не реализован | Full Product / Wave 6 | REQ-012 + TASK-2026-008 |
-| Chats | Conversations/messages/read state | Legacy Supabase/localStorage paths существуют; tenant-safe active path не реализован | Full Product / Wave 6 | REQ-012 + TASK-2026-008 |
-| Notifications | Center/preferences/dedupe | Local-only placeholder; server source of truth не реализован | Full Product / Wave 6 | REQ-012 + TASK-2026-008 |
+| Tasks | List/Kanban/comments/linked objects | Canonical tenant-safe server domain работает; PR #5 submitted | Full Product / Wave 6 | Independent review |
+| Chats | Client/internal conversations/messages/read state/files | Canonical server path и protected download работают; PR #5 submitted | Full Product / Wave 6 | Independent review |
+| Notifications | Center/preferences/dedupe | Server source, mandatory security/access category и safe targets работают | Full Product / Wave 6 | Independent review |
+| Finance | Snapshot/margin/expenses/approval/invoice/payment/closing | Manual tenant-safe contour работает; PR #6 submitted | Full Product / Wave 7 | Independent review |
+| Analytics | Sales/logistics/accountant dashboards и CSV | Role-scoped counts/fields/currencies проверены | Full Product / Wave 7 | Independent review |
+| Workflow editor | Draft/validation/diff/activation | Не реализовано; preset immutable workflow core работает | Full Product / Wave 8 | REQ-014 + TASK-2026-010 |
 | Profile | Компания/пользователи/роли | UI работает | Gate | Tenant-scoped admin test |
 | Services | Каталог и claims | UI, claims не подтверждены | Gate cleanup | Source or removal |
 | Containers | Пустой каталог | UI вне текущего scope | OQ-048 | Product decision |
