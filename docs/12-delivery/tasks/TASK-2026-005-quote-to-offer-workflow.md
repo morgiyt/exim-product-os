@@ -4,7 +4,7 @@ title: Канонический QuoteRequest → RateQuote → CommercialOffer
 revision: 1
 release: Full Product / Wave 3
 product_module: Private Operating OS
-status: in_progress
+status: submitted
 handoff_gate: exact_application_identifiers_confirmed
 requested_by: product owner
 implementer: Codex
@@ -150,3 +150,4 @@ Foundation, access context и read model работают, но legacy UI всё
 | Дата | Было | Стало | Actor | Причина |
 |---|---|---|---|---|
 | 2026-09-17 | proposed | in_progress | Product owner authorization + task curator | Full-product roadmap уже утверждён; TASK-2026-004 сдана отдельным private PR, следующая зависимая волна открыта stacked без заявления acceptance |
+| 2026-09-17 | in_progress | submitted | Codex implementation agent + task curator | Private PR #2, exact managed preview, семиролевой E2E, migration/restore evidence и submission сохранены; independent review и acceptance остаются отдельными |

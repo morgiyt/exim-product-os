@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.0 draft — Wave 4 handoff
+
+- TASK-2026-005 переведена в `submitted`: private PR #2, exact runtime `7af9476`, семиролевой E2E, migration/reapply/restore evidence и submission сохранены; acceptance не заявляется;
+- открыт `TASK-2026-006` на договорный gate, ровно один Shipment, Trip execution, безопасную публикацию tracking и versioned documents в private stacked branch;
+- текущий delivery pointer, реестр и VitePress navigation синхронизированы с immutable ref `product-os-task-2026-006-r1`.
+
 ## 0.6.0 — draft — 2026-09-17
 
 - TASK-2026-004 переведена в `submitted`: private PR #1, exact runtime `164f66b`, report/coordination head `f2604b7`, 27/27 tests и три GitHub checks PASS; acceptance не заявляется;

@@ -157,6 +157,7 @@ export default defineConfig({
           { text: 'TASK-2026-003', link: '/12-delivery/tasks/TASK-2026-003-release-foundation-identity' },
           { text: 'TASK-2026-004', link: '/12-delivery/tasks/TASK-2026-004-stable-shell-read-model' },
           { text: 'TASK-2026-005', link: '/12-delivery/tasks/TASK-2026-005-quote-to-offer-workflow' },
+          { text: 'TASK-2026-006', link: '/12-delivery/tasks/TASK-2026-006-shipment-execution' },
           { text: 'Отчёты TASK-2026-003', link: '/12-delivery/reports/TASK-2026-003/README' },
           { text: 'Отчёты исполнителя', link: '/12-delivery/reports/README' },
           { text: 'Evidence manifests', link: '/12-delivery/evidence/README' },

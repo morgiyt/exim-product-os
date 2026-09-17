@@ -53,7 +53,7 @@ npm run docs:preview
 
 ## Интегратору
 
-- Текущая реализация: [TASK-2026-003 — Release foundation и явный access context](docs/12-delivery/tasks/TASK-2026-003-release-foundation-identity.md).
+- Текущая реализация: [TASK-2026-006 — AgreementBasis → Shipment → Trip → tracking и документы](docs/12-delivery/tasks/TASK-2026-006-shipment-execution.md).
 - Передача в Claude Code: [CLAUDE_CODE_START_PROMPT.md](CLAUDE_CODE_START_PROMPT.md).
 - Перед началом записи интегратор указывает точные application repo, base branch, expected HEAD и PR target.
 - Код рабочего приложения изменяется в его отдельном репозитории; этот репозиторий хранит Product OS, требования и приёмку.
