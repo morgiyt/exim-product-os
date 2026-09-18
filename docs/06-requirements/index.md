@@ -27,8 +27,8 @@
 |---|---|---|---|
 | [REQ-007](./REQ-007-exchange-listings) | Объявления грузов и транспорта | Wave 9 task-ready; later mechanics remain Draft | Full Product / Wave 9 |
 | [REQ-008](./REQ-008-exchange-search-and-responses) | Поиск, сохранённые поиски, отклики и выбор | Wave 10 task-ready; contacts/commercial rules remain Draft | Full Product / Wave 10 |
-| [REQ-009](./REQ-009-modules-and-entitlements) | Модули, бесплатный/платный доступ | Draft | Launch MVP |
-| [REQ-010](./REQ-010-verification-and-moderation) | Жалобы, модерация и platform control | Wave 11 task-ready preview; KYC/legal/fraud remain Draft | Full Product / Wave 11 |
+| [REQ-009](./REQ-009-modules-and-entitlements) | Модули, demo plans, subscriptions и entitlements | Wave 12 task-ready demo baseline; real billing remains Draft | Full Product / Wave 12 |
+| [REQ-010](./REQ-010-verification-and-moderation) | Жалобы, модерация и platform control | Wave 11 implemented/submitted; KYC/legal/fraud remain Draft | Full Product / Wave 11 |
 
 ## Зависимости
 
@@ -41,8 +41,9 @@ REQ-004 tenant/security foundation
 ├── REQ-014 workflow template studio
 ├── REQ-002 tracking
 ├── REQ-005 reliable shell and RBAC verification
-└── REQ-007…009 Exchange Launch MVP
-    └── REQ-010 Wave 11 complaints/moderation preview; KYC/legal/fraud conditional
+└── REQ-007…010 Exchange и Platform release chain
+    ├── REQ-010 Wave 11 complaints/moderation preview; KYC/legal/fraud conditional
+    └── REQ-009 Wave 12 demo plans/entitlements; real billing conditional
 ```
 
 REQ-007…REQ-009 и любую утверждённую часть conditional REQ-010 нельзя считать реализованными по наличию каталога контейнеров или упоминанию ATI.SU как внешнего источника ставок.

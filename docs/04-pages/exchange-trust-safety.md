@@ -1,6 +1,6 @@
 # Exchange Trust & Safety и Platform Admin
 
-**Статус:** Wave 11 contract ready для TASK-2026-013. Это безопасный preview-контур жалоб и модерации; KYC, verified badge, юридическая политика, апелляции, ratings и fraud scoring не утверждены.
+**Статус:** Wave 11 contract implemented/submitted в TASK-2026-013. Это безопасный preview-контур жалоб и модерации; KYC, verified badge, юридическая политика, апелляции, ratings и fraud scoring не утверждены.
 
 ## Общая граница
 

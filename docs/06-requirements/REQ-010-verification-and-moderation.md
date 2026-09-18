@@ -2,7 +2,7 @@
 
 ## Статус и цель
 
-**Статус:** task-ready preview baseline для Full Product / Wave 11; KYC, verified badge, final policy/legal/dispute/fraud rules остаются conditional draft после OQ-039…OQ-041.<br>
+**Статус:** Wave 11 preview baseline implemented/submitted в TASK-2026-013; KYC, verified badge, final policy/legal/dispute/fraud rules остаются conditional draft после OQ-039…OQ-041.<br>
 **Цель:** добавить минимальный контролируемый контур реакции на злоупотребления поверх REQ-007/008 без ложной проверки организации, без доступа модератора к Private OS и без превращения платформы в сторону сделки.
 
 ## Wave 11 scope

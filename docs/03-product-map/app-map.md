@@ -147,7 +147,7 @@ Workflow-шаблоны
 Системные настройки
 ```
 
-Wave 11 фиксирует минимальную техническую границу: tenant admin не является platform admin/moderator; moderator ограничен public Exchange/moderation metadata; organization Exchange suspension доступна только platform admin. Финальная governance/onboarding модель остаётся OQ-034.
+Wave 11 фиксирует минимальную техническую границу: tenant admin не является platform admin/moderator; moderator ограничен public Exchange/moderation metadata; organization Exchange suspension доступна только platform admin. Wave 12 добавляет `/exchange/plan` для own read-only demo plan/usage и `/platform/entitlements` для manual platform-admin activation без billing. Финальная governance/onboarding модель и production pricing остаются OQ-034/OQ-037.
 
 ## Граница отдельного продукта
 

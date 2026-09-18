@@ -174,6 +174,25 @@ open → in_review → actioned | dismissed → closed
 - organization Exchange suspension хранится отдельным reversible platform state и не меняет tenant membership или Private OS access;
 - appeals, SLA, KYC, final reason taxonomy и legal dispute lifecycle остаются OQ-039…041.
 
+## Module Subscription lifecycle
+
+### Wave 12 task canonical
+
+```text
+scheduled → active → expired
+scheduled → cancelled
+active → superseded | cancelled | expired
+```
+
+- одновременно действует не более одной `active` subscription на workspace/module;
+- `scheduled` используется только при будущем `starts_at`; до этой даты entitlement не включён;
+- replacement транзакционно переводит прежнюю `active` в `superseded` и создаёт новую versioned subscription;
+- manual end переводит доступ в `cancelled`, но не удаляет plan, usage, объявления или audit;
+- effective entitlement всегда проверяет `starts_at ≤ now < ends_at`; прошедший `ends_at` блокирует mutation даже до фоновой reconciliation статуса в `expired`;
+- повтор команды с тем же idempotency key возвращает прежний результат, а stale expected version даёт conflict;
+- plan version после использования immutable; новая конфигурация получает новую версию;
+- эти статусы описывают только manual demo access TASK-2026-014 и не являются billing/payment lifecycle.
+
 ## История
 
 Каждый переход хранит объект, предыдущий и новый статус, автора, membership/роль, дату и комментарий/причину, если она обязательна.
@@ -184,3 +203,4 @@ open → in_review → actioned | dismissed → closed
 - OQ-040 — точный lifecycle объявления и отклика;
 - OQ-042 — различия по видам транспорта;
 - OQ-044 — системные и tenant-шаблоны.
+- OQ-037 — реальные plans, billing и production subscription lifecycle.

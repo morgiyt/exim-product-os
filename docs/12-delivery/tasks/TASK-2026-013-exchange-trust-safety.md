@@ -4,7 +4,7 @@ title: EXIM Exchange — trust, complaints, moderation and platform administrati
 revision: 1
 release: Full Product / Wave 11
 product_module: Platform + EXIM Exchange
-status: in_progress
+status: submitted
 handoff_gate: exact_application_identifiers_confirmed
 requested_by: product owner
 implementer: Codex
@@ -102,3 +102,4 @@ target_environment: managed preview, synthetic data only
 | Дата | Было | Стало | Actor | Причина |
 |---|---|---|---|---|
 | 2026-09-18 | proposed | in_progress | Product owner authorization + task curator | Утверждённый Stage 14 открыт после private submission TASK-2026-012; complaints/moderation preview не создаёт KYC/verified/legal claims и не закрывает OQ-039…041 |
+| 2026-09-18 | in_progress | submitted | Codex implementation agent + task curator | Private PR #10, runtime `470a2a1`, report head `8f9b281`, 87/87 tests, managed E2E/browser/mobile/migration/restore evidence сохранены; acceptance не заявляется |

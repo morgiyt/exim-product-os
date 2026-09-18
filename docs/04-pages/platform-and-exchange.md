@@ -1,6 +1,6 @@
 # Платформенные и Exchange-страницы
 
-Статус: рабочий draft для Launch MVP. Контракт объявлений Wave 9 уточнён в [спецификации listings](./exchange-listings), search/response Wave 10 — в [спецификации поиска и откликов](./exchange-search-responses), а безопасный moderation preview Wave 11 — в [Trust & Safety contract](./exchange-trust-safety). Contacts, KYC/verification, legal/dispute и финальные trust rules зависят от OQ-034…OQ-045.
+Статус: рабочий draft для Launch MVP. Контракт объявлений Wave 9 уточнён в [спецификации listings](./exchange-listings), search/response Wave 10 — в [спецификации поиска и откликов](./exchange-search-responses), безопасный moderation preview Wave 11 — в [Trust & Safety contract](./exchange-trust-safety), а demo plans/entitlements Wave 12 — в [контракте модулей и планов](./modules-plans-entitlements). Contacts, реальные тарифы/billing, KYC/verification, legal/dispute и финальные trust rules зависят от OQ-034…OQ-045.
 
 ## Общие требования ко всем страницам
 
@@ -35,7 +35,7 @@
 
 ## ORG-003 — Модули и план
 
-Показывает активные modules, effective entitlements, лимиты/usage и период действия. Тарифы, цены и способ активации paid access — OQ-037. Окончание доступа не удаляет историю организации.
+Wave 12 показывает active modules, effective entitlement, synthetic demo plan/version, лимиты/usage, период и safe history своего workspace. Самоназначение/оплата отсутствуют. Подробный контракт — [Модули, планы и entitlements](./modules-plans-entitlements). Реальные тарифы, цены и billing provider остаются OQ-037; окончание доступа не удаляет историю.
 
 ## EX-001 — Главная Exchange
 
@@ -75,7 +75,7 @@ Wave 10 выбор создаёт только `ExecutorSelection`, перево
 
 ## PA-002 — Modules и entitlements
 
-Рабочий draft: выдать/отозвать module entitlement, лимит и период действия с обязательным audit. Для Launch должен существовать утверждённый способ активации paid access: manual external-payment flow либо billing provider — OQ-037.
+Wave 12 разрешает platform admin только ручную demo activation/replacement/expiry с reason, period, optimistic version, idempotency и audit. Страница не принимает оплату и не утверждает реальный коммерческий plan. Подробный контракт — [Модули, планы и entitlements](./modules-plans-entitlements). Production activation/provider остаются OQ-037.
 
 ## PA-003 — Модерация и жалобы
 

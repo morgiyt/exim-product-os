@@ -5,7 +5,7 @@ AU-003,Подтверждение и восстановление,Platform,Вс�
 PL-001,Главная и выбор модуля,Platform,Авторизованные,Launch MVP,Черновик,Нет подтверждения
 ORG-001,Организация и capabilities,Platform,Участники организации,Launch MVP,Черновик,Профиль частично
 ORG-002,"Участники, роли, приглашения",Platform,"Tenant admin в Gate; финальная модель OQ-034",Foundation Gate,Gate contract ready,"Частично, права не проверены"
-ORG-003,Модули и план,Platform,Organization admin,Launch MVP,Черновик,Не обнаружено в live UI
+ORG-003,Модули и план,Platform,Organization admin,Full Product / Wave 12,Wave 12 demo-plan contract ready; real billing TBD,Не реализовано
 CL-001,Главная клиента,Private OS,Клиент,Foundation Gate,Gate contract ready,"UI-режим есть, RBAC не проверен"
 CL-002,Новый запрос,Private OS,Клиент,Foundation Gate,Gate contract ready,Частично
 CL-003,Мои запросы,Private OS,Клиент,Foundation Gate,Gate contract ready,Частично
@@ -45,8 +45,8 @@ EX-008,Мои объявления,Exchange,Владелец,Full Product / Wave
 EX-009,Отклики и предложения,Exchange,Участники объекта,Full Product / Wave 10,Wave 10 contract ready,Реализовано на preview; PR #9 submitted
 EX-010,Выбор исполнителя / контакты,Exchange,Владелец и выбранный,Full Product / Wave 10,Wave 10 selection contract ready; contacts disabled,Выбор реализован; контакты отключены; PR #9 submitted
 EX-011,Профиль организации,Exchange,Участники,Full Product / Wave 9,Wave 9 minimum profile contract ready,Реализовано на preview; PR #8 submitted
-EX-012,Жалоба на объявление / организацию,Exchange,Участник,Full Product / Wave 11,Wave 11 contract ready,Не реализовано
-PA-001,Организации платформы,Platform admin,Platform admin,Full Product / Wave 11,Wave 11 Exchange-control contract ready,Не реализовано
-PA-002,Модули и entitlements,Platform admin,Platform admin,Launch MVP,Требует описания,Не обнаружено в live UI
-PA-003,Модерация и жалобы,Platform admin,Moderator,Full Product / Wave 11,Wave 11 preview contract ready; KYC/legal remain disabled,Не реализовано
-PA-004,Платформенный аудит,Platform admin,Platform admin,Full Product / Wave 11,Wave 11 contract ready,Не реализовано
+EX-012,Жалоба на объявление / организацию,Exchange,Участник,Full Product / Wave 11,Wave 11 contract implemented/submitted,Реализовано на preview; PR #10 submitted
+PA-001,Организации платформы,Platform admin,Platform admin,Full Product / Wave 11,Wave 11 Exchange-control contract implemented/submitted,Реализовано на preview; PR #10 submitted
+PA-002,Модули и entitlements,Platform admin,Platform admin,Full Product / Wave 12,Wave 12 manual demo-subscription contract ready; real billing TBD,Не реализовано
+PA-003,Модерация и жалобы,Platform admin,Moderator,Full Product / Wave 11,Wave 11 preview implemented/submitted; KYC/legal remain disabled,Реализовано на preview; PR #10 submitted
+PA-004,Платформенный аудит,Platform admin,Platform admin,Full Product / Wave 11,Wave 11 contract implemented/submitted,Реализовано на preview; PR #10 submitted

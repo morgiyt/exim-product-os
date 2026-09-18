@@ -53,7 +53,7 @@ npm run docs:preview
 
 ## Интегратору
 
-- Текущая реализация: [TASK-2026-013 — EXIM Exchange Trust & Safety и Platform Admin](docs/12-delivery/tasks/TASK-2026-013-exchange-trust-safety.md).
+- Текущая реализация: [TASK-2026-014 — modules, demo plans, subscriptions, entitlements и usage](docs/12-delivery/tasks/TASK-2026-014-modules-plans-entitlements.md).
 - Передача в Claude Code: [CLAUDE_CODE_START_PROMPT.md](CLAUDE_CODE_START_PROMPT.md).
 - Перед началом записи интегратор указывает точные application repo, base branch, expected HEAD и PR target.
 - Код рабочего приложения изменяется в его отдельном репозитории; этот репозиторий хранит Product OS, требования и приёмку.

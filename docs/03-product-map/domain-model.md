@@ -10,7 +10,9 @@ Organization
 ├── OrganizationMembership
 ├── OrganizationCapability
 ├── ModuleEntitlement
-├── Plan / SubscriptionState
+├── PlanVersion
+├── WorkspaceSubscription
+├── UsageSnapshot
 └── TenantWorkspace (опционально для Private OS)
 ```
 
@@ -23,9 +25,12 @@ Organization
 | TenantWorkspace | Изолированный Private OS организации |
 | WorkspaceMembership | Роли пользователя внутри tenant |
 | ModuleEntitlement | Доступ к модулю/функции и лимитам |
-| Plan | Коммерческий набор entitlements; детали TBD |
-| SubscriptionState | Состояние доступа, не обязательно платёж внутри приложения |
+| PlanVersion | Immutable набор module limits; Wave 12 содержит только явно маркированные task-local demo fixtures |
+| WorkspaceSubscription | Versioned effective period и manual demo activation; не означает платёж |
+| UsageSnapshot | Scoped фактическое usage относительно effective limits |
 | AuditEvent | Критическое событие платформы или tenant |
+
+Wave 12 реализует техническую модель без payment/card/invoice/charge/refund/provider сущностей. Реальная коммерческая модель остаётся OQ-037.
 
 ## Private Operating OS
 

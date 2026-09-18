@@ -4,22 +4,22 @@
 
 | Поле | Значение |
 |---|---|
-| Current task | `TASK-2026-013` |
-| Название | EXIM Exchange — trust, complaints, moderation and platform administration |
+| Current task | `TASK-2026-014` |
+| Название | Modules, demo plans, subscriptions, entitlements and usage |
 | Revision | `1` |
 | Статус | `in_progress` |
 | Owner authorization | Full-product roadmap утверждён 2026-09-17, D-086…D-089 |
-| Task | [TASK-2026-013](./tasks/TASK-2026-013-exchange-trust-safety) |
-| Product OS ref | `product-os-task-2026-013-r1` |
+| Task | [TASK-2026-014](./tasks/TASK-2026-014-modules-plans-entitlements) |
+| Product OS ref | `product-os-task-2026-014-r1` |
 | Application repository | `https://github.com/morgiyt/exim-super-app.git` — private |
-| Application stacked base | `task/TASK-2026-012-exchange-search-responses` @ `4689ac079f8762ab0e6936012424a2bebcf3dbe1` |
-| Implementation branch | `task/TASK-2026-013-exchange-trust-safety` |
+| Application stacked base | `task/TASK-2026-013-exchange-trust-safety` @ `8f9b2812c657e4c18f51fd9b93de1c188fc32296` |
+| Implementation branch | `task/TASK-2026-014-modules-plans-entitlements` |
 | Target | managed preview; synthetic data only |
 | Production switch | `FORBIDDEN` |
 | Исполнитель | Codex |
 | Reviewer | independent reviewer / assigned human |
 | Acceptance authority | владелец продукта или явно назначенный им человек |
-| Следующее действие | REQ-010 complaints/moderation/platform control без KYC, verified badge, legal policy, ratings или fraud scoring |
+| Следующее действие | REQ-009 immutable demo plans, manual subscriptions, effective entitlements, server limits и usage без billing/реальных списаний |
 
 ## Почему разрешено непрерывное продолжение
 
@@ -41,3 +41,4 @@
 | 2026-09-18 | TASK-2026-010 in_progress | TASK-2026-010 submitted; TASK-2026-011 in_progress | Codex implementation agent + task curator | Private PR #7 и exact workflow-studio evidence сохранены; Exchange listings wave открыта с отдельными public objects и без закрытия OQ |
 | 2026-09-18 | TASK-2026-011 in_progress | TASK-2026-011 submitted; TASK-2026-012 in_progress | Codex implementation agent + task curator | Private PR #8 и exact Exchange listing evidence сохранены; search/response wave открыта без contacts, commercial bidding и moderation |
 | 2026-09-18 | TASK-2026-012 in_progress | TASK-2026-012 submitted; TASK-2026-013 in_progress | Codex implementation agent + task curator | Private PR #9, exact runtime `10fa061` и report `4689ac0` сохранены; trust/safety wave открыта без KYC/verified/legal/fraud предположений |
+| 2026-09-18 | TASK-2026-013 in_progress | TASK-2026-013 submitted; TASK-2026-014 in_progress | Codex implementation agent + task curator | Private PR #10, exact runtime `470a2a1` и report `8f9b281` сохранены; demo plan/entitlement wave открыта без billing и реальных коммерческих условий |

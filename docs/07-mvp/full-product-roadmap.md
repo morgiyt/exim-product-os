@@ -160,7 +160,7 @@
 
 ## Этап 14 — Trust & Safety и Platform Admin
 
-**Текущая implementation wave:** [TASK-2026-013](../12-delivery/tasks/TASK-2026-013-exchange-trust-safety). Task-level preview включает complaints, moderation, listing restriction, Exchange-only organization suspension и platform audit. KYC/verified badge, final legal policy, appeals, ratings и fraud scoring остаются отключены до решений.
+**Сданная implementation wave:** [TASK-2026-013](../12-delivery/tasks/TASK-2026-013-exchange-trust-safety). Task-level preview включает complaints, moderation, listing restriction, Exchange-only organization suspension и platform audit. KYC/verified badge, final legal policy, appeals, ratings и fraud scoring остаются отключены до решений.
 
 - moderation queue, abuse reports, suspension и reason codes;
 - verification/KYC только в утверждённом объёме;
@@ -170,6 +170,8 @@
 **Выход:** контролируемый публичный контур без выдуманного verified-статуса.
 
 ## Этап 15 — Тарифы и подписки
+
+**Текущая implementation wave:** [TASK-2026-014](../12-delivery/tasks/TASK-2026-014-modules-plans-entitlements). Она использует только явно маркированные demo plans/prices, manual platform-admin activation и не подключает billing provider или реальные списания.
 
 - free/paid entitlements и server-enforced limits;
 - plans, subscriptions, usage counters и manual activation;
